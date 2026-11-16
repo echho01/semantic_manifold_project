@@ -1,0 +1,570 @@
+{
+  "dataset": "spaicom-lab/semasia-cifar100",
+  "revision": "ace0aa91fc0b79953ec1ac619a25072d3a5b3037",
+  "model": "resnet18.a1_in1k",
+  "task": "coarse",
+  "test_split": "official test",
+  "test_id_sha256": "af5bac377207e434f4de7dad3c9fd257037196d886fd3de8c5bef0055ee75b0c",
+  "count": 192,
+  "checkpoint": "results/checkpoints/curve-fixed.pt",
+  "test_seed": 31415,
+  "book": 16,
+  "uses_per_sample": 4,
+  "information_bits": 3.459990978240967,
+  "expected_clean_kl_bits": 1.7336931228637695,
+  "controls": [
+    {
+      "method": "nearest_KL_anchor",
+      "channel": "clean",
+      "ebn0_db": null,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.4166666865348816,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": 1.5842565298080444
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.4166666865348816,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": 1.5842565298080444
+        }
+      ]
+    },
+    {
+      "method": "nearest_cosine_anchor",
+      "channel": "clean",
+      "ebn0_db": null,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.3125,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": 3.187859296798706
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.3125,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": 3.187859296798706
+        }
+      ]
+    },
+    {
+      "method": "direct_task_decision",
+      "channel": "clean",
+      "ebn0_db": null,
+      "replicates": [
+        {
+          "uses": 5,
+          "accuracy": 0.59375,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": null
+        },
+        {
+          "uses": 5,
+          "accuracy": 0.59375,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": null
+        }
+      ]
+    },
+    {
+      "method": "nearest_KL_anchor",
+      "channel": "awgn",
+      "ebn0_db": 0.0,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.2916666865348816,
+          "index_bler": 0.2604166865348816,
+          "erasure": 0.0,
+          "ber": 0.07682291666666667,
+          "posterior_kl_bits": 3.114872694015503
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.28125,
+          "index_bler": 0.3177083432674408,
+          "erasure": 0.0,
+          "ber": 0.09505208333333333,
+          "posterior_kl_bits": 3.7067153453826904
+        }
+      ]
+    },
+    {
+      "method": "nearest_cosine_anchor",
+      "channel": "awgn",
+      "ebn0_db": 0.0,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.234375,
+          "index_bler": 0.2760416865348816,
+          "erasure": 0.0,
+          "ber": 0.07942708333333333,
+          "posterior_kl_bits": 4.329340934753418
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.203125,
+          "index_bler": 0.3802083432674408,
+          "erasure": 0.0,
+          "ber": 0.10677083333333333,
+          "posterior_kl_bits": 5.164872646331787
+        }
+      ]
+    },
+    {
+      "method": "direct_task_decision",
+      "channel": "awgn",
+      "ebn0_db": 0.0,
+      "replicates": [
+        {
+          "uses": 5,
+          "accuracy": 0.3958333432674408,
+          "index_bler": 0.3333333432674408,
+          "erasure": 0.0833333358168602,
+          "ber": 0.07604166666666666,
+          "posterior_kl_bits": null
+        },
+        {
+          "uses": 5,
+          "accuracy": 0.3802083432674408,
+          "index_bler": 0.3958333432674408,
+          "erasure": 0.0677083358168602,
+          "ber": 0.09166666666666666,
+          "posterior_kl_bits": null
+        }
+      ]
+    },
+    {
+      "method": "nearest_KL_anchor",
+      "channel": "awgn",
+      "ebn0_db": 10.0,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.4166666865348816,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": 1.5842565298080444
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.4166666865348816,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": 1.5842565298080444
+        }
+      ]
+    },
+    {
+      "method": "nearest_cosine_anchor",
+      "channel": "awgn",
+      "ebn0_db": 10.0,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.3125,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": 3.187859296798706
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.3125,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": 3.187859296798706
+        }
+      ]
+    },
+    {
+      "method": "direct_task_decision",
+      "channel": "awgn",
+      "ebn0_db": 10.0,
+      "replicates": [
+        {
+          "uses": 5,
+          "accuracy": 0.59375,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": null
+        },
+        {
+          "uses": 5,
+          "accuracy": 0.59375,
+          "index_bler": 0.0,
+          "erasure": 0.0,
+          "ber": 0.0,
+          "posterior_kl_bits": null
+        }
+      ]
+    },
+    {
+      "method": "nearest_KL_anchor",
+      "channel": "rayleigh",
+      "ebn0_db": 0.0,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.2708333432674408,
+          "index_bler": 0.390625,
+          "erasure": 0.0,
+          "ber": 0.12760416666666666,
+          "posterior_kl_bits": 4.053716659545898
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.25,
+          "index_bler": 0.4270833432674408,
+          "erasure": 0.0,
+          "ber": 0.15104166666666666,
+          "posterior_kl_bits": 4.266903877258301
+        }
+      ]
+    },
+    {
+      "method": "nearest_cosine_anchor",
+      "channel": "rayleigh",
+      "ebn0_db": 0.0,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.203125,
+          "index_bler": 0.3958333432674408,
+          "erasure": 0.0,
+          "ber": 0.12239583333333333,
+          "posterior_kl_bits": 5.069214820861816
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.1927083432674408,
+          "index_bler": 0.40625,
+          "erasure": 0.0,
+          "ber": 0.14322916666666666,
+          "posterior_kl_bits": 5.033358097076416
+        }
+      ]
+    },
+    {
+      "method": "direct_task_decision",
+      "channel": "rayleigh",
+      "ebn0_db": 0.0,
+      "replicates": [
+        {
+          "uses": 5,
+          "accuracy": 0.34375,
+          "index_bler": 0.4427083432674408,
+          "erasure": 0.125,
+          "ber": 0.134375,
+          "posterior_kl_bits": null
+        },
+        {
+          "uses": 5,
+          "accuracy": 0.3385416865348816,
+          "index_bler": 0.4947916865348816,
+          "erasure": 0.109375,
+          "ber": 0.146875,
+          "posterior_kl_bits": null
+        }
+      ]
+    },
+    {
+      "method": "nearest_KL_anchor",
+      "channel": "rayleigh",
+      "ebn0_db": 10.0,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.3854166865348816,
+          "index_bler": 0.0520833358168602,
+          "erasure": 0.0,
+          "ber": 0.016927083333333332,
+          "posterior_kl_bits": 1.8623040914535522
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.4114583432674408,
+          "index_bler": 0.0729166716337204,
+          "erasure": 0.0,
+          "ber": 0.024739583333333332,
+          "posterior_kl_bits": 2.0099353790283203
+        }
+      ]
+    },
+    {
+      "method": "nearest_cosine_anchor",
+      "channel": "rayleigh",
+      "ebn0_db": 10.0,
+      "replicates": [
+        {
+          "uses": 4,
+          "accuracy": 0.296875,
+          "index_bler": 0.0520833358168602,
+          "erasure": 0.0,
+          "ber": 0.014322916666666666,
+          "posterior_kl_bits": 3.3501696586608887
+        },
+        {
+          "uses": 4,
+          "accuracy": 0.3020833432674408,
+          "index_bler": 0.0572916679084301,
+          "erasure": 0.0,
+          "ber": 0.01953125,
+          "posterior_kl_bits": 3.4246363639831543
+        }
+      ]
+    },
+    {
+      "method": "direct_task_decision",
+      "channel": "rayleigh",
+      "ebn0_db": 10.0,
+      "replicates": [
+        {
+          "uses": 5,
+          "accuracy": 0.5677083730697632,
+          "index_bler": 0.0572916679084301,
+          "erasure": 0.0260416679084301,
+          "ber": 0.016666666666666666,
+          "posterior_kl_bits": null
+        },
+        {
+          "uses": 5,
+          "accuracy": 0.5625,
+          "index_bler": 0.0520833358168602,
+          "erasure": 0.010416666977107525,
+          "ber": 0.0125,
+          "posterior_kl_bits": null
+        }
+      ]
+    }
+  ],
+  "head_accuracy": 0.59375,
+  "head_nll_bits": 1.8582990169525146,
+  "links": [
+    {
+      "channel": "clean",
+      "ebn0_db": null,
+      "repeats": 2,
+      "posterior_kl_bits": 1.716823697090149,
+      "accuracy": 0.4427083432674408,
+      "nll_bits": 3.4399646520614624,
+      "index_bler": 0.0,
+      "ber": 0.0,
+      "fixed_distortion": 1.7900528311729431,
+      "replicates": [
+        [
+          1.7256029844284058,
+          0.4479166865348816,
+          3.4534406661987305,
+          0.0,
+          0.0,
+          1.790113925933838
+        ],
+        [
+          1.708044409751892,
+          0.4375,
+          3.4264886379241943,
+          0.0,
+          0.0,
+          1.7899917364120483
+        ]
+      ],
+      "columns": [
+        "posterior_kl_bits",
+        "accuracy",
+        "nll_bits",
+        "index_bler",
+        "ber",
+        "fixed_distortion"
+      ]
+    },
+    {
+      "channel": "awgn",
+      "ebn0_db": 0.0,
+      "repeats": 2,
+      "posterior_kl_bits": 3.686005115509033,
+      "accuracy": 0.3046875,
+      "nll_bits": 5.447270393371582,
+      "index_bler": 0.3020833432674408,
+      "ber": 0.0859375,
+      "fixed_distortion": 3.1667749881744385,
+      "replicates": [
+        [
+          3.3703770637512207,
+          0.3125,
+          5.142825126647949,
+          0.2760416865348816,
+          0.07682291666666667,
+          3.0096118450164795
+        ],
+        [
+          4.001633167266846,
+          0.296875,
+          5.751715660095215,
+          0.328125,
+          0.09505208333333333,
+          3.3239381313323975
+        ]
+      ],
+      "columns": [
+        "posterior_kl_bits",
+        "accuracy",
+        "nll_bits",
+        "index_bler",
+        "ber",
+        "fixed_distortion"
+      ]
+    },
+    {
+      "channel": "awgn",
+      "ebn0_db": 10.0,
+      "repeats": 2,
+      "posterior_kl_bits": 1.716823697090149,
+      "accuracy": 0.4427083432674408,
+      "nll_bits": 3.4399646520614624,
+      "index_bler": 0.0,
+      "ber": 0.0,
+      "fixed_distortion": 1.7900528311729431,
+      "replicates": [
+        [
+          1.7256029844284058,
+          0.4479166865348816,
+          3.4534406661987305,
+          0.0,
+          0.0,
+          1.790113925933838
+        ],
+        [
+          1.708044409751892,
+          0.4375,
+          3.4264886379241943,
+          0.0,
+          0.0,
+          1.7899917364120483
+        ]
+      ],
+      "columns": [
+        "posterior_kl_bits",
+        "accuracy",
+        "nll_bits",
+        "index_bler",
+        "ber",
+        "fixed_distortion"
+      ]
+    },
+    {
+      "channel": "rayleigh",
+      "ebn0_db": 0.0,
+      "repeats": 2,
+      "posterior_kl_bits": 4.166928052902222,
+      "accuracy": 0.2838541716337204,
+      "nll_bits": 5.853273868560791,
+      "index_bler": 0.4062500149011612,
+      "ber": 0.13932291666666666,
+      "fixed_distortion": 3.5238441228866577,
+      "replicates": [
+        [
+          4.104630470275879,
+          0.28125,
+          5.790074348449707,
+          0.4010416865348816,
+          0.13151041666666666,
+          3.520456314086914
+        ],
+        [
+          4.2292256355285645,
+          0.2864583432674408,
+          5.916473388671875,
+          0.4114583432674408,
+          0.14713541666666666,
+          3.5272319316864014
+        ]
+      ],
+      "columns": [
+        "posterior_kl_bits",
+        "accuracy",
+        "nll_bits",
+        "index_bler",
+        "ber",
+        "fixed_distortion"
+      ]
+    },
+    {
+      "channel": "rayleigh",
+      "ebn0_db": 10.0,
+      "repeats": 2,
+      "posterior_kl_bits": 2.0669093132019043,
+      "accuracy": 0.4244791865348816,
+      "nll_bits": 3.793386936187744,
+      "index_bler": 0.06250000186264515,
+      "ber": 0.020182291666666668,
+      "fixed_distortion": 2.0245684385299683,
+      "replicates": [
+        [
+          2.002074956893921,
+          0.4166666865348816,
+          3.7472476959228516,
+          0.0572916679084301,
+          0.018229166666666668,
+          2.016857147216797
+        ],
+        [
+          2.1317436695098877,
+          0.4322916865348816,
+          3.8395261764526367,
+          0.0677083358168602,
+          0.022135416666666668,
+          2.0322797298431396
+        ]
+      ],
+      "columns": [
+        "posterior_kl_bits",
+        "accuracy",
+        "nll_bits",
+        "index_bler",
+        "ber",
+        "fixed_distortion"
+      ]
+    }
+  ],
+  "extra": {
+    "mode": "fixed",
+    "lambda_fixed": 3.0,
+    "expected_fixed_distortion": 1.7855148315429688,
+    "train_history": [
+      {
+        "epoch": 1,
+        "information_bits": 3.5562524795532227,
+        "fixed_distortion": 1.781367301940918,
+        "kl_bits": 1.5453507900238037
+      },
+      {
+        "epoch": 2,
+        "information_bits": 3.5562524795532227,
+        "fixed_distortion": 1.781367301940918,
+        "kl_bits": 1.5453507900238037
+      }
+    ]
+  }
+}

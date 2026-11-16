@@ -1,0 +1,6 @@
+# Optional pretrained-encoder extraction; CPU analysis uses ../requirements.txt.
+-r ../requirements.txt
+torch>=2.2
+torchvision>=0.17
+transformers>=4.38,<5
+datasets>=2.16

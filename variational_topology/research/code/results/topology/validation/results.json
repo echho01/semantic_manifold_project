@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "independent_libraries": {
+    "passed": true,
+    "metrics": {
+      "bottleneck_vs_persim_max_abs_error": 0.0,
+      "bottleneck_random_pairs": 300,
+      "h0_mst_vs_ripser_max_abs_error": 5.0516753224982835e-08,
+      "ellipse_alpha_h1_interval": [
+        0.0020943901260825574,
+        0.5000024673805813
+      ],
+      "alpha_h0_vs_mst_max_abs_error": 6.938893903907228e-18,
+      "circle_alpha_death": 1.0000000000032736,
+      "circle_rips_death": 0.8660253882408142,
+      "native_alpha_vs_gudhi_max_bottleneck_error": 1.3322676295501878e-15,
+      "native_alpha_clouds": 20
+    },
+    "source_sha256": {
+      "selftest_tda.py": "24d6320b0b741d7b23e94e46744836522f395303e1ce87511c45c0e4444b9cdd",
+      "tda.py": "5a64b478513ff151d8ffa17761529a5f287e14300463f59cfad08a649b5d654e"
+    },
+    "dependencies": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "ripser": "0.6.15",
+      "persim": "0.4.1",
+      "gudhi": "3.13.0"
+    }
+  },
+  "regressions": {
+    "run": 14,
+    "failures": 0,
+    "errors": 0
+  },
+  "source_sha256": {
+    "code/topology/sync.py": "bd903525fcb42e33c0ef65022dc083a5608a76592dc1262fbb5480d33b9cc44e",
+    "code/topology/tda.py": "5a64b478513ff151d8ffa17761529a5f287e14300463f59cfad08a649b5d654e",
+    "code/topology/selftest_tda.py": "24d6320b0b741d7b23e94e46744836522f395303e1ce87511c45c0e4444b9cdd",
+    "code/topology/reeb.py": "7642f212fa8cc99b300b3da6c13dc1647c62103be0b147544c8b9e05c3660988",
+    "code/embeddings/topology_exp.py": "324ed52dc5685af4fb61be9b8ed718ae4f67aa212f0f17852c0ee78a0abdbc7f",
+    "code/embeddings/selftest_topology.py": "d2dad35795c18b071290997308dd90d4e822a1d86f1c59fab323e977f5d8fd35",
+    "code/embeddings/run_topology.py": "d46b8b17b3968fafd055b10b76adec40029ba4f1b82fe3aa715117a1ea06cd48",
+    "code/tests/run_topology_checks.py": "e4e2bda22ca7a49e99914ace437b8050dfe3e73eac30fde7532429d5d5fc44a7",
+    "code/tests/test_topology.py": "7a6ad83f2ca5a3f9a48c0fef96e935785c375ab2d1455a09d929bbb81667c6b7",
+    "code/embeddings/data_sources.py": "2965a90ef8eb0902e8f54215c872f7d951906d758972f299d7f45d40bbc436a0",
+    "code/embeddings/run_all.py": "008e9dcf72f02f874e0c2617ecd754eb60d11142b0b28e15994dfb66263bb830"
+  }
+}

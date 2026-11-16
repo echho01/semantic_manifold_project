@@ -1,0 +1,41 @@
+{
+  "run_date": "2026-09-16",
+  "evidence_type": "executed CPU mathematical checks; no neural-network or road-task training",
+  "seed": 20260915,
+  "python": "3.13.5",
+  "sphere": {
+    "s": 3000.0,
+    "distortion": 0.00033331481502057775,
+    "rate_nats": 8.392773038955317,
+    "observed_correction": 0.16667037040193944,
+    "theoretical_limit": "1/6"
+  },
+  "kernel": {
+    "analytic_gradient": -0.4674576297331671,
+    "centered_difference": -0.467457629715895,
+    "absolute_error": 1.727212817215218e-11,
+    "dilation_transition_error": 1.1102230246251565e-16
+  },
+  "persistence": {
+    "complete_rips_two_skeleton_trials": 40,
+    "trials_satisfying_realized_pair_bound": 40,
+    "maximum_bound_ratio": 0.9999999999999992
+  },
+  "power": {
+    "optimizer_success": true,
+    "relative_objective_error": 2.5792865214074895e-9
+  },
+  "gaussian_radius": {
+    "draws": 20000,
+    "nominal_alpha": 0.05,
+    "violations": 1,
+    "one_sided_95pct_binomial_upper": 0.00023717102659408986
+  },
+  "shared_knowledge": {
+    "conditional_entropy_nats": 0.5004024235381879,
+    "mismatch_KL_nats": 0.030595220441363067,
+    "cross_entropy_nats": 0.530997643979551,
+    "identity_error": 2.42861286636753e-17
+  },
+  "reproduction": "python scripts/validate_implementation.py --out results/implementation"
+}

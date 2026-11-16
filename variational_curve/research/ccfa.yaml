@@ -1,0 +1,33 @@
+version: "0.4.0"
+project:
+  title: "变分编码曲面"
+  short_name: "variational_curve"
+  root: "."
+target_venue:
+  name: "IEEE Communications Letters"
+  mode: "IEEE Letter (IEEEtran journal, 10pt, at most 5 pages including references)"
+stage:
+  current: "single-file manuscript and measured experiments"
+  gate: "full evaluation pending"
+  updated_at: "2026-11-16"
+artifacts:
+  manuscript: "../main.tex"
+  bibliography: "../ref.bib"
+  derivations: "derivations/"
+  experiments: "experiments/"
+  evidence_plan: "EXPERIMENTS.md"
+  results: "results/"
+claims:
+  - source: "derivations/encoder_identifiability.md"
+    status: "working derivation; scope and assumptions in source"
+  - source: "derivations/interaction_rank.md"
+    status: "proved for finite alphabets; random-instance checks in tests/test_interaction.py"
+experiments:
+  - source: "results/interaction_rank.json"
+    status: "computed on the 96-state circle and reported in manuscript"
+  - source: "results/encoder_contrasts.json"
+    status: "measured and reported in manuscript"
+  - source: "results/semasia_smoke.json"
+    status: "executed smoke; insufficient for performance claims"
+  - source: "experiments/matrix.json"
+    status: "full campaign pending"

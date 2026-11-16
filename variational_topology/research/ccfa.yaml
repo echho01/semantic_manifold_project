@@ -1,0 +1,34 @@
+version: "0.4.0"
+project:
+  title: "变分语义拓扑学习"
+  short_name: "variational_topology"
+  root: "."
+target_venue:
+  name: "IEEE GLOBECOM 2027"
+  mode: "IEEE Conference"
+  page_limit: "6 pages including references; confirm against the call for papers"
+stage:
+  current: "single-file manuscript and measured experiments"
+  gate: "full evaluation pending"
+  updated_at: "2026-11-16"
+artifacts:
+  manuscript: "../main.tex"
+  bibliography: "../ref.bib"
+  derivations: "derivations/"
+  experiments: "experiments/"
+  evidence_plan: "EXPERIMENTS.md"
+  results: "results/"
+claims:
+  - source: "derivations/connectivity.md"
+    status: "working derivation; scope and assumptions in source"
+  - source: "derivations/orbit_rdf_and_fading.md"
+    status: "proved in source; checked numerically by tests/test_orbit.py"
+experiments:
+  - source: "results/reflection_queries.json"
+    status: "measured and reported in manuscript"
+  - source: "results/orbit_rdf.json"
+    status: "exact counts on 320 glyphs and formula evaluation; reported in manuscript"
+  - source: "results/omniglot_smoke_proposed.json"
+    status: "executed smoke; insufficient for performance claims"
+  - source: "experiments/matrix.json"
+    status: "full campaign pending"

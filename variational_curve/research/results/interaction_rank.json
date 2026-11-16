@@ -1,0 +1,219 @@
+{
+  "source": {
+    "states": 96,
+    "modulation": 0.85,
+    "evaluator": "squared shortest arc"
+  },
+  "slopes_nats": [
+    0.25,
+    0.30601338582616383,
+    0.3745767692191704,
+    0.4585020216023356,
+    0.5612310241546865,
+    0.6869768237290446,
+    0.8408964152537145,
+    1.029302236643492,
+    1.2599210498948732,
+    1.5422108254079405,
+    1.8877486253633868,
+    2.3107053937445463,
+    2.82842712474619,
+    3.4621462440245714,
+    4.237852377437182,
+    5.187358218604039,
+    6.3496042078727974,
+    7.772255529228845,
+    9.513656920021765,
+    11.645225462737496,
+    14.254379490245432,
+    17.448123722644116,
+    21.357437666720546,
+    26.14264725185758,
+    32.0
+  ],
+  "target_distortion": 0.3,
+  "blahut_bits": 1.1831913546609754,
+  "blahut_max_dual_gap_nats": 4.6657972933128455e-05,
+  "blahut_support_at_nearest_slope": 96,
+  "nearest_slope_nats": 1.5422108254079405,
+  "nearest_slope_distortion": 0.32420948881782585,
+  "singular_values": [
+    192.06855360189624,
+    192.06855360189624,
+    48.06859767919596,
+    48.06859767919594,
+    21.402004574721676,
+    21.40200457472167,
+    12.068774438985848,
+    12.068774438985841,
+    7.7489074836564775,
+    7.748907483656475,
+    5.40240398251669,
+    5.402403982516682,
+    3.9876316196498642,
+    3.987631619649863,
+    3.069488756289252,
+    3.0694887562892283,
+    2.4401149390952517,
+    2.4401149390950416,
+    1.9900322477586796,
+    1.9900322477586763,
+    1.6571292620883147,
+    1.6571292620883118,
+    1.404039050060685,
+    1.4040390500606836,
+    1.2071876258700858,
+    1.2071876258700849,
+    1.051106785484153,
+    1.0511067854841527,
+    0.9253059701786245,
+    0.9253059701786237,
+    0.8224670334241136,
+    0.8224670334241118,
+    0.7373591130392161,
+    0.7373591130392131,
+    0.6661630973028829,
+    0.6661630973028815,
+    0.606038069832317,
+    0.6060380698323083,
+    0.5548355148561225,
+    0.5548355148560156
+  ],
+  "numerical_rank": 95,
+  "negative_type": {
+    "min_eig_minus_centered_arc_squared": -48.06859767919599,
+    "min_eig_minus_centered_chord_squared": -2.5414309479049488e-14
+  },
+  "families": {
+    "fixed_surface_uniform_mass": {
+      "bits": 1.2649853766580104
+    },
+    "fixed_surface_learned_mass": {
+      "bits": 1.1831913553618483
+    },
+    "chord_uniform_mass": {
+      "bits": 1.272414178267472
+    },
+    "chord_learned_mass": {
+      "bits": 1.1899143688764564,
+      "note": "single Euclidean surface; scale optimized at every slope"
+    },
+    "spectral_d2": {
+      "bits": 1.1898973825977983,
+      "max_residual": 2.5775941202757977,
+      "next_singular_value": 48.06859767919596,
+      "at_nearest_slope": {
+        "excess_bits": 0.10346164396506086,
+        "identity_bits": 0.10346164227003458,
+        "weighted_divergence_bits": 0.10607132401161731,
+        "sup_residual_logit": 3.9751935557971914,
+        "sup_bound_bits": 11.398851679152797
+      },
+      "interaction_sup_lp": 1.7759080942116483
+    },
+    "spectral_d4": {
+      "bits": 1.2104056852229779,
+      "max_residual": 1.5761650019592244,
+      "next_singular_value": 21.402004574721676,
+      "at_nearest_slope": {
+        "excess_bits": 0.07020023003950948,
+        "identity_bits": 0.07020022986714683,
+        "weighted_divergence_bits": 0.07124603007192007,
+        "sup_residual_logit": 2.430778728650645,
+        "sup_bound_bits": 4.2622154380598
+      },
+      "interaction_sup_lp": 1.0722658108997603
+    },
+    "spectral_d6": {
+      "bits": 1.1937315661778487,
+      "max_residual": 1.1302899066525232,
+      "next_singular_value": 12.068774438985848,
+      "at_nearest_slope": {
+        "excess_bits": 0.02061162546977391,
+        "identity_bits": 0.020611625335237013,
+        "weighted_divergence_bits": 0.020749697746981995,
+        "sup_residual_logit": 1.743145329888853,
+        "sup_bound_bits": 2.1918545774496847
+      },
+      "interaction_sup_lp": 0.7665165370187833
+    },
+    "spectral_d8": {
+      "bits": 1.1879639690404589,
+      "max_residual": 0.8788571058403143,
+      "next_singular_value": 7.7489074836564775,
+      "at_nearest_slope": {
+        "excess_bits": 0.008595681834648872,
+        "identity_bits": 0.008595681805177615,
+        "weighted_divergence_bits": 0.008606388045079781,
+        "sup_residual_logit": 1.3553829426136261,
+        "sup_bound_bits": 1.3251607830561591
+      },
+      "interaction_sup_lp": 0.5944412905646487
+    },
+    "spectral_d10": {
+      "bits": 1.1854584665429002,
+      "max_residual": 0.7174215332641367,
+      "next_singular_value": 5.40240398251669,
+      "at_nearest_slope": {
+        "excess_bits": 0.003978015887220909,
+        "identity_bits": 0.003978015889955024,
+        "weighted_divergence_bits": 0.003978327444674432,
+        "sup_residual_logit": 1.106415254980716,
+        "sup_bound_bits": 0.8830409693545415
+      },
+      "interaction_sup_lp": 0.486633465485401
+    },
+    "spectral_d12": {
+      "bits": 1.1835752863970364,
+      "max_residual": 0.6048714502950396,
+      "next_singular_value": 3.9876316196498642,
+      "at_nearest_slope": {
+        "excess_bits": 0.0020912713582601494,
+        "identity_bits": 0.002091271339036041,
+        "weighted_divergence_bits": 0.0020912832733128274,
+        "sup_residual_logit": 0.9328392986252125,
+        "sup_bound_bits": 0.6277087907626006
+      },
+      "interaction_sup_lp": 0.4088228979690542
+    },
+    "spectral_d16": {
+      "bits": 1.183712606165099,
+      "max_residual": 0.45784810912964247,
+      "next_singular_value": 2.4401149390952517,
+      "at_nearest_slope": {
+        "excess_bits": 0.0007430089500930492,
+        "identity_bits": 0.0007430089482908628,
+        "weighted_divergence_bits": 0.0007430090368084309,
+        "sup_residual_logit": 0.7060983102922921,
+        "sup_bound_bits": 0.3596457129024648
+      },
+      "interaction_sup_lp": 0.310601740235833
+    },
+    "spectral_d24": {
+      "bits": 1.1833227155795831,
+      "max_residual": 0.3017790362337456,
+      "next_singular_value": 1.2071876258700858,
+      "at_nearest_slope": {
+        "excess_bits": 0.0001709366633158016,
+        "identity_bits": 0.00017093666331879782,
+        "weighted_divergence_bits": 0.00017093666828620584,
+        "sup_residual_logit": 0.46540689656086104,
+        "sup_bound_bits": 0.1562464548953608
+      },
+      "interaction_sup_lp": 0.20858541678850814
+    },
+    "spectral_d32": {
+      "bits": 1.1832649426185067,
+      "max_residual": 0.21831929842214493,
+      "next_singular_value": 0.7373591130392161,
+      "at_nearest_slope": {
+        "excess_bits": 6.153497297267663e-05,
+        "identity_bits": 6.153497297262967e-05,
+        "weighted_divergence_bits": 6.15349736240211e-05,
+        "sup_residual_logit": 0.336694385422098,
+        "sup_bound_bits": 0.0817741977130933
+      },
+      "interaction_sup_lp": 0.1544081641328344
+    }
+  }
+}

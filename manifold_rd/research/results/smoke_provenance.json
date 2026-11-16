@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-15",
+  "environment": {
+    "python": "3.11.14",
+    "cuda": "12.4",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "packages": {
+      "torch": "2.5.1",
+      "numpy": "2.4.2",
+      "scipy": "1.17.1",
+      "gudhi": "3.13.0",
+      "Pillow": "12.1.0",
+      "scikit-learn": "1.8.0",
+      "pyarrow": "22.0.0",
+      "threadpoolctl": "3.6.0"
+    }
+  },
+  "scope": "real-data smoke run; full matrix not executed",
+  "training": "fit=768, calibration=192, alphabet anchors=16, seed=1115",
+  "evaluation": "192 official CIFAR-100 test IDs, seed=31415, 2 repeats on clean/AWGN/Rayleigh 0,10 dB",
+  "artifacts_sha256": {
+    "results/checkpoints/rd-augmented_mobile.pt": "c03b83e0c681d00503f5dd72cebaa66426bcb2bba1d922410d55a1206c991b49",
+    "results/checkpoints/rd-geodesic.pt": "18a95e8fc8e6372b6f7fc1467393fb38951ad73bb22d8fa5dfa6f516b3611b4a",
+    "results/checkpoints/rd-objects.pt": "c0f7ef3cc4a43ea05d2fd2b417deea41f5c96d17e1b5ff7ecd0313d54cdc18f7",
+    "results/checkpoints/rd-task_chord.pt": "c06812095e3a8fba3d4d4b955a92aed6103b7d9b67bf2829438c9580cefbf3e1",
+    "results/semasia_smoke.json": "9f366883f7776a6d633372e2562a7a9323de245043e1ae3d9efad8f8599c6495",
+    "results/semasia_smoke_augmented_mobile.json": "c549f56b635a62cc44deeafd8e9b97abf6a8c9b61d06a0aed7f9e6afc0a04e1a",
+    "results/semasia_smoke_geodesic.json": "82d848568fb9f48d6231df81746090bbe4e3debcd55f42835fdad6f947c24e56",
+    "results/semasia_smoke_task_chord.json": "177c7964e675e1be534ec2c89f95697145bb560e32732e50982b1324ef24900a"
+  }
+}

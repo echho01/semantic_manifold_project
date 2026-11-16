@@ -1,0 +1,116 @@
+# Shared pretrained-embedding extraction and experiment configuration.
+# Every module reads this file; CLI flags override individual keys.
+seed: 0
+
+paths:
+  root: ./runs            # all outputs go under <root>/<tag>/
+  hf_cache: ./hf_cache    # set to your HuggingFace cache if shared
+  torch_cache: ./torch_cache
+
+# ------------------------------------------------------------------
+# Models.  `kind` selects the extractor.
+#   clip   : transformers CLIPModel (image + text towers)
+#   bert   : transformers AutoModel with mean pooling
+#   dinov2 : transformers AutoModel, CLS token
+# ------------------------------------------------------------------
+models:
+  clip_vit_b32:
+    kind: clip
+    hf_id: openai/clip-vit-base-patch32
+    text_prompt: "a photo of a {label}."
+  clip_vit_l14:
+    kind: clip
+    hf_id: openai/clip-vit-large-patch14
+    text_prompt: "a photo of a {label}."
+  minilm:
+    kind: bert
+    hf_id: sentence-transformers/all-MiniLM-L6-v2
+  bert_base:
+    kind: bert
+    hf_id: bert-base-uncased
+  dinov2_s:
+    kind: dinov2
+    hf_id: facebook/dinov2-small
+
+# ------------------------------------------------------------------
+# Datasets.  `kind` selects the loader.  CIFAR downloads automatically
+# through torchvision; text sets through HuggingFace `datasets`.
+# ------------------------------------------------------------------
+datasets:
+  cifar10:
+    kind: cifar10
+    split: test
+    max_items: 10000
+    modalities: [image, text]
+  cifar100:
+    kind: cifar100
+    split: test
+    max_items: 10000
+    modalities: [image, text]
+  agnews:
+    kind: hf_text
+    hf_id: ag_news
+    split: test
+    text_field: text
+    label_field: label
+    max_items: 20000
+    modalities: [text]
+  sts:
+    kind: hf_pairs
+    hf_id: sentence-transformers/stsb
+    split: validation
+    max_items: 5000
+
+# ------------------------------------------------------------------
+# Geometry estimation
+# ------------------------------------------------------------------
+geometry:
+  twonn:
+    max_points: 20000       # TwoNN on a subsample
+    frac: 0.9               # discard the largest 10% of mu (boundary effects)
+  curvature:
+    n_anchor: 4000
+    k_nn: 120
+    pca_dim: null           # null -> use the TwoNN estimate
+    quantiles: [0.1, 0.5, 0.9]
+
+# ------------------------------------------------------------------
+# Quantization / RD
+# ------------------------------------------------------------------
+rd:
+  codebook_sizes: [64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]
+  n_fit_points: 200000      # points used to measure distortion
+  kmeans_batch: 8192
+  kmeans_iters: 50
+  criteria: [geodesic, chordal]   # chordal = ambient squared error
+  arc_correction: true      # use the chord-arc expansion with tau_hat
+
+gain_outage:
+  noise_levels: [0.01, 0.02, 0.04, 0.08, 0.12, 0.18, 0.25, 0.35, 0.5]
+  n_points: 20000
+  projection: tangent       # tangent | nearest-sample
+  n_neighbors: 32
+
+mismatch:
+  model_a: clip_vit_b32
+  model_b: dinov2_s
+  align: procrustes         # procrustes | none
+  codebook_sizes: [256, 1024, 4096]
+
+task:
+  # linear probe on the labels; estimated rank of the probe Jacobian
+  probe_dims: [1, 2, 4, 8, 16]
+  codebook_sizes: [64, 256, 1024, 4096]
+
+# ------------------------------------------------------------------
+# Paper 2 (topology): run_topology.py, CPU only, after `extract`
+# ------------------------------------------------------------------
+topology:
+  n_items: 1500             # common held-out item IDs for all models (Rips H1)
+  maxdim: 1
+  dictionary_sizes: [32, 64, 128, 256, 512, 1024]
+  reparam_points: 600
+  noise_levels: [0.25, 0.5, 1.0, 2.0]          # sigma: sqrt(total noise energy); reference median distance is 1
+  cliff_noise_levels: [0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0, 1.5, 2.0, 3.0, 5.0, 8.0]
+  cliff_per_class: 60
+  reeb_bins: 30

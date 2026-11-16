@@ -1,0 +1,17 @@
+{
+  "dimension_rates_at_normalized_D_01": {
+    "1": 1.406741376019084,
+    "2": 2.3988495575785787,
+    "4": 4.495579540125159
+  },
+  "matched_D": 0.3,
+  "matched_test_channel_bits": {
+    "fixed": 1.2649853774342557,
+    "geometry": 1.263439620554411,
+    "density": 1.1831919422065371,
+    "joint": 1.1831919511807003,
+    "BA": 1.1831913546609756
+  },
+  "max_BA_dual_gap": 4.6660691690014744e-05,
+  "joint_optimizer_successes": 25
+}

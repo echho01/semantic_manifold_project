@@ -1,0 +1,471 @@
+{
+  "dataset": "spaicom-lab/semasia-cifar100",
+  "revision": "ace0aa91fc0b79953ec1ac619a25072d3a5b3037",
+  "seed": 20261114,
+  "fit": 8192,
+  "calibration": 2048,
+  "test": 2048,
+  "task": "coarse_label",
+  "models": {
+    "resnet18.a1_in1k": {
+      "dimension": 512,
+      "shard_rows": {
+        "train": 50000,
+        "test": 10000
+      },
+      "temperature": 0.8690608033916264,
+      "clean": {
+        "accuracy": 0.72216796875,
+        "log_loss_bits": 1.264124314591363
+      },
+      "finite_ba_128_by_16": [
+        {
+          "beta": 0,
+          "rate_bits": 0.0,
+          "posterior_kl_bits": 5.313543465502883,
+          "lagrangian_gap_bits": 0.0
+        },
+        {
+          "beta": 0.5,
+          "rate_bits": 0.3632349676718883,
+          "posterior_kl_bits": 4.2462076066158705,
+          "lagrangian_gap_bits": 9.877217443943209e-08
+        },
+        {
+          "beta": 1,
+          "rate_bits": 1.4620380714837042,
+          "posterior_kl_bits": 2.6775902906148126,
+          "lagrangian_gap_bits": 9.671838441249747e-08
+        },
+        {
+          "beta": 2,
+          "rate_bits": 2.429059711117545,
+          "posterior_kl_bits": 1.9760951969691456,
+          "lagrangian_gap_bits": 9.923956856283667e-08
+        },
+        {
+          "beta": 4,
+          "rate_bits": 2.998311925675951,
+          "posterior_kl_bits": 1.7633549822546701,
+          "lagrangian_gap_bits": 9.808848133729953e-08
+        }
+      ],
+      "twonn": {
+        "512": {
+          "dim": 23.25785373424129,
+          "n": 460,
+          "n_total": 512,
+          "n_original": 512,
+          "n_unique": 512,
+          "duplicates_removed": 0,
+          "residual": 0.02643970787755171
+        },
+        "2048": {
+          "dim": 23.506788541064754,
+          "n": 1843,
+          "n_total": 2048,
+          "n_original": 2048,
+          "n_unique": 2048,
+          "duplicates_removed": 0,
+          "residual": 0.05359463882509305
+        }
+      }
+    },
+    "mobilenetv3_small_100.lamb_in1k": {
+      "dimension": 1024,
+      "shard_rows": {
+        "train": 50000,
+        "test": 10000
+      },
+      "temperature": 0.9399281278976568,
+      "clean": {
+        "accuracy": 0.72900390625,
+        "log_loss_bits": 1.2167335401057349
+      },
+      "finite_ba_128_by_16": [
+        {
+          "beta": 0,
+          "rate_bits": 0.0,
+          "posterior_kl_bits": 4.4840933585221,
+          "lagrangian_gap_bits": 0.0
+        },
+        {
+          "beta": 0.5,
+          "rate_bits": 1.1087289717164343e-06,
+          "posterior_kl_bits": 4.484091325507121,
+          "lagrangian_gap_bits": 9.222296304400857e-08
+        },
+        {
+          "beta": 1,
+          "rate_bits": 0.7673412742013013,
+          "posterior_kl_bits": 3.499786272288242,
+          "lagrangian_gap_bits": 9.925263899646097e-08
+        },
+        {
+          "beta": 2,
+          "rate_bits": 1.933723967069637,
+          "posterior_kl_bits": 2.6444084978282603,
+          "lagrangian_gap_bits": 9.991356986205346e-08
+        },
+        {
+          "beta": 4,
+          "rate_bits": 2.799668874708539,
+          "posterior_kl_bits": 2.3182945498753873,
+          "lagrangian_gap_bits": 7.993263295702491e-08
+        }
+      ],
+      "twonn": {
+        "512": {
+          "dim": 23.164253322769426,
+          "n": 460,
+          "n_total": 512,
+          "n_original": 512,
+          "n_unique": 512,
+          "duplicates_removed": 0,
+          "residual": 0.030769077233226978
+        },
+        "2048": {
+          "dim": 22.44362786832678,
+          "n": 1843,
+          "n_total": 2048,
+          "n_original": 2048,
+          "n_unique": 2048,
+          "duplicates_removed": 0,
+          "residual": 0.029556978961801282
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 1,
+      "payload_bytes": 0,
+      "bits_per_image": 0.0,
+      "mean_posterior_kl_bits": 6.989675660493674,
+      "mean_squared_chord": 0.6837408312809127,
+      "accuracy": 0.05419921875,
+      "log_loss_bits": 8.192099152517091
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 1,
+      "payload_bytes": 0,
+      "bits_per_image": 0.0,
+      "mean_posterior_kl_bits": 8.059738129117887,
+      "mean_squared_chord": 1.1034707220663558,
+      "accuracy": 0.05419921875,
+      "log_loss_bits": 9.229025851999204
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 4,
+      "payload_bytes": 512,
+      "bits_per_image": 2.0,
+      "mean_posterior_kl_bits": 5.1169867011442625,
+      "mean_squared_chord": 0.6210540547792809,
+      "accuracy": 0.0751953125,
+      "log_loss_bits": 6.333423196712179
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 4,
+      "payload_bytes": 512,
+      "bits_per_image": 2.0,
+      "mean_posterior_kl_bits": 5.986117997597065,
+      "mean_squared_chord": 1.0676867447920193,
+      "accuracy": 0.0693359375,
+      "log_loss_bits": 7.178414995701883
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 16,
+      "payload_bytes": 1024,
+      "bits_per_image": 4.0,
+      "mean_posterior_kl_bits": 4.397094019679121,
+      "mean_squared_chord": 0.5361908018007023,
+      "accuracy": 0.2509765625,
+      "log_loss_bits": 5.656470970910028
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 16,
+      "payload_bytes": 1024,
+      "bits_per_image": 4.0,
+      "mean_posterior_kl_bits": 5.67628215588517,
+      "mean_squared_chord": 1.0048734508590818,
+      "accuracy": 0.23046875,
+      "log_loss_bits": 6.746108084040554
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 64,
+      "payload_bytes": 1536,
+      "bits_per_image": 6.0,
+      "mean_posterior_kl_bits": 3.2478027879280695,
+      "mean_squared_chord": 0.47568635574286766,
+      "accuracy": 0.32958984375,
+      "log_loss_bits": 4.466703126546069
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 64,
+      "payload_bytes": 1536,
+      "bits_per_image": 6.0,
+      "mean_posterior_kl_bits": 4.044091939491469,
+      "mean_squared_chord": 0.9148971447710983,
+      "accuracy": 0.3056640625,
+      "log_loss_bits": 5.017214888125134
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 256,
+      "payload_bytes": 2048,
+      "bits_per_image": 8.0,
+      "mean_posterior_kl_bits": 2.1413950468275034,
+      "mean_squared_chord": 0.41208884663391826,
+      "accuracy": 0.43310546875,
+      "log_loss_bits": 3.289817324833346
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 256,
+      "payload_bytes": 2048,
+      "bits_per_image": 8.0,
+      "mean_posterior_kl_bits": 2.92719507341769,
+      "mean_squared_chord": 0.8281527063639089,
+      "accuracy": 0.42041015625,
+      "log_loss_bits": 3.735440735924143
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 1,
+      "payload_bytes": 0,
+      "bits_per_image": 0.0,
+      "mean_posterior_kl_bits": 6.989675660493674,
+      "mean_squared_chord": 0.6837408312809127,
+      "accuracy": 0.05419921875,
+      "log_loss_bits": 8.192099152517091
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 1,
+      "payload_bytes": 0,
+      "bits_per_image": 0.0,
+      "mean_posterior_kl_bits": 8.059738129117887,
+      "mean_squared_chord": 1.1034707220663558,
+      "accuracy": 0.05419921875,
+      "log_loss_bits": 9.229025851999204
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 4,
+      "payload_bytes": 512,
+      "bits_per_image": 2.0,
+      "mean_posterior_kl_bits": 5.625154225452485,
+      "mean_squared_chord": 0.6569506012731643,
+      "accuracy": 0.06982421875,
+      "log_loss_bits": 6.815065460034855
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 4,
+      "payload_bytes": 512,
+      "bits_per_image": 2.0,
+      "mean_posterior_kl_bits": 5.143227873143557,
+      "mean_squared_chord": 1.010275241379137,
+      "accuracy": 0.0859375,
+      "log_loss_bits": 6.332299401232003
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 16,
+      "payload_bytes": 1024,
+      "bits_per_image": 4.0,
+      "mean_posterior_kl_bits": 4.938572721137964,
+      "mean_squared_chord": 0.5961395128172099,
+      "accuracy": 0.21337890625,
+      "log_loss_bits": 5.990392184520941
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 16,
+      "payload_bytes": 1024,
+      "bits_per_image": 4.0,
+      "mean_posterior_kl_bits": 4.933499498506933,
+      "mean_squared_chord": 0.9198517089703566,
+      "accuracy": 0.21337890625,
+      "log_loss_bits": 6.037559816552666
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 64,
+      "payload_bytes": 1536,
+      "bits_per_image": 6.0,
+      "mean_posterior_kl_bits": 4.303807525100796,
+      "mean_squared_chord": 0.5494571871423516,
+      "accuracy": 0.3115234375,
+      "log_loss_bits": 5.185472751549528
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 64,
+      "payload_bytes": 1536,
+      "bits_per_image": 6.0,
+      "mean_posterior_kl_bits": 3.7979327754710535,
+      "mean_squared_chord": 0.8015525027228035,
+      "accuracy": 0.3203125,
+      "log_loss_bits": 4.8717587272494765
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "resnet18.a1_in1k",
+      "alphabet": 256,
+      "payload_bytes": 2048,
+      "bits_per_image": 8.0,
+      "mean_posterior_kl_bits": 3.0184511181724725,
+      "mean_squared_chord": 0.49323212131461536,
+      "accuracy": 0.41943359375,
+      "log_loss_bits": 3.842963325339177
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "receiver": "mobilenetv3_small_100.lamb_in1k",
+      "alphabet": 256,
+      "payload_bytes": 2048,
+      "bits_per_image": 8.0,
+      "mean_posterior_kl_bits": 2.362475248603084,
+      "mean_squared_chord": 0.6978352938481138,
+      "accuracy": 0.44580078125,
+      "log_loss_bits": 3.439864713926637
+    }
+  ],
+  "task_baselines": [
+    {
+      "sender": "resnet18.a1_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 1,
+      "bits_per_image": 0.0,
+      "mean_posterior_kl_bits": 6.989675660493674,
+      "accuracy": 0.05419921875,
+      "log_loss_bits": 8.192099152517091
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 4,
+      "bits_per_image": 2.0,
+      "mean_posterior_kl_bits": 3.8670369523170813,
+      "accuracy": 0.13623046875,
+      "log_loss_bits": 5.097841898284646
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 16,
+      "bits_per_image": 4.0,
+      "mean_posterior_kl_bits": 1.6670722077023343,
+      "accuracy": 0.453125,
+      "log_loss_bits": 2.909600877457442
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 64,
+      "bits_per_image": 6.0,
+      "mean_posterior_kl_bits": 0.8069173336367792,
+      "accuracy": 0.61572265625,
+      "log_loss_bits": 2.0503917048020233
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 256,
+      "bits_per_image": 8.0,
+      "mean_posterior_kl_bits": 0.38075236201940876,
+      "accuracy": 0.68896484375,
+      "log_loss_bits": 1.6255540724525914
+    },
+    {
+      "sender": "resnet18.a1_in1k",
+      "method": "direct_coarse_decision",
+      "alphabet": 20,
+      "bits_per_image": 5.0,
+      "accuracy": 0.72216796875
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 1,
+      "bits_per_image": 0.0,
+      "mean_posterior_kl_bits": 8.059738129117887,
+      "accuracy": 0.05419921875,
+      "log_loss_bits": 9.229025851999204
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 4,
+      "bits_per_image": 2.0,
+      "mean_posterior_kl_bits": 3.8408248884453284,
+      "accuracy": 0.12060546875,
+      "log_loss_bits": 5.042413199306008
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 16,
+      "bits_per_image": 4.0,
+      "mean_posterior_kl_bits": 2.0650260474500852,
+      "accuracy": 0.3828125,
+      "log_loss_bits": 3.230250458811705
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 64,
+      "bits_per_image": 6.0,
+      "mean_posterior_kl_bits": 0.9314798681923633,
+      "accuracy": 0.56884765625,
+      "log_loss_bits": 2.151823993887083
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "method": "same_model_KL_nearest_anchor",
+      "alphabet": 256,
+      "bits_per_image": 8.0,
+      "mean_posterior_kl_bits": 0.3758185813403464,
+      "accuracy": 0.70068359375,
+      "log_loss_bits": 1.5602928866829706
+    },
+    {
+      "sender": "mobilenetv3_small_100.lamb_in1k",
+      "method": "direct_coarse_decision",
+      "alphabet": 20,
+      "bits_per_image": 5.0,
+      "accuracy": 0.72900390625
+    }
+  ],
+  "id_sha256": {
+    "train": "ad278f7ccbb6ec35356852f04800de42d1ab0bb941a71108e3059541c9ca8679",
+    "test": "b38df217f452b69271d1647d83ed916d80dd9660bca38bb02d7a2ca508a4a093"
+  }
+}

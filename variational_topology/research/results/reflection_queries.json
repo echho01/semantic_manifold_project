@@ -1,0 +1,1944 @@
+{
+  "seed": 20261115,
+  "side": 32,
+  "count": 320,
+  "alphabets": 20,
+  "per_alphabet": 16,
+  "split": "official evaluation",
+  "id_sha256": "8a2be149ad3f27ea1b6527ebde57400b82c704a8ff1547413fb93db459974d4e",
+  "nonempty": 320,
+  "uniform": {
+    "mean": 0.012096148729324342,
+    "median": 0.011021614074707031,
+    "positive": 320,
+    "count": 320
+  },
+  "foreground": {
+    "mean": 0.7782144399818044,
+    "median": 0.8363335958298792,
+    "positive": 320,
+    "count": 320
+  },
+  "images": [
+    {
+      "id": "Angelic/character03/0967_08.png",
+      "uniform": 0.01787567138671875,
+      "foreground": 0.8664940828402367,
+      "active_fraction": 0.1015625
+    },
+    {
+      "id": "Angelic/character03/0967_14.png",
+      "uniform": 0.028533935546875,
+      "foreground": 0.7214506172839507,
+      "active_fraction": 0.140625
+    },
+    {
+      "id": "Angelic/character06/0970_18.png",
+      "uniform": 0.01934051513671875,
+      "foreground": 0.9375,
+      "active_fraction": 0.1015625
+    },
+    {
+      "id": "Angelic/character07/0971_03.png",
+      "uniform": 0.02783966064453125,
+      "foreground": 0.8636686390532544,
+      "active_fraction": 0.126953125
+    },
+    {
+      "id": "Angelic/character07/0971_05.png",
+      "uniform": 0.03778266906738281,
+      "foreground": 0.8462129950019224,
+      "active_fraction": 0.1494140625
+    },
+    {
+      "id": "Angelic/character08/0972_01.png",
+      "uniform": 0.026727676391601562,
+      "foreground": 0.8688077376154753,
+      "active_fraction": 0.1240234375
+    },
+    {
+      "id": "Angelic/character08/0972_15.png",
+      "uniform": 0.023193359375,
+      "foreground": 0.8733122665900603,
+      "active_fraction": 0.115234375
+    },
+    {
+      "id": "Angelic/character09/0973_06.png",
+      "uniform": 0.022935867309570312,
+      "foreground": 0.7696,
+      "active_fraction": 0.1220703125
+    },
+    {
+      "id": "Angelic/character09/0973_14.png",
+      "uniform": 0.03841400146484375,
+      "foreground": 0.9194667640613586,
+      "active_fraction": 0.14453125
+    },
+    {
+      "id": "Angelic/character10/0974_14.png",
+      "uniform": 0.020372390747070312,
+      "foreground": 0.5372466173733715,
+      "active_fraction": 0.1376953125
+    },
+    {
+      "id": "Angelic/character12/0976_02.png",
+      "uniform": 0.01812744140625,
+      "foreground": 0.9134948096885813,
+      "active_fraction": 0.099609375
+    },
+    {
+      "id": "Angelic/character12/0976_09.png",
+      "uniform": 0.014406204223632812,
+      "foreground": 0.9978861144140574,
+      "active_fraction": 0.0849609375
+    },
+    {
+      "id": "Angelic/character14/0978_11.png",
+      "uniform": 0.020355224609375,
+      "foreground": 0.9866863905325444,
+      "active_fraction": 0.1015625
+    },
+    {
+      "id": "Angelic/character14/0978_15.png",
+      "uniform": 0.011962890625,
+      "foreground": 0.8888888888888888,
+      "active_fraction": 0.08203125
+    },
+    {
+      "id": "Angelic/character16/0980_19.png",
+      "uniform": 0.010560989379882812,
+      "foreground": 0.8439262307575065,
+      "active_fraction": 0.0791015625
+    },
+    {
+      "id": "Angelic/character17/0981_04.png",
+      "uniform": 0.014404296875,
+      "foreground": 0.4205836489195812,
+      "active_fraction": 0.130859375
+    },
+    {
+      "id": "Atemayar_Qelisayer/character06/0990_11.png",
+      "uniform": 0.01595306396484375,
+      "foreground": 0.9881852551984878,
+      "active_fraction": 0.08984375
+    },
+    {
+      "id": "Atemayar_Qelisayer/character08/0992_16.png",
+      "uniform": 0.01947784423828125,
+      "foreground": 0.9088643645425418,
+      "active_fraction": 0.103515625
+    },
+    {
+      "id": "Atemayar_Qelisayer/character09/0993_01.png",
+      "uniform": 0.006866455078125,
+      "foreground": 1.0,
+      "active_fraction": 0.05859375
+    },
+    {
+      "id": "Atemayar_Qelisayer/character09/0993_14.png",
+      "uniform": 0.00428009033203125,
+      "foreground": 0.8976,
+      "active_fraction": 0.048828125
+    },
+    {
+      "id": "Atemayar_Qelisayer/character11/0995_08.png",
+      "uniform": 0.0044345855712890625,
+      "foreground": 0.8276966892132431,
+      "active_fraction": 0.0517578125
+    },
+    {
+      "id": "Atemayar_Qelisayer/character11/0995_13.png",
+      "uniform": 0.0034961700439453125,
+      "foreground": 0.9913466738777718,
+      "active_fraction": 0.0419921875
+    },
+    {
+      "id": "Atemayar_Qelisayer/character11/0995_19.png",
+      "uniform": 0.0061969757080078125,
+      "foreground": 1.0,
+      "active_fraction": 0.0556640625
+    },
+    {
+      "id": "Atemayar_Qelisayer/character13/0997_20.png",
+      "uniform": 0.015472412109375,
+      "foreground": 0.75,
+      "active_fraction": 0.1015625
+    },
+    {
+      "id": "Atemayar_Qelisayer/character18/1002_01.png",
+      "uniform": 0.011423110961914062,
+      "foreground": 0.869356945855712,
+      "active_fraction": 0.0810546875
+    },
+    {
+      "id": "Atemayar_Qelisayer/character18/1002_11.png",
+      "uniform": 0.03838920593261719,
+      "foreground": 0.9314174649451618,
+      "active_fraction": 0.1435546875
+    },
+    {
+      "id": "Atemayar_Qelisayer/character19/1003_17.png",
+      "uniform": 0.00927734375,
+      "foreground": 0.5746691871455577,
+      "active_fraction": 0.08984375
+    },
+    {
+      "id": "Atemayar_Qelisayer/character20/1004_04.png",
+      "uniform": 0.010934829711914062,
+      "foreground": 0.9669421487603306,
+      "active_fraction": 0.0751953125
+    },
+    {
+      "id": "Atemayar_Qelisayer/character21/1005_09.png",
+      "uniform": 0.02391815185546875,
+      "foreground": 0.677984429065744,
+      "active_fraction": 0.1328125
+    },
+    {
+      "id": "Atemayar_Qelisayer/character24/1008_05.png",
+      "uniform": 0.010503768920898438,
+      "foreground": 0.5190875671599585,
+      "active_fraction": 0.1005859375
+    },
+    {
+      "id": "Atemayar_Qelisayer/character25/1009_03.png",
+      "uniform": 0.0071392059326171875,
+      "foreground": 0.6353516613256873,
+      "active_fraction": 0.0751953125
+    },
+    {
+      "id": "Atemayar_Qelisayer/character26/1010_10.png",
+      "uniform": 0.010614395141601562,
+      "foreground": 0.8916840249959942,
+      "active_fraction": 0.0771484375
+    },
+    {
+      "id": "Atlantean/character04/1014_07.png",
+      "uniform": 0.01609039306640625,
+      "foreground": 0.9547306473517428,
+      "active_fraction": 0.091796875
+    },
+    {
+      "id": "Atlantean/character09/1019_06.png",
+      "uniform": 0.009981155395507812,
+      "foreground": 0.7596167803745101,
+      "active_fraction": 0.0810546875
+    },
+    {
+      "id": "Atlantean/character09/1019_19.png",
+      "uniform": 0.0070896148681640625,
+      "foreground": 0.8797633136094675,
+      "active_fraction": 0.0634765625
+    },
+    {
+      "id": "Atlantean/character10/1020_09.png",
+      "uniform": 0.01132965087890625,
+      "foreground": 0.883402736466389,
+      "active_fraction": 0.080078125
+    },
+    {
+      "id": "Atlantean/character10/1020_19.png",
+      "uniform": 0.01174163818359375,
+      "foreground": 0.8724489795918368,
+      "active_fraction": 0.08203125
+    },
+    {
+      "id": "Atlantean/character10/1020_20.png",
+      "uniform": 0.015497207641601562,
+      "foreground": 0.9002770083102493,
+      "active_fraction": 0.0927734375
+    },
+    {
+      "id": "Atlantean/character12/1022_20.png",
+      "uniform": 0.020751953125,
+      "foreground": 0.9327846364883402,
+      "active_fraction": 0.10546875
+    },
+    {
+      "id": "Atlantean/character13/1023_17.png",
+      "uniform": 0.007951736450195312,
+      "foreground": 0.4699168975069252,
+      "active_fraction": 0.0927734375
+    },
+    {
+      "id": "Atlantean/character14/1024_08.png",
+      "uniform": 0.00556182861328125,
+      "foreground": 0.3765495867768595,
+      "active_fraction": 0.0859375
+    },
+    {
+      "id": "Atlantean/character16/1026_09.png",
+      "uniform": 0.008806228637695312,
+      "foreground": 0.9697542533081286,
+      "active_fraction": 0.0673828125
+    },
+    {
+      "id": "Atlantean/character16/1026_12.png",
+      "uniform": 0.009630203247070312,
+      "foreground": 0.8976,
+      "active_fraction": 0.0732421875
+    },
+    {
+      "id": "Atlantean/character19/1029_02.png",
+      "uniform": 0.01836395263671875,
+      "foreground": 0.7675382653061225,
+      "active_fraction": 0.109375
+    },
+    {
+      "id": "Atlantean/character21/1031_19.png",
+      "uniform": 0.009813308715820312,
+      "foreground": 0.8677685950413223,
+      "active_fraction": 0.0751953125
+    },
+    {
+      "id": "Atlantean/character23/1033_10.png",
+      "uniform": 0.01348114013671875,
+      "foreground": 0.9127066115702479,
+      "active_fraction": 0.0859375
+    },
+    {
+      "id": "Atlantean/character23/1033_15.png",
+      "uniform": 0.011571884155273438,
+      "foreground": 0.5982656235271939,
+      "active_fraction": 0.1005859375
+    },
+    {
+      "id": "Atlantean/character24/1034_04.png",
+      "uniform": 0.03229522705078125,
+      "foreground": 0.8638775510204082,
+      "active_fraction": 0.13671875
+    },
+    {
+      "id": "Aurek-Besh/character02/1038_01.png",
+      "uniform": 0.005901336669921875,
+      "foreground": 0.2299346016646849,
+      "active_fraction": 0.11328125
+    },
+    {
+      "id": "Aurek-Besh/character02/1038_16.png",
+      "uniform": 0.0031070709228515625,
+      "foreground": 0.14775510204081632,
+      "active_fraction": 0.1025390625
+    },
+    {
+      "id": "Aurek-Besh/character05/1041_14.png",
+      "uniform": 0.011629104614257812,
+      "foreground": 0.9769267745553597,
+      "active_fraction": 0.0771484375
+    },
+    {
+      "id": "Aurek-Besh/character05/1041_15.png",
+      "uniform": 0.0179443359375,
+      "foreground": 0.9795918367346939,
+      "active_fraction": 0.095703125
+    },
+    {
+      "id": "Aurek-Besh/character05/1041_19.png",
+      "uniform": 0.01628875732421875,
+      "foreground": 0.9266493055555556,
+      "active_fraction": 0.09375
+    },
+    {
+      "id": "Aurek-Besh/character06/1042_03.png",
+      "uniform": 0.01891326904296875,
+      "foreground": 0.9167899408284024,
+      "active_fraction": 0.1015625
+    },
+    {
+      "id": "Aurek-Besh/character06/1042_10.png",
+      "uniform": 0.014894485473632812,
+      "foreground": 0.829950047826549,
+      "active_fraction": 0.0947265625
+    },
+    {
+      "id": "Aurek-Besh/character08/1044_13.png",
+      "uniform": 0.0011386871337890625,
+      "foreground": 0.04845385926467007,
+      "active_fraction": 0.1083984375
+    },
+    {
+      "id": "Aurek-Besh/character09/1045_13.png",
+      "uniform": 0.001068115234375,
+      "foreground": 0.9722222222222222,
+      "active_fraction": 0.0234375
+    },
+    {
+      "id": "Aurek-Besh/character11/1047_06.png",
+      "uniform": 0.0046710968017578125,
+      "foreground": 0.8095867768595041,
+      "active_fraction": 0.0537109375
+    },
+    {
+      "id": "Aurek-Besh/character13/1049_18.png",
+      "uniform": 0.0051517486572265625,
+      "foreground": 0.8928925619834711,
+      "active_fraction": 0.0537109375
+    },
+    {
+      "id": "Aurek-Besh/character15/1051_16.png",
+      "uniform": 0.0047855377197265625,
+      "foreground": 0.23649731360165896,
+      "active_fraction": 0.1005859375
+    },
+    {
+      "id": "Aurek-Besh/character20/1056_14.png",
+      "uniform": 0.0073566436767578125,
+      "foreground": 0.5878677030940406,
+      "active_fraction": 0.0791015625
+    },
+    {
+      "id": "Aurek-Besh/character20/1056_18.png",
+      "uniform": 0.005767822265625,
+      "foreground": 0.84,
+      "active_fraction": 0.05859375
+    },
+    {
+      "id": "Aurek-Besh/character23/1059_18.png",
+      "uniform": 0.0115966796875,
+      "foreground": 0.6597222222222222,
+      "active_fraction": 0.09375
+    },
+    {
+      "id": "Aurek-Besh/character24/1060_10.png",
+      "uniform": 0.009241104125976562,
+      "foreground": 0.9091762056671046,
+      "active_fraction": 0.0712890625
+    },
+    {
+      "id": "Avesta/character01/1063_05.png",
+      "uniform": 0.0022449493408203125,
+      "foreground": 0.49021241149521033,
+      "active_fraction": 0.0478515625
+    },
+    {
+      "id": "Avesta/character01/1063_17.png",
+      "uniform": 0.0038547515869140625,
+      "foreground": 0.9980246913580247,
+      "active_fraction": 0.0439453125
+    },
+    {
+      "id": "Avesta/character02/1064_13.png",
+      "uniform": 0.00304412841796875,
+      "foreground": 0.9975,
+      "active_fraction": 0.0390625
+    },
+    {
+      "id": "Avesta/character03/1065_10.png",
+      "uniform": 0.0046710968017578125,
+      "foreground": 0.8095867768595041,
+      "active_fraction": 0.0537109375
+    },
+    {
+      "id": "Avesta/character03/1065_11.png",
+      "uniform": 0.0063343048095703125,
+      "foreground": 0.8925020155872078,
+      "active_fraction": 0.0595703125
+    },
+    {
+      "id": "Avesta/character05/1067_07.png",
+      "uniform": 0.01132965087890625,
+      "foreground": 0.9763313609467456,
+      "active_fraction": 0.076171875
+    },
+    {
+      "id": "Avesta/character05/1067_14.png",
+      "uniform": 0.01834869384765625,
+      "foreground": 0.9246443675509419,
+      "active_fraction": 0.099609375
+    },
+    {
+      "id": "Avesta/character07/1069_02.png",
+      "uniform": 0.0126953125,
+      "foreground": 0.8217283950617283,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Avesta/character09/1071_02.png",
+      "uniform": 0.0009021759033203125,
+      "foreground": 0.6488340192043895,
+      "active_fraction": 0.0263671875
+    },
+    {
+      "id": "Avesta/character13/1075_01.png",
+      "uniform": 0.008554458618164062,
+      "foreground": 0.7564513408669253,
+      "active_fraction": 0.0751953125
+    },
+    {
+      "id": "Avesta/character17/1079_04.png",
+      "uniform": 0.008668899536132812,
+      "foreground": 0.8528804653781197,
+      "active_fraction": 0.0712890625
+    },
+    {
+      "id": "Avesta/character20/1082_16.png",
+      "uniform": 0.00907135009765625,
+      "foreground": 0.9706122448979592,
+      "active_fraction": 0.068359375
+    },
+    {
+      "id": "Avesta/character22/1084_01.png",
+      "uniform": 0.0032062530517578125,
+      "foreground": 1.0,
+      "active_fraction": 0.0400390625
+    },
+    {
+      "id": "Avesta/character22/1084_06.png",
+      "uniform": 0.00244140625,
+      "foreground": 0.9876543209876543,
+      "active_fraction": 0.03515625
+    },
+    {
+      "id": "Avesta/character25/1087_17.png",
+      "uniform": 0.0012683868408203125,
+      "foreground": 0.3955978584176086,
+      "active_fraction": 0.0400390625
+    },
+    {
+      "id": "Avesta/character26/1088_16.png",
+      "uniform": 0.0065174102783203125,
+      "foreground": 0.981614478598104,
+      "active_fraction": 0.0576171875
+    },
+    {
+      "id": "Ge_ez/character04/1092_13.png",
+      "uniform": 0.025720596313476562,
+      "foreground": 0.9210436445597978,
+      "active_fraction": 0.1181640625
+    },
+    {
+      "id": "Ge_ez/character04/1092_16.png",
+      "uniform": 0.023256301879882812,
+      "foreground": 0.9548907510376694,
+      "active_fraction": 0.1103515625
+    },
+    {
+      "id": "Ge_ez/character05/1093_20.png",
+      "uniform": 0.007537841796875,
+      "foreground": 0.96484375,
+      "active_fraction": 0.0625
+    },
+    {
+      "id": "Ge_ez/character06/1094_12.png",
+      "uniform": 0.0067138671875,
+      "foreground": 0.9157127991675338,
+      "active_fraction": 0.060546875
+    },
+    {
+      "id": "Ge_ez/character12/1100_13.png",
+      "uniform": 0.00384521484375,
+      "foreground": 0.9527410207939508,
+      "active_fraction": 0.044921875
+    },
+    {
+      "id": "Ge_ez/character14/1102_15.png",
+      "uniform": 0.00655364990234375,
+      "foreground": 0.6790123456790124,
+      "active_fraction": 0.0703125
+    },
+    {
+      "id": "Ge_ez/character16/1104_02.png",
+      "uniform": 0.01201629638671875,
+      "foreground": 0.984375,
+      "active_fraction": 0.078125
+    },
+    {
+      "id": "Ge_ez/character17/1105_16.png",
+      "uniform": 0.016815185546875,
+      "foreground": 0.9565972222222222,
+      "active_fraction": 0.09375
+    },
+    {
+      "id": "Ge_ez/character18/1106_09.png",
+      "uniform": 0.00638580322265625,
+      "foreground": 0.995243757431629,
+      "active_fraction": 0.056640625
+    },
+    {
+      "id": "Ge_ez/character19/1107_13.png",
+      "uniform": 0.014253616333007812,
+      "foreground": 0.7942395578701243,
+      "active_fraction": 0.0947265625
+    },
+    {
+      "id": "Ge_ez/character21/1109_06.png",
+      "uniform": 0.01721954345703125,
+      "foreground": 0.9400249895876718,
+      "active_fraction": 0.095703125
+    },
+    {
+      "id": "Ge_ez/character21/1109_08.png",
+      "uniform": 0.01172637939453125,
+      "foreground": 0.9143367043426531,
+      "active_fraction": 0.080078125
+    },
+    {
+      "id": "Ge_ez/character22/1110_03.png",
+      "uniform": 0.014490127563476562,
+      "foreground": 0.9590960737280646,
+      "active_fraction": 0.0869140625
+    },
+    {
+      "id": "Ge_ez/character22/1110_19.png",
+      "uniform": 0.014162063598632812,
+      "foreground": 0.8227146814404432,
+      "active_fraction": 0.0927734375
+    },
+    {
+      "id": "Ge_ez/character24/1112_03.png",
+      "uniform": 0.008544921875,
+      "foreground": 0.5070167496604798,
+      "active_fraction": 0.091796875
+    },
+    {
+      "id": "Ge_ez/character24/1112_17.png",
+      "uniform": 0.01210784912109375,
+      "foreground": 0.75,
+      "active_fraction": 0.08984375
+    },
+    {
+      "id": "Glagolitic/character06/1120_02.png",
+      "uniform": 0.0067138671875,
+      "foreground": 0.859375,
+      "active_fraction": 0.0625
+    },
+    {
+      "id": "Glagolitic/character08/1122_09.png",
+      "uniform": 0.0111083984375,
+      "foreground": 0.8661511005353956,
+      "active_fraction": 0.080078125
+    },
+    {
+      "id": "Glagolitic/character12/1126_20.png",
+      "uniform": 0.01349639892578125,
+      "foreground": 0.8735802469135803,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Glagolitic/character13/1127_02.png",
+      "uniform": 0.012102127075195312,
+      "foreground": 0.7662118101678541,
+      "active_fraction": 0.0888671875
+    },
+    {
+      "id": "Glagolitic/character15/1129_11.png",
+      "uniform": 0.01300811767578125,
+      "foreground": 0.9221200648999459,
+      "active_fraction": 0.083984375
+    },
+    {
+      "id": "Glagolitic/character15/1129_14.png",
+      "uniform": 0.010934829711914062,
+      "foreground": 0.9669421487603306,
+      "active_fraction": 0.0751953125
+    },
+    {
+      "id": "Glagolitic/character19/1133_08.png",
+      "uniform": 0.0049839019775390625,
+      "foreground": 0.9302242791028836,
+      "active_fraction": 0.0517578125
+    },
+    {
+      "id": "Glagolitic/character20/1134_10.png",
+      "uniform": 0.0020465850830078125,
+      "foreground": 0.9853076216712581,
+      "active_fraction": 0.0322265625
+    },
+    {
+      "id": "Glagolitic/character23/1137_13.png",
+      "uniform": 0.020599365234375,
+      "foreground": 0.9985207100591716,
+      "active_fraction": 0.1015625
+    },
+    {
+      "id": "Glagolitic/character23/1137_17.png",
+      "uniform": 0.02652740478515625,
+      "foreground": 0.9988509049123815,
+      "active_fraction": 0.115234375
+    },
+    {
+      "id": "Glagolitic/character24/1138_16.png",
+      "uniform": 0.015840530395507812,
+      "foreground": 0.782825902535583,
+      "active_fraction": 0.1005859375
+    },
+    {
+      "id": "Glagolitic/character29/1143_19.png",
+      "uniform": 0.0057163238525390625,
+      "foreground": 0.8609594943981614,
+      "active_fraction": 0.0576171875
+    },
+    {
+      "id": "Glagolitic/character31/1145_03.png",
+      "uniform": 0.00817108154296875,
+      "foreground": 0.8263888888888888,
+      "active_fraction": 0.0703125
+    },
+    {
+      "id": "Glagolitic/character34/1148_16.png",
+      "uniform": 0.01297760009765625,
+      "foreground": 0.84,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Glagolitic/character36/1150_15.png",
+      "uniform": 0.015001296997070312,
+      "foreground": 0.9093536825066482,
+      "active_fraction": 0.0908203125
+    },
+    {
+      "id": "Glagolitic/character42/1156_09.png",
+      "uniform": 0.02801513671875,
+      "foreground": 0.7712665406427222,
+      "active_fraction": 0.134765625
+    },
+    {
+      "id": "Gurmukhi/character01/1160_05.png",
+      "uniform": 0.01747894287109375,
+      "foreground": 0.7856652949245542,
+      "active_fraction": 0.10546875
+    },
+    {
+      "id": "Gurmukhi/character02/1161_10.png",
+      "uniform": 0.01201629638671875,
+      "foreground": 0.8135330578512396,
+      "active_fraction": 0.0859375
+    },
+    {
+      "id": "Gurmukhi/character03/1162_06.png",
+      "uniform": 0.014690399169921875,
+      "foreground": 0.7402921953094963,
+      "active_fraction": 0.099609375
+    },
+    {
+      "id": "Gurmukhi/character08/1167_20.png",
+      "uniform": 0.02408599853515625,
+      "foreground": 0.9069232979029015,
+      "active_fraction": 0.115234375
+    },
+    {
+      "id": "Gurmukhi/character12/1171_17.png",
+      "uniform": 0.012973785400390625,
+      "foreground": 0.5422512755102041,
+      "active_fraction": 0.109375
+    },
+    {
+      "id": "Gurmukhi/character18/1177_12.png",
+      "uniform": 0.017518997192382812,
+      "foreground": 0.7454752049346643,
+      "active_fraction": 0.1083984375
+    },
+    {
+      "id": "Gurmukhi/character22/1181_10.png",
+      "uniform": 0.015047073364257812,
+      "foreground": 0.7155555555555555,
+      "active_fraction": 0.1025390625
+    },
+    {
+      "id": "Gurmukhi/character25/1184_20.png",
+      "uniform": 0.01206207275390625,
+      "foreground": 0.9405116002379535,
+      "active_fraction": 0.080078125
+    },
+    {
+      "id": "Gurmukhi/character29/1188_18.png",
+      "uniform": 0.016984939575195312,
+      "foreground": 0.872953631996863,
+      "active_fraction": 0.0986328125
+    },
+    {
+      "id": "Gurmukhi/character30/1189_11.png",
+      "uniform": 0.00896453857421875,
+      "foreground": 0.9066358024691358,
+      "active_fraction": 0.0703125
+    },
+    {
+      "id": "Gurmukhi/character34/1193_13.png",
+      "uniform": 0.01580810546875,
+      "foreground": 0.7966166858900423,
+      "active_fraction": 0.099609375
+    },
+    {
+      "id": "Gurmukhi/character37/1196_06.png",
+      "uniform": 0.02216339111328125,
+      "foreground": 0.834530307382936,
+      "active_fraction": 0.115234375
+    },
+    {
+      "id": "Gurmukhi/character37/1196_07.png",
+      "uniform": 0.019182205200195312,
+      "foreground": 0.9858837368885404,
+      "active_fraction": 0.0986328125
+    },
+    {
+      "id": "Gurmukhi/character37/1196_12.png",
+      "uniform": 0.025453567504882812,
+      "foreground": 0.9114814561846868,
+      "active_fraction": 0.1181640625
+    },
+    {
+      "id": "Gurmukhi/character40/1199_17.png",
+      "uniform": 0.02075958251953125,
+      "foreground": 0.6440236686390532,
+      "active_fraction": 0.126953125
+    },
+    {
+      "id": "Gurmukhi/character44/1203_19.png",
+      "uniform": 0.012399673461914062,
+      "foreground": 0.7850501147204444,
+      "active_fraction": 0.0888671875
+    },
+    {
+      "id": "Kannada/character07/1211_09.png",
+      "uniform": 0.015405654907226562,
+      "foreground": 0.7013719383890245,
+      "active_fraction": 0.1064453125
+    },
+    {
+      "id": "Kannada/character08/1212_15.png",
+      "uniform": 0.0058231353759765625,
+      "foreground": 0.9396737457679286,
+      "active_fraction": 0.0556640625
+    },
+    {
+      "id": "Kannada/character11/1215_07.png",
+      "uniform": 0.01297760009765625,
+      "foreground": 0.84,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Kannada/character14/1218_01.png",
+      "uniform": 0.0120849609375,
+      "foreground": 0.7822222222222223,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Kannada/character16/1220_20.png",
+      "uniform": 0.0047245025634765625,
+      "foreground": 0.3272559122737482,
+      "active_fraction": 0.0849609375
+    },
+    {
+      "id": "Kannada/character21/1225_11.png",
+      "uniform": 0.006805419921875,
+      "foreground": 0.5575,
+      "active_fraction": 0.078125
+    },
+    {
+      "id": "Kannada/character27/1231_03.png",
+      "uniform": 0.01970672607421875,
+      "foreground": 0.9552514792899408,
+      "active_fraction": 0.1015625
+    },
+    {
+      "id": "Kannada/character27/1231_20.png",
+      "uniform": 0.01324462890625,
+      "foreground": 0.8572839506172839,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Kannada/character30/1234_01.png",
+      "uniform": 0.011186599731445312,
+      "foreground": 0.8513572361736101,
+      "active_fraction": 0.0810546875
+    },
+    {
+      "id": "Kannada/character32/1236_11.png",
+      "uniform": 0.019365310668945312,
+      "foreground": 0.8868023408157918,
+      "active_fraction": 0.1044921875
+    },
+    {
+      "id": "Kannada/character33/1237_08.png",
+      "uniform": 0.01874542236328125,
+      "foreground": 0.9446366782006921,
+      "active_fraction": 0.099609375
+    },
+    {
+      "id": "Kannada/character36/1240_02.png",
+      "uniform": 0.017892837524414062,
+      "foreground": 0.78958000168336,
+      "active_fraction": 0.1064453125
+    },
+    {
+      "id": "Kannada/character38/1242_03.png",
+      "uniform": 0.013713836669921875,
+      "foreground": 0.40042325685007796,
+      "active_fraction": 0.130859375
+    },
+    {
+      "id": "Kannada/character38/1242_12.png",
+      "uniform": 0.0085601806640625,
+      "foreground": 0.4869791666666667,
+      "active_fraction": 0.09375
+    },
+    {
+      "id": "Kannada/character40/1244_20.png",
+      "uniform": 0.01275634765625,
+      "foreground": 0.6963765097875885,
+      "active_fraction": 0.095703125
+    },
+    {
+      "id": "Kannada/character41/1245_14.png",
+      "uniform": 0.01233673095703125,
+      "foreground": 0.9619274241522903,
+      "active_fraction": 0.080078125
+    },
+    {
+      "id": "Keble/character02/1247_18.png",
+      "uniform": 0.012359619140625,
+      "foreground": 0.5555555555555556,
+      "active_fraction": 0.10546875
+    },
+    {
+      "id": "Keble/character03/1248_11.png",
+      "uniform": 0.00714111328125,
+      "foreground": 0.4622222222222222,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Keble/character05/1250_06.png",
+      "uniform": 0.00766754150390625,
+      "foreground": 0.5978584176085663,
+      "active_fraction": 0.080078125
+    },
+    {
+      "id": "Keble/character05/1250_11.png",
+      "uniform": 0.0041675567626953125,
+      "foreground": 0.6276931916116059,
+      "active_fraction": 0.0576171875
+    },
+    {
+      "id": "Keble/character06/1251_02.png",
+      "uniform": 0.012208938598632812,
+      "foreground": 0.5805895691609977,
+      "active_fraction": 0.1025390625
+    },
+    {
+      "id": "Keble/character06/1251_20.png",
+      "uniform": 0.01348114013671875,
+      "foreground": 0.5634566326530612,
+      "active_fraction": 0.109375
+    },
+    {
+      "id": "Keble/character10/1255_09.png",
+      "uniform": 0.0062808990478515625,
+      "foreground": 0.8296800201562107,
+      "active_fraction": 0.0615234375
+    },
+    {
+      "id": "Keble/character11/1256_06.png",
+      "uniform": 0.018968582153320312,
+      "foreground": 0.837050753303594,
+      "active_fraction": 0.1064453125
+    },
+    {
+      "id": "Keble/character11/1256_18.png",
+      "uniform": 0.01468658447265625,
+      "foreground": 0.7400999615532488,
+      "active_fraction": 0.099609375
+    },
+    {
+      "id": "Keble/character13/1258_18.png",
+      "uniform": 0.007959365844726562,
+      "foreground": 0.7830737474197785,
+      "active_fraction": 0.0712890625
+    },
+    {
+      "id": "Keble/character16/1261_12.png",
+      "uniform": 0.008249282836914062,
+      "foreground": 0.5222799178843135,
+      "active_fraction": 0.0888671875
+    },
+    {
+      "id": "Keble/character20/1265_01.png",
+      "uniform": 0.008539199829101562,
+      "foreground": 0.7173529883031565,
+      "active_fraction": 0.0771484375
+    },
+    {
+      "id": "Keble/character20/1265_19.png",
+      "uniform": 0.0077762603759765625,
+      "foreground": 0.5147077389218533,
+      "active_fraction": 0.0869140625
+    },
+    {
+      "id": "Keble/character21/1266_05.png",
+      "uniform": 0.0058078765869140625,
+      "foreground": 0.2562915579496675,
+      "active_fraction": 0.1064453125
+    },
+    {
+      "id": "Keble/character23/1268_17.png",
+      "uniform": 0.0142822265625,
+      "foreground": 0.7796751353602666,
+      "active_fraction": 0.095703125
+    },
+    {
+      "id": "Keble/character23/1268_19.png",
+      "uniform": 0.01551055908203125,
+      "foreground": 0.5122197026958931,
+      "active_fraction": 0.123046875
+    },
+    {
+      "id": "Malayalam/character07/1278_16.png",
+      "uniform": 0.018472671508789062,
+      "foreground": 0.8459254083326054,
+      "active_fraction": 0.1044921875
+    },
+    {
+      "id": "Malayalam/character08/1279_14.png",
+      "uniform": 0.009723663330078125,
+      "foreground": 0.5294,
+      "active_fraction": 0.09765625
+    },
+    {
+      "id": "Malayalam/character08/1279_16.png",
+      "uniform": 0.0052394866943359375,
+      "foreground": 0.461945201089569,
+      "active_fraction": 0.0771484375
+    },
+    {
+      "id": "Malayalam/character10/1281_18.png",
+      "uniform": 0.03790283203125,
+      "foreground": 0.837915331421825,
+      "active_fraction": 0.150390625
+    },
+    {
+      "id": "Malayalam/character13/1284_15.png",
+      "uniform": 0.007476806640625,
+      "foreground": 0.5555555555555556,
+      "active_fraction": 0.08203125
+    },
+    {
+      "id": "Malayalam/character14/1285_16.png",
+      "uniform": 0.005035400390625,
+      "foreground": 0.9763313609467456,
+      "active_fraction": 0.05078125
+    },
+    {
+      "id": "Malayalam/character17/1288_18.png",
+      "uniform": 0.010187149047851562,
+      "foreground": 0.8557923409709982,
+      "active_fraction": 0.0771484375
+    },
+    {
+      "id": "Malayalam/character18/1289_03.png",
+      "uniform": 0.0045604705810546875,
+      "foreground": 0.34643598615916954,
+      "active_fraction": 0.0830078125
+    },
+    {
+      "id": "Malayalam/character20/1291_03.png",
+      "uniform": 0.0063343048095703125,
+      "foreground": 0.8925020155872078,
+      "active_fraction": 0.0595703125
+    },
+    {
+      "id": "Malayalam/character21/1292_10.png",
+      "uniform": 0.009124755859375,
+      "foreground": 0.9228395061728395,
+      "active_fraction": 0.0703125
+    },
+    {
+      "id": "Malayalam/character23/1294_13.png",
+      "uniform": 0.01256561279296875,
+      "foreground": 0.8507231404958677,
+      "active_fraction": 0.0859375
+    },
+    {
+      "id": "Malayalam/character26/1297_01.png",
+      "uniform": 0.021883010864257812,
+      "foreground": 0.898504189834756,
+      "active_fraction": 0.1103515625
+    },
+    {
+      "id": "Malayalam/character28/1299_12.png",
+      "uniform": 0.021028518676757812,
+      "foreground": 0.7785467128027682,
+      "active_fraction": 0.1162109375
+    },
+    {
+      "id": "Malayalam/character33/1304_07.png",
+      "uniform": 0.019683837890625,
+      "foreground": 0.7669441141498217,
+      "active_fraction": 0.11328125
+    },
+    {
+      "id": "Malayalam/character36/1307_14.png",
+      "uniform": 0.010934829711914062,
+      "foreground": 0.8321962548991145,
+      "active_fraction": 0.0810546875
+    },
+    {
+      "id": "Malayalam/character36/1307_18.png",
+      "uniform": 0.0091552734375,
+      "foreground": 0.9795918367346939,
+      "active_fraction": 0.068359375
+    },
+    {
+      "id": "Manipuri/character02/1320_01.png",
+      "uniform": 0.01174163818359375,
+      "foreground": 0.8724489795918368,
+      "active_fraction": 0.08203125
+    },
+    {
+      "id": "Manipuri/character03/1321_17.png",
+      "uniform": 0.019617080688476562,
+      "foreground": 0.9694598925440664,
+      "active_fraction": 0.1005859375
+    },
+    {
+      "id": "Manipuri/character05/1323_17.png",
+      "uniform": 0.011749267578125,
+      "foreground": 0.7277882797731569,
+      "active_fraction": 0.08984375
+    },
+    {
+      "id": "Manipuri/character07/1325_02.png",
+      "uniform": 0.0120849609375,
+      "foreground": 0.7822222222222223,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Manipuri/character07/1325_03.png",
+      "uniform": 0.008493423461914062,
+      "foreground": 0.8356164383561644,
+      "active_fraction": 0.0712890625
+    },
+    {
+      "id": "Manipuri/character13/1331_09.png",
+      "uniform": 0.017742156982421875,
+      "foreground": 0.894079200307574,
+      "active_fraction": 0.099609375
+    },
+    {
+      "id": "Manipuri/character13/1331_13.png",
+      "uniform": 0.01763916015625,
+      "foreground": 0.8888888888888888,
+      "active_fraction": 0.099609375
+    },
+    {
+      "id": "Manipuri/character17/1335_03.png",
+      "uniform": 0.012521743774414062,
+      "foreground": 0.9529685005080564,
+      "active_fraction": 0.0810546875
+    },
+    {
+      "id": "Manipuri/character17/1335_05.png",
+      "uniform": 0.008592605590820312,
+      "foreground": 0.9462297836588952,
+      "active_fraction": 0.0673828125
+    },
+    {
+      "id": "Manipuri/character21/1339_03.png",
+      "uniform": 0.008623123168945312,
+      "foreground": 0.6257439446366782,
+      "active_fraction": 0.0830078125
+    },
+    {
+      "id": "Manipuri/character24/1342_01.png",
+      "uniform": 0.01416015625,
+      "foreground": 0.9165432098765433,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Manipuri/character25/1343_16.png",
+      "uniform": 0.005794525146484375,
+      "foreground": 0.41076257436452135,
+      "active_fraction": 0.083984375
+    },
+    {
+      "id": "Manipuri/character25/1343_17.png",
+      "uniform": 0.015703201293945312,
+      "foreground": 0.6014318065600117,
+      "active_fraction": 0.1142578125
+    },
+    {
+      "id": "Manipuri/character27/1345_16.png",
+      "uniform": 0.0062255859375,
+      "foreground": 0.9702734839476813,
+      "active_fraction": 0.056640625
+    },
+    {
+      "id": "Manipuri/character31/1349_10.png",
+      "uniform": 0.013406753540039062,
+      "foreground": 0.9728719723183391,
+      "active_fraction": 0.0830078125
+    },
+    {
+      "id": "Manipuri/character36/1354_18.png",
+      "uniform": 0.00494384765625,
+      "foreground": 0.5950413223140496,
+      "active_fraction": 0.064453125
+    },
+    {
+      "id": "Mongolian/character01/1359_11.png",
+      "uniform": 0.010042190551757812,
+      "foreground": 0.8024691358024691,
+      "active_fraction": 0.0791015625
+    },
+    {
+      "id": "Mongolian/character02/1360_09.png",
+      "uniform": 0.006122589111328125,
+      "foreground": 0.8350676378772113,
+      "active_fraction": 0.060546875
+    },
+    {
+      "id": "Mongolian/character03/1361_07.png",
+      "uniform": 0.011964797973632812,
+      "foreground": 0.8287752675386445,
+      "active_fraction": 0.0849609375
+    },
+    {
+      "id": "Mongolian/character03/1361_17.png",
+      "uniform": 0.00555419921875,
+      "foreground": 0.6685032139577594,
+      "active_fraction": 0.064453125
+    },
+    {
+      "id": "Mongolian/character03/1361_18.png",
+      "uniform": 0.0032958984375,
+      "foreground": 0.9795918367346939,
+      "active_fraction": 0.041015625
+    },
+    {
+      "id": "Mongolian/character04/1362_08.png",
+      "uniform": 0.01277923583984375,
+      "foreground": 0.7915879017013232,
+      "active_fraction": 0.08984375
+    },
+    {
+      "id": "Mongolian/character06/1364_04.png",
+      "uniform": 0.00238037109375,
+      "foreground": 0.5897920604914934,
+      "active_fraction": 0.044921875
+    },
+    {
+      "id": "Mongolian/character10/1368_10.png",
+      "uniform": 0.008331298828125,
+      "foreground": 0.5160680529300568,
+      "active_fraction": 0.08984375
+    },
+    {
+      "id": "Mongolian/character10/1368_17.png",
+      "uniform": 0.01201629638671875,
+      "foreground": 0.984375,
+      "active_fraction": 0.078125
+    },
+    {
+      "id": "Mongolian/character18/1376_06.png",
+      "uniform": 0.0029315948486328125,
+      "foreground": 0.9143367043426531,
+      "active_fraction": 0.0400390625
+    },
+    {
+      "id": "Mongolian/character18/1376_09.png",
+      "uniform": 0.00537109375,
+      "foreground": 0.7822222222222223,
+      "active_fraction": 0.05859375
+    },
+    {
+      "id": "Mongolian/character18/1376_20.png",
+      "uniform": 0.001983642578125,
+      "foreground": 0.8024691358024691,
+      "active_fraction": 0.03515625
+    },
+    {
+      "id": "Mongolian/character22/1380_08.png",
+      "uniform": 0.0037937164306640625,
+      "foreground": 0.9822222222222222,
+      "active_fraction": 0.0439453125
+    },
+    {
+      "id": "Mongolian/character22/1380_15.png",
+      "uniform": 0.009759902954101562,
+      "foreground": 0.77991159884164,
+      "active_fraction": 0.0791015625
+    },
+    {
+      "id": "Mongolian/character25/1383_03.png",
+      "uniform": 0.01035308837890625,
+      "foreground": 0.8072575847709696,
+      "active_fraction": 0.080078125
+    },
+    {
+      "id": "Mongolian/character28/1386_15.png",
+      "uniform": 0.0186767578125,
+      "foreground": 0.9053254437869822,
+      "active_fraction": 0.1015625
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character01/1389_04.png",
+      "uniform": 0.00972747802734375,
+      "foreground": 0.8829639889196675,
+      "active_fraction": 0.07421875
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character02/1390_07.png",
+      "uniform": 0.0075855255126953125,
+      "foreground": 0.8353287124553666,
+      "active_fraction": 0.0673828125
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character05/1393_02.png",
+      "uniform": 0.008592605590820312,
+      "foreground": 0.9462297836588952,
+      "active_fraction": 0.0673828125
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character08/1396_13.png",
+      "uniform": 0.00347900390625,
+      "foreground": 0.7296,
+      "active_fraction": 0.048828125
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character09/1397_04.png",
+      "uniform": 0.00951385498046875,
+      "foreground": 0.9621913580246914,
+      "active_fraction": 0.0703125
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character18/1406_19.png",
+      "uniform": 0.014162063598632812,
+      "foreground": 0.9809750297265161,
+      "active_fraction": 0.0849609375
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character22/1410_14.png",
+      "uniform": 0.0145111083984375,
+      "foreground": 0.47921390778533635,
+      "active_fraction": 0.123046875
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character25/1413_17.png",
+      "uniform": 0.012451171875,
+      "foreground": 0.9708506841165973,
+      "active_fraction": 0.080078125
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character27/1415_13.png",
+      "uniform": 0.007959365844726562,
+      "foreground": 0.7830737474197785,
+      "active_fraction": 0.0712890625
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character33/1421_06.png",
+      "uniform": 0.009164810180664062,
+      "foreground": 0.6705882352941176,
+      "active_fraction": 0.0830078125
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character34/1422_07.png",
+      "uniform": 0.008890151977539062,
+      "foreground": 0.9789960092417559,
+      "active_fraction": 0.0673828125
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character34/1422_11.png",
+      "uniform": 0.01349639892578125,
+      "foreground": 0.8735802469135803,
+      "active_fraction": 0.087890625
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character39/1427_07.png",
+      "uniform": 0.016725540161132812,
+      "foreground": 0.971634349030471,
+      "active_fraction": 0.0927734375
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character41/1429_07.png",
+      "uniform": 0.0113525390625,
+      "foreground": 0.8047593293672255,
+      "active_fraction": 0.083984375
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character42/1430_17.png",
+      "uniform": 0.008325576782226562,
+      "foreground": 0.8658996230906566,
+      "active_fraction": 0.0693359375
+    },
+    {
+      "id": "Old_Church_Slavonic_(Cyrillic)/character45/1433_05.png",
+      "uniform": 0.014963150024414062,
+      "foreground": 0.48639097278194554,
+      "active_fraction": 0.1240234375
+    },
+    {
+      "id": "Oriya/character02/1435_18.png",
+      "uniform": 0.012493133544921875,
+      "foreground": 0.37591827364554636,
+      "active_fraction": 0.12890625
+    },
+    {
+      "id": "Oriya/character02/1435_20.png",
+      "uniform": 0.03647041320800781,
+      "foreground": 0.5526438419999452,
+      "active_fraction": 0.1865234375
+    },
+    {
+      "id": "Oriya/character06/1439_07.png",
+      "uniform": 0.04133033752441406,
+      "foreground": 0.8155745417591931,
+      "active_fraction": 0.1591796875
+    },
+    {
+      "id": "Oriya/character09/1442_02.png",
+      "uniform": 0.00360870361328125,
+      "foreground": 0.5366666666666666,
+      "active_fraction": 0.05859375
+    },
+    {
+      "id": "Oriya/character09/1442_20.png",
+      "uniform": 0.013383865356445312,
+      "foreground": 0.6878737378688364,
+      "active_fraction": 0.0986328125
+    },
+    {
+      "id": "Oriya/character11/1444_18.png",
+      "uniform": 0.027566909790039062,
+      "foreground": 0.9553176019565074,
+      "active_fraction": 0.1201171875
+    },
+    {
+      "id": "Oriya/character12/1445_13.png",
+      "uniform": 0.04566192626953125,
+      "foreground": 0.9589809325428618,
+      "active_fraction": 0.154296875
+    },
+    {
+      "id": "Oriya/character19/1452_03.png",
+      "uniform": 0.03472137451171875,
+      "foreground": 0.787915512465374,
+      "active_fraction": 0.1484375
+    },
+    {
+      "id": "Oriya/character19/1452_04.png",
+      "uniform": 0.03403663635253906,
+      "foreground": 0.8037926219539661,
+      "active_fraction": 0.1455078125
+    },
+    {
+      "id": "Oriya/character20/1453_05.png",
+      "uniform": 0.025323867797851562,
+      "foreground": 0.7978486869779461,
+      "active_fraction": 0.1259765625
+    },
+    {
+      "id": "Oriya/character21/1454_05.png",
+      "uniform": 0.029428482055664062,
+      "foreground": 0.987456,
+      "active_fraction": 0.1220703125
+    },
+    {
+      "id": "Oriya/character24/1457_09.png",
+      "uniform": 0.011728286743164062,
+      "foreground": 0.7109492426870159,
+      "active_fraction": 0.0908203125
+    },
+    {
+      "id": "Oriya/character25/1458_15.png",
+      "uniform": 0.02095794677734375,
+      "foreground": 0.9420438957475995,
+      "active_fraction": 0.10546875
+    },
+    {
+      "id": "Oriya/character28/1461_09.png",
+      "uniform": 0.025634765625,
+      "foreground": 0.9652398735995403,
+      "active_fraction": 0.115234375
+    },
+    {
+      "id": "Oriya/character32/1465_15.png",
+      "uniform": 0.018556594848632812,
+      "foreground": 0.8824489795918368,
+      "active_fraction": 0.1025390625
+    },
+    {
+      "id": "Oriya/character41/1474_11.png",
+      "uniform": 0.024383544921875,
+      "foreground": 0.7802734375,
+      "active_fraction": 0.125
+    },
+    {
+      "id": "Sylheti/character01/1503_20.png",
+      "uniform": 0.015993118286132812,
+      "foreground": 0.8911680306089914,
+      "active_fraction": 0.0947265625
+    },
+    {
+      "id": "Sylheti/character02/1504_19.png",
+      "uniform": 0.02483367919921875,
+      "foreground": 0.794677734375,
+      "active_fraction": 0.125
+    },
+    {
+      "id": "Sylheti/character03/1505_09.png",
+      "uniform": 0.017059326171875,
+      "foreground": 0.7130102040816326,
+      "active_fraction": 0.109375
+    },
+    {
+      "id": "Sylheti/character05/1507_05.png",
+      "uniform": 0.0016574859619140625,
+      "foreground": 0.3093627625489498,
+      "active_fraction": 0.0517578125
+    },
+    {
+      "id": "Sylheti/character10/1512_01.png",
+      "uniform": 0.0046405792236328125,
+      "foreground": 0.5758579881656805,
+      "active_fraction": 0.0634765625
+    },
+    {
+      "id": "Sylheti/character17/1519_01.png",
+      "uniform": 0.018266677856445312,
+      "foreground": 0.8060769295513845,
+      "active_fraction": 0.1064453125
+    },
+    {
+      "id": "Sylheti/character18/1520_01.png",
+      "uniform": 0.023645401000976562,
+      "foreground": 0.8754325259515571,
+      "active_fraction": 0.1162109375
+    },
+    {
+      "id": "Sylheti/character18/1520_03.png",
+      "uniform": 0.008119583129882812,
+      "foreground": 0.8444753025193414,
+      "active_fraction": 0.0693359375
+    },
+    {
+      "id": "Sylheti/character19/1521_09.png",
+      "uniform": 0.021341323852539062,
+      "foreground": 0.8173716122434072,
+      "active_fraction": 0.1142578125
+    },
+    {
+      "id": "Sylheti/character20/1522_06.png",
+      "uniform": 0.01636505126953125,
+      "foreground": 0.893377759266972,
+      "active_fraction": 0.095703125
+    },
+    {
+      "id": "Sylheti/character20/1522_09.png",
+      "uniform": 0.02945709228515625,
+      "foreground": 0.8109640831758034,
+      "active_fraction": 0.134765625
+    },
+    {
+      "id": "Sylheti/character23/1525_19.png",
+      "uniform": 0.023530960083007812,
+      "foreground": 0.8426336998838877,
+      "active_fraction": 0.1181640625
+    },
+    {
+      "id": "Sylheti/character24/1526_19.png",
+      "uniform": 0.0069980621337890625,
+      "foreground": 0.3596706205273993,
+      "active_fraction": 0.0986328125
+    },
+    {
+      "id": "Sylheti/character25/1527_05.png",
+      "uniform": 0.01442718505859375,
+      "foreground": 0.6484910836762688,
+      "active_fraction": 0.10546875
+    },
+    {
+      "id": "Sylheti/character26/1528_06.png",
+      "uniform": 0.004058837890625,
+      "foreground": 0.7869822485207101,
+      "active_fraction": 0.05078125
+    },
+    {
+      "id": "Sylheti/character27/1529_13.png",
+      "uniform": 0.00882720947265625,
+      "foreground": 0.5143229166666666,
+      "active_fraction": 0.09375
+    },
+    {
+      "id": "Syriac_(Serto)/character03/1482_02.png",
+      "uniform": 0.00820159912109375,
+      "foreground": 0.9299307958477508,
+      "active_fraction": 0.06640625
+    },
+    {
+      "id": "Syriac_(Serto)/character04/1483_17.png",
+      "uniform": 0.0003681182861328125,
+      "foreground": 0.6678200692041523,
+      "active_fraction": 0.0166015625
+    },
+    {
+      "id": "Syriac_(Serto)/character06/1485_11.png",
+      "uniform": 0.00208282470703125,
+      "foreground": 0.5160680529300568,
+      "active_fraction": 0.044921875
+    },
+    {
+      "id": "Syriac_(Serto)/character07/1486_18.png",
+      "uniform": 0.0007190704345703125,
+      "foreground": 0.854875283446712,
+      "active_fraction": 0.0205078125
+    },
+    {
+      "id": "Syriac_(Serto)/character10/1489_01.png",
+      "uniform": 0.00152587890625,
+      "foreground": 0.8888888888888888,
+      "active_fraction": 0.029296875
+    },
+    {
+      "id": "Syriac_(Serto)/character10/1489_07.png",
+      "uniform": 0.001953125,
+      "foreground": 0.64,
+      "active_fraction": 0.0390625
+    },
+    {
+      "id": "Syriac_(Serto)/character11/1490_01.png",
+      "uniform": 0.0059528350830078125,
+      "foreground": 0.6191231898432851,
+      "active_fraction": 0.0693359375
+    },
+    {
+      "id": "Syriac_(Serto)/character12/1491_19.png",
+      "uniform": 0.00579833984375,
+      "foreground": 0.9036860879904876,
+      "active_fraction": 0.056640625
+    },
+    {
+      "id": "Syriac_(Serto)/character14/1493_07.png",
+      "uniform": 0.009546279907226562,
+      "foreground": 0.9392006004878964,
+      "active_fraction": 0.0712890625
+    },
+    {
+      "id": "Syriac_(Serto)/character14/1493_15.png",
+      "uniform": 0.00827789306640625,
+      "foreground": 0.9963269054178145,
+      "active_fraction": 0.064453125
+    },
+    {
+      "id": "Syriac_(Serto)/character15/1494_10.png",
+      "uniform": 0.0013599395751953125,
+      "foreground": 0.9780521262002744,
+      "active_fraction": 0.0263671875
+    },
+    {
+      "id": "Syriac_(Serto)/character20/1499_03.png",
+      "uniform": 0.008852005004882812,
+      "foreground": 0.9206506645506843,
+      "active_fraction": 0.0693359375
+    },
+    {
+      "id": "Syriac_(Serto)/character21/1500_11.png",
+      "uniform": 0.000762939453125,
+      "foreground": 0.8264462809917356,
+      "active_fraction": 0.021484375
+    },
+    {
+      "id": "Syriac_(Serto)/character21/1500_18.png",
+      "uniform": 0.0017242431640625,
+      "foreground": 0.8828125,
+      "active_fraction": 0.03125
+    },
+    {
+      "id": "Syriac_(Serto)/character23/1502_07.png",
+      "uniform": 0.0029239654541015625,
+      "foreground": 0.6939791760977818,
+      "active_fraction": 0.0458984375
+    },
+    {
+      "id": "Syriac_(Serto)/character23/1502_15.png",
+      "uniform": 0.00362396240234375,
+      "foreground": 0.981404958677686,
+      "active_fraction": 0.04296875
+    },
+    {
+      "id": "Tengwar/character03/1533_07.png",
+      "uniform": 0.008058547973632812,
+      "foreground": 0.8381273556833961,
+      "active_fraction": 0.0693359375
+    },
+    {
+      "id": "Tengwar/character03/1533_08.png",
+      "uniform": 0.009759902954101562,
+      "foreground": 0.77991159884164,
+      "active_fraction": 0.0791015625
+    },
+    {
+      "id": "Tengwar/character05/1535_03.png",
+      "uniform": 0.011384963989257812,
+      "foreground": 0.7886114414057339,
+      "active_fraction": 0.0849609375
+    },
+    {
+      "id": "Tengwar/character06/1536_03.png",
+      "uniform": 0.023889541625976562,
+      "foreground": 0.855474352844751,
+      "active_fraction": 0.1181640625
+    },
+    {
+      "id": "Tengwar/character07/1537_02.png",
+      "uniform": 0.01245880126953125,
+      "foreground": 0.739248528746039,
+      "active_fraction": 0.091796875
+    },
+    {
+      "id": "Tengwar/character07/1537_04.png",
+      "uniform": 0.00688934326171875,
+      "foreground": 0.8818359375,
+      "active_fraction": 0.0625
+    },
+    {
+      "id": "Tengwar/character10/1540_09.png",
+      "uniform": 0.01522064208984375,
+      "foreground": 0.9428166351606805,
+      "active_fraction": 0.08984375
+    },
+    {
+      "id": "Tengwar/character12/1542_09.png",
+      "uniform": 0.0043048858642578125,
+      "foreground": 0.9400249895876718,
+      "active_fraction": 0.0478515625
+    },
+    {
+      "id": "Tengwar/character13/1543_11.png",
+      "uniform": 0.009021759033203125,
+      "foreground": 0.4546328335255671,
+      "active_fraction": 0.099609375
+    },
+    {
+      "id": "Tengwar/character13/1543_16.png",
+      "uniform": 0.008325576782226562,
+      "foreground": 0.8658996230906566,
+      "active_fraction": 0.0693359375
+    },
+    {
+      "id": "Tengwar/character14/1544_12.png",
+      "uniform": 0.009439468383789062,
+      "foreground": 0.8798222222222222,
+      "active_fraction": 0.0732421875
+    },
+    {
+      "id": "Tengwar/character14/1544_16.png",
+      "uniform": 0.0076904296875,
+      "foreground": 0.9256198347107438,
+      "active_fraction": 0.064453125
+    },
+    {
+      "id": "Tengwar/character17/1547_01.png",
+      "uniform": 0.02483367919921875,
+      "foreground": 0.794677734375,
+      "active_fraction": 0.125
+    },
+    {
+      "id": "Tengwar/character18/1548_13.png",
+      "uniform": 0.020410537719726562,
+      "foreground": 0.9706122448979592,
+      "active_fraction": 0.1025390625
+    },
+    {
+      "id": "Tengwar/character20/1550_09.png",
+      "uniform": 0.022859573364257812,
+      "foreground": 0.9386013000234944,
+      "active_fraction": 0.1103515625
+    },
+    {
+      "id": "Tengwar/character22/1552_15.png",
+      "uniform": 0.013536453247070312,
+      "foreground": 0.7241097847158453,
+      "active_fraction": 0.0966796875
+    },
+    {
+      "id": "Tibetan/character02/1557_10.png",
+      "uniform": 0.0076923370361328125,
+      "foreground": 0.7568024019515857,
+      "active_fraction": 0.0712890625
+    },
+    {
+      "id": "Tibetan/character04/1559_20.png",
+      "uniform": 0.011907577514648438,
+      "foreground": 0.38523396072489946,
+      "active_fraction": 0.1279296875
+    },
+    {
+      "id": "Tibetan/character07/1562_18.png",
+      "uniform": 0.0078125,
+      "foreground": 0.64,
+      "active_fraction": 0.078125
+    },
+    {
+      "id": "Tibetan/character16/1571_15.png",
+      "uniform": 0.011827468872070312,
+      "foreground": 0.8582698961937716,
+      "active_fraction": 0.0830078125
+    },
+    {
+      "id": "Tibetan/character19/1574_02.png",
+      "uniform": 0.012102127075195312,
+      "foreground": 0.7662118101678541,
+      "active_fraction": 0.0888671875
+    },
+    {
+      "id": "Tibetan/character22/1577_14.png",
+      "uniform": 0.0077991485595703125,
+      "foreground": 0.9108932947204277,
+      "active_fraction": 0.0654296875
+    },
+    {
+      "id": "Tibetan/character26/1581_05.png",
+      "uniform": 0.019960403442382812,
+      "foreground": 0.8195630041506774,
+      "active_fraction": 0.1103515625
+    },
+    {
+      "id": "Tibetan/character28/1583_08.png",
+      "uniform": 0.015306472778320312,
+      "foreground": 0.4153511722995704,
+      "active_fraction": 0.1357421875
+    },
+    {
+      "id": "Tibetan/character31/1586_01.png",
+      "uniform": 0.0062503814697265625,
+      "foreground": 0.6500694306685182,
+      "active_fraction": 0.0693359375
+    },
+    {
+      "id": "Tibetan/character31/1586_08.png",
+      "uniform": 0.009521484375,
+      "foreground": 0.8642659279778393,
+      "active_fraction": 0.07421875
+    },
+    {
+      "id": "Tibetan/character34/1589_06.png",
+      "uniform": 0.0032958984375,
+      "foreground": 0.75,
+      "active_fraction": 0.046875
+    },
+    {
+      "id": "Tibetan/character35/1590_20.png",
+      "uniform": 0.009355545043945312,
+      "foreground": 0.8272895935233597,
+      "active_fraction": 0.0751953125
+    },
+    {
+      "id": "Tibetan/character38/1593_03.png",
+      "uniform": 0.0040283203125,
+      "foreground": 0.5494276795005203,
+      "active_fraction": 0.060546875
+    },
+    {
+      "id": "Tibetan/character38/1593_10.png",
+      "uniform": 0.010614395141601562,
+      "foreground": 0.8916840249959942,
+      "active_fraction": 0.0771484375
+    },
+    {
+      "id": "Tibetan/character39/1594_16.png",
+      "uniform": 0.012376785278320312,
+      "foreground": 0.9419364203803164,
+      "active_fraction": 0.0810546875
+    },
+    {
+      "id": "Tibetan/character39/1594_18.png",
+      "uniform": 0.019311904907226562,
+      "foreground": 0.9183673469387755,
+      "active_fraction": 0.1025390625
+    },
+    {
+      "id": "ULOG/character02/1599_05.png",
+      "uniform": 0.0019474029541015625,
+      "foreground": 0.24544378698224853,
+      "active_fraction": 0.0634765625
+    },
+    {
+      "id": "ULOG/character03/1600_03.png",
+      "uniform": 0.0055789947509765625,
+      "foreground": 0.5802420154731204,
+      "active_fraction": 0.0693359375
+    },
+    {
+      "id": "ULOG/character04/1601_03.png",
+      "uniform": 0.00360107421875,
+      "foreground": 0.36651234567901236,
+      "active_fraction": 0.0703125
+    },
+    {
+      "id": "ULOG/character04/1601_11.png",
+      "uniform": 0.00399017333984375,
+      "foreground": 0.3438527284681131,
+      "active_fraction": 0.076171875
+    },
+    {
+      "id": "ULOG/character06/1603_07.png",
+      "uniform": 0.001621246337890625,
+      "foreground": 0.3689236111111111,
+      "active_fraction": 0.046875
+    },
+    {
+      "id": "ULOG/character06/1603_15.png",
+      "uniform": 0.0007781982421875,
+      "foreground": 0.3984375,
+      "active_fraction": 0.03125
+    },
+    {
+      "id": "ULOG/character07/1604_20.png",
+      "uniform": 0.00318145751953125,
+      "foreground": 0.6672,
+      "active_fraction": 0.048828125
+    },
+    {
+      "id": "ULOG/character13/1610_14.png",
+      "uniform": 0.002010345458984375,
+      "foreground": 0.3360969387755102,
+      "active_fraction": 0.0546875
+    },
+    {
+      "id": "ULOG/character14/1611_11.png",
+      "uniform": 0.0033397674560546875,
+      "foreground": 0.527147371444987,
+      "active_fraction": 0.0576171875
+    },
+    {
+      "id": "ULOG/character15/1612_15.png",
+      "uniform": 0.0011386871337890625,
+      "foreground": 0.4873469387755102,
+      "active_fraction": 0.0341796875
+    },
+    {
+      "id": "ULOG/character17/1614_02.png",
+      "uniform": 0.0043888092041015625,
+      "foreground": 0.958350687213661,
+      "active_fraction": 0.0478515625
+    },
+    {
+      "id": "ULOG/character21/1618_11.png",
+      "uniform": 0.0012989044189453125,
+      "foreground": 0.4974433893352812,
+      "active_fraction": 0.0361328125
+    },
+    {
+      "id": "ULOG/character21/1618_15.png",
+      "uniform": 0.00116729736328125,
+      "foreground": 0.4845679012345679,
+      "active_fraction": 0.03515625
+    },
+    {
+      "id": "ULOG/character23/1620_13.png",
+      "uniform": 0.0014553070068359375,
+      "foreground": 0.3472159348121322,
+      "active_fraction": 0.0458984375
+    },
+    {
+      "id": "ULOG/character25/1622_03.png",
+      "uniform": 0.0006103515625,
+      "foreground": 0.9876543209876543,
+      "active_fraction": 0.017578125
+    },
+    {
+      "id": "ULOG/character26/1623_11.png",
+      "uniform": 0.0042514801025390625,
+      "foreground": 0.40053333333333335,
+      "active_fraction": 0.0732421875
+    }
+  ]
+}

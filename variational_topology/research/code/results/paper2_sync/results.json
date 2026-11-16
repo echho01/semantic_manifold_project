@@ -1,0 +1,374 @@
+{
+  "metadata": {
+    "seed": 20261020,
+    "trials_per_cardinality": 20,
+    "scale_range": 1.0,
+    "n_coordinates": 256,
+    "coordinate_quantizer_half_range": 2.5,
+    "allocation_knowledge_intervals": 32,
+    "allocation_residual_error_budget_example": 0.111,
+    "allocation_link_model": "digital delivery conditioned on successful source-message decoding",
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "persim": "0.4.1",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "source_sha256": "74bc632179f738df53791f000901cc2736e29b39082c254cee36f45ce05bdfab",
+    "command": "python code/synthetic/sync_allocation.py --output code/results/paper2_sync",
+    "elapsed_seconds": 0.7803740499998639
+  },
+  "checks": {
+    "coded_reconstructions": 1080,
+    "endpoint_bound_violations": 0,
+    "encoding_length_violations": 0,
+    "allocation_configurations": 104,
+    "integer_optimum_violations": 0
+  },
+  "coding_summaries": [
+    {
+      "max_intervals": 4,
+      "precision": 2,
+      "epsilon": 0.125,
+      "list_bits": 19,
+      "enumerative_bits": 10,
+      "mean_list_bottleneck": 0.10795424609984974,
+      "max_list_bottleneck": 0.12477078843592726,
+      "max_enumerative_bottleneck": 0.12495797676308529
+    },
+    {
+      "max_intervals": 4,
+      "precision": 3,
+      "epsilon": 0.0625,
+      "list_bits": 27,
+      "enumerative_bits": 17,
+      "mean_list_bottleneck": 0.05595578597606811,
+      "max_list_bottleneck": 0.06245797676308529,
+      "max_enumerative_bottleneck": 0.06168485183576258
+    },
+    {
+      "max_intervals": 4,
+      "precision": 4,
+      "epsilon": 0.03125,
+      "list_bits": 35,
+      "enumerative_bits": 24,
+      "mean_list_bottleneck": 0.02720938501596785,
+      "max_list_bottleneck": 0.031207976763085288,
+      "max_enumerative_bottleneck": 0.03124355098217288
+    },
+    {
+      "max_intervals": 4,
+      "precision": 5,
+      "epsilon": 0.015625,
+      "list_bits": 43,
+      "enumerative_bits": 32,
+      "mean_list_bottleneck": 0.014117558292232966,
+      "max_list_bottleneck": 0.01561855098217288,
+      "max_enumerative_bottleneck": 0.01522023519283433
+    },
+    {
+      "max_intervals": 4,
+      "precision": 6,
+      "epsilon": 0.0078125,
+      "list_bits": 51,
+      "enumerative_bits": 40,
+      "mean_list_bottleneck": 0.007082603782687215,
+      "max_list_bottleneck": 0.00780605098217288,
+      "max_enumerative_bottleneck": 0.007773331071139866
+    },
+    {
+      "max_intervals": 4,
+      "precision": 7,
+      "epsilon": 0.00390625,
+      "list_bits": 59,
+      "enumerative_bits": 48,
+      "mean_list_bottleneck": 0.003531008984327196,
+      "max_list_bottleneck": 0.0038998009821728796,
+      "max_enumerative_bottleneck": 0.003881419613858794
+    },
+    {
+      "max_intervals": 4,
+      "precision": 8,
+      "epsilon": 0.001953125,
+      "list_bits": 67,
+      "enumerative_bits": 56,
+      "mean_list_bottleneck": 0.0016356107981930147,
+      "max_list_bottleneck": 0.0019466759821728796,
+      "max_enumerative_bottleneck": 0.0019318290458070764
+    },
+    {
+      "max_intervals": 4,
+      "precision": 9,
+      "epsilon": 0.0009765625,
+      "list_bits": 75,
+      "enumerative_bits": 64,
+      "mean_list_bottleneck": 0.0008441116687090615,
+      "max_list_bottleneck": 0.0009701134821728796,
+      "max_enumerative_bottleneck": 0.0009628526854909697
+    },
+    {
+      "max_intervals": 4,
+      "precision": 10,
+      "epsilon": 0.00048828125,
+      "list_bits": 83,
+      "enumerative_bits": 72,
+      "mean_list_bottleneck": 0.0004372690946203395,
+      "max_list_bottleneck": 0.0004818322321728796,
+      "max_enumerative_bottleneck": 0.0004874217697666827
+    },
+    {
+      "max_intervals": 8,
+      "precision": 2,
+      "epsilon": 0.125,
+      "list_bits": 36,
+      "enumerative_bits": 16,
+      "mean_list_bottleneck": 0.11565227060822153,
+      "max_list_bottleneck": 0.12486327109381012,
+      "max_enumerative_bottleneck": 0.12388967915692856
+    },
+    {
+      "max_intervals": 8,
+      "precision": 3,
+      "epsilon": 0.0625,
+      "list_bits": 52,
+      "enumerative_bits": 28,
+      "mean_list_bottleneck": 0.05918541422059484,
+      "max_list_bottleneck": 0.062363271093810124,
+      "max_enumerative_bottleneck": 0.06229616012484427
+    },
+    {
+      "max_intervals": 8,
+      "precision": 4,
+      "epsilon": 0.03125,
+      "list_bits": 68,
+      "enumerative_bits": 42,
+      "mean_list_bottleneck": 0.02961468464179255,
+      "max_list_bottleneck": 0.031113271093810124,
+      "max_enumerative_bottleneck": 0.031105457832608874
+    },
+    {
+      "max_intervals": 8,
+      "precision": 5,
+      "epsilon": 0.015625,
+      "list_bits": 84,
+      "enumerative_bits": 58,
+      "mean_list_bottleneck": 0.014521667109109146,
+      "max_list_bottleneck": 0.015488271093810124,
+      "max_enumerative_bottleneck": 0.015616963476580148
+    },
+    {
+      "max_intervals": 8,
+      "precision": 6,
+      "epsilon": 0.0078125,
+      "list_bits": 100,
+      "enumerative_bits": 73,
+      "mean_list_bottleneck": 0.0073799234329309255,
+      "max_list_bottleneck": 0.007804463476580148,
+      "max_enumerative_bottleneck": 0.007796160433474288
+    },
+    {
+      "max_intervals": 8,
+      "precision": 7,
+      "epsilon": 0.00390625,
+      "list_bits": 116,
+      "enumerative_bits": 89,
+      "mean_list_bottleneck": 0.0037361806417824262,
+      "max_list_bottleneck": 0.003898213476580148,
+      "max_enumerative_bottleneck": 0.003901150148879151
+    },
+    {
+      "max_intervals": 8,
+      "precision": 8,
+      "epsilon": 0.001953125,
+      "list_bits": 132,
+      "enumerative_bits": 105,
+      "mean_list_bottleneck": 0.0018243789941558182,
+      "max_list_bottleneck": 0.0019480251488791511,
+      "max_enumerative_bottleneck": 0.0019375898636802003
+    },
+    {
+      "max_intervals": 8,
+      "precision": 9,
+      "epsilon": 0.0009765625,
+      "list_bits": 148,
+      "enumerative_bits": 121,
+      "mean_list_bottleneck": 0.000924450611844626,
+      "max_list_bottleneck": 0.0009714626488791511,
+      "max_enumerative_bottleneck": 0.0009603704607311393
+    },
+    {
+      "max_intervals": 8,
+      "precision": 10,
+      "epsilon": 0.00048828125,
+      "list_bits": 164,
+      "enumerative_bits": 137,
+      "mean_list_bottleneck": 0.0004510160137318847,
+      "max_list_bottleneck": 0.0004831813988791511,
+      "max_enumerative_bottleneck": 0.0004882215156004066
+    },
+    {
+      "max_intervals": 16,
+      "precision": 2,
+      "epsilon": 0.125,
+      "list_bits": 69,
+      "enumerative_bits": 23,
+      "mean_list_bottleneck": 0.12101138464958017,
+      "max_list_bottleneck": 0.12485250856762597,
+      "max_enumerative_bottleneck": 0.12496691673594751
+    },
+    {
+      "max_intervals": 16,
+      "precision": 3,
+      "epsilon": 0.0625,
+      "list_bits": 101,
+      "enumerative_bits": 44,
+      "mean_list_bottleneck": 0.06103537209171233,
+      "max_list_bottleneck": 0.06246691673594751,
+      "max_enumerative_bottleneck": 0.062484768132595736
+    },
+    {
+      "max_intervals": 16,
+      "precision": 4,
+      "epsilon": 0.03125,
+      "list_bits": 133,
+      "enumerative_bits": 71,
+      "mean_list_bottleneck": 0.030344258384667047,
+      "max_list_bottleneck": 0.031234768132595736,
+      "max_enumerative_bottleneck": 0.03120305815641755
+    },
+    {
+      "max_intervals": 16,
+      "precision": 5,
+      "epsilon": 0.015625,
+      "list_bits": 165,
+      "enumerative_bits": 101,
+      "mean_list_bottleneck": 0.015179126028851526,
+      "max_list_bottleneck": 0.015609768132595736,
+      "max_enumerative_bottleneck": 0.015620472974438748
+    },
+    {
+      "max_intervals": 16,
+      "precision": 6,
+      "epsilon": 0.0078125,
+      "list_bits": 197,
+      "enumerative_bits": 133,
+      "mean_list_bottleneck": 0.007635612932996732,
+      "max_list_bottleneck": 0.007807972974438748,
+      "max_enumerative_bottleneck": 0.007797547440112185
+    },
+    {
+      "max_intervals": 16,
+      "precision": 7,
+      "epsilon": 0.00390625,
+      "list_bits": 229,
+      "enumerative_bits": 164,
+      "mean_list_bottleneck": 0.003822562488321068,
+      "max_list_bottleneck": 0.0039017229744387483,
+      "max_enumerative_bottleneck": 0.0038934424599425654
+    },
+    {
+      "max_intervals": 16,
+      "precision": 8,
+      "epsilon": 0.001953125,
+      "list_bits": 261,
+      "enumerative_bits": 196,
+      "mean_list_bottleneck": 0.0019008928260740615,
+      "max_list_bottleneck": 0.0019485979744387483,
+      "max_enumerative_bottleneck": 0.0019347976751883933
+    },
+    {
+      "max_intervals": 16,
+      "precision": 9,
+      "epsilon": 0.0009765625,
+      "list_bits": 293,
+      "enumerative_bits": 228,
+      "mean_list_bottleneck": 0.0009392803075438499,
+      "max_list_bottleneck": 0.0009720354744387483,
+      "max_enumerative_bottleneck": 0.0009755857754368963
+    },
+    {
+      "max_intervals": 16,
+      "precision": 10,
+      "epsilon": 0.00048828125,
+      "list_bits": 325,
+      "enumerative_bits": 260,
+      "mean_list_bottleneck": 0.0004634636991338893,
+      "max_list_bottleneck": 0.0004873045254368963,
+      "max_enumerative_bottleneck": 0.00048778174890473647
+    }
+  ],
+  "allocation_examples": [
+    {
+      "error_budget": 0.111,
+      "n_coordinates": 256,
+      "knowledge_intervals": 32,
+      "reuse": 1,
+      "equal_error_b": 7,
+      "equal_error_s": 4,
+      "equal_error_bits": 2054.0,
+      "optimal_b": 7,
+      "optimal_s": 4,
+      "optimal_bits": 2054.0,
+      "continuous_b": 6.315224608086706,
+      "continuous_s": 4.493296513199343,
+      "continuous_bits": 1910.2684765149547,
+      "saving_fraction": 0.0,
+      "achieved_budget": 0.08649271728019903
+    },
+    {
+      "error_budget": 0.111,
+      "n_coordinates": 256,
+      "knowledge_intervals": 32,
+      "reuse": 4,
+      "equal_error_b": 7,
+      "equal_error_s": 4,
+      "equal_error_bits": 1857.5,
+      "optimal_b": 6,
+      "optimal_s": 10,
+      "optimal_bits": 1697.5,
+      "continuous_b": 6.0807593544496825,
+      "continuous_s": 6.258831259562321,
+      "continuous_bits": 1658.315694892116,
+      "saving_fraction": 0.08613728129205922,
+      "achieved_budget": 0.11097371581039805
+    },
+    {
+      "error_budget": 0.111,
+      "n_coordinates": 256,
+      "knowledge_intervals": 32,
+      "reuse": 16,
+      "equal_error_b": 7,
+      "equal_error_s": 4,
+      "equal_error_bits": 1808.375,
+      "optimal_b": 6,
+      "optimal_s": 10,
+      "optimal_bits": 1576.375,
+      "continuous_b": 6.015664326227798,
+      "continuous_s": 8.193736231340436,
+      "continuous_bits": 1573.160012439678,
+      "saving_fraction": 0.12829197483928945,
+      "achieved_budget": 0.11097371581039805
+    },
+    {
+      "error_budget": 0.111,
+      "n_coordinates": 256,
+      "knowledge_intervals": 32,
+      "reuse": 64,
+      "equal_error_b": 7,
+      "equal_error_s": 4,
+      "equal_error_bits": 1796.09375,
+      "optimal_b": 6,
+      "optimal_s": 10,
+      "optimal_bits": 1546.09375,
+      "continuous_b": 5.998921062393221,
+      "continuous_s": 10.176992967505859,
+      "continuous_bits": 1545.9945349401705,
+      "saving_fraction": 0.13919095258808178,
+      "achieved_budget": 0.11097371581039805
+    }
+  ],
+  "median_saving_fraction_all_budgets": {
+    "1": 0.07806034269912598,
+    "4": 0.10731502829595474,
+    "16": 0.12110202845897672,
+    "64": 0.12401967502703032
+  }
+}

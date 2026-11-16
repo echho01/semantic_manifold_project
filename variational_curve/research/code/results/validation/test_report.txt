@@ -1,0 +1,15 @@
+test_cpu_stages_resume_and_outage_only (__main__.DriverTests.test_cpu_stages_resume_and_outage_only) ... ok
+test_affine_decoder_centres_and_tangent_dimension (__main__.GeometryTests.test_affine_decoder_centres_and_tangent_dimension) ... ok
+test_high_ambient_curvature_and_translation (__main__.GeometryTests.test_high_ambient_curvature_and_translation) ... ok
+test_twonn_rejects_discrete_prompts (__main__.GeometryTests.test_twonn_rejects_discrete_prompts) ... ok
+test_continuous_sphere_coefficients (__main__.RateTests.test_continuous_sphere_coefficients) ... ok
+test_heldout_quantizer_and_unsupported_arc (__main__.RateTests.test_heldout_quantizer_and_unsupported_arc) ... ok
+test_positive_ellipsoid_area_and_ba_gap (__main__.RateTests.test_positive_ellipsoid_area_and_ba_gap) ... ok
+test_projection_negative_second_order (__main__.RateTests.test_projection_negative_second_order) ... ok
+test_probe_dimension_and_same_edge_metric (__main__.TaskTests.test_probe_dimension_and_same_edge_metric) ... ok
+test_transfer_preserves_the_source_index (__main__.TaskTests.test_transfer_preserves_the_source_index) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 6.163s
+
+OK

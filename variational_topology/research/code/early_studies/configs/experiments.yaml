@@ -1,0 +1,47 @@
+version: 1
+status: planned_neural_experiments
+reference:
+  frozen: true
+  metric: posterior_fisher_plus_reference
+  eta: 0.1
+  distance_scale: training_reference_median
+seeds: [11, 23, 37]
+geometry:
+  datasets: [semasia-cifar10, semasia-cifar100]
+  selected_models: null  # Resolve three real registry IDs; store exact revisions before training.
+  hidden_dims: [256, 128]
+  latent_dims: [8, 16, 32]
+  batch_size: 256
+  learning_rate: 0.0002
+  epochs: 100
+  metric_a: 0.5
+  metric_b: 2.0
+  quantizer_steps: [0.0625, 0.125, 0.25, 0.5, 1.0]
+  lambda_distortion: [0.1, 0.3, 1.0, 3.0, 10.0]
+  lambda_volume: [0.0, 0.01, 0.1]
+  lambda_bending: [0.0, 0.001, 0.01]
+  geometry_period_steps: 4
+  anchors: 32
+  neighbors: 32
+topology:
+  primary_dataset: deepglobe-road-masks
+  image_size: [128, 128]
+  batch_size: 128
+  learning_rate: 0.0001
+  epochs: 150
+  rho: [0.05, 0.10, 0.20, 0.40]
+  episode_N: [16, 32, 64]
+  homology: [0, 1]
+  alpha: [0.01, 0.05, 0.10]
+  source_id_split: [0.8, 0.1, 0.1]
+channel:
+  train_snr_db: [0, 5, 10, 15, 20]
+  test_snr_db: [-5, 0, 5, 10, 15, 20]
+  families: [awgn, block_rayleigh, diagonal, mimo2x2, ofdm4tap]
+  complex_noise: CN_0_N0
+  complex_symbol_power: 1.0
+  fft: 128
+  cyclic_prefix: 16
+  tap_delays_samples: [0, 2, 5, 9]
+  tap_power_db: [0, -3, -6, -9]
+  csi_nmse_db: [-30, -20, -10]

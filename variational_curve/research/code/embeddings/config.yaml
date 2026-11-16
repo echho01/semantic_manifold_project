@@ -1,0 +1,118 @@
+# Paths are relative to this configuration file.
+seed: 0
+paths:
+  root: ./runs
+  hf_cache: ./hf_cache
+  torch_cache: ./torch_cache
+models:
+  clip_vit_b32:
+    kind: clip
+    hf_id: openai/clip-vit-base-patch32
+    text_prompt: a photo of a {label}.
+  clip_vit_l14:
+    kind: clip
+    hf_id: openai/clip-vit-large-patch14
+    text_prompt: a photo of a {label}.
+  minilm:
+    kind: bert
+    hf_id: sentence-transformers/all-MiniLM-L6-v2
+    normalize: true
+  bert_base:
+    kind: bert
+    hf_id: bert-base-uncased
+  dinov2_s:
+    kind: dinov2
+    hf_id: facebook/dinov2-small
+datasets:
+  cifar10:
+    kind: cifar10
+    split: test
+    max_items: 10000
+    modalities:
+    - image
+    - text
+  cifar100:
+    kind: cifar100
+    split: test
+    max_items: 10000
+    modalities:
+    - image
+    - text
+  agnews:
+    kind: hf_text
+    hf_id: ag_news
+    split: test
+    text_field: text
+    label_field: label
+    max_items: 20000
+    modalities:
+    - text
+  sts:
+    kind: hf_pairs
+    hf_id: sentence-transformers/stsb
+    split: validation
+    max_items: 5000
+    modalities:
+    - text
+geometry:
+  twonn:
+    max_points: 20000
+    frac: 0.9
+  curvature:
+    n_anchor: 1000
+    k_nn: 120
+    pca_dim: null
+    quantiles:
+    - 0.1
+    - 0.5
+    - 0.9
+rd:
+  codebook_sizes:
+  - 16
+  - 32
+  - 64
+  - 128
+  - 256
+  - 512
+  - 1024
+  - 2048
+  n_fit_points: 200000
+  kmeans_batch: 8192
+  kmeans_iters: 50
+  criteria:
+  - chordal
+  test_fraction: 0.2
+gain_outage:
+  noise_levels:
+  - 0.01
+  - 0.02
+  - 0.04
+  - 0.08
+  - 0.12
+  - 0.18
+  - 0.25
+  - 0.35
+  - 0.5
+  n_points: 2000
+  projection: tangent
+  n_neighbors: 32
+mismatch:
+  model_a: clip_vit_b32
+  model_b: dinov2_s
+  align: none
+  codebook_sizes:
+  - 256
+  - 1024
+  - 4096
+task:
+  probe_dims:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
+  codebook_sizes:
+  - 64
+  - 256
+  - 1024
+  - 4096

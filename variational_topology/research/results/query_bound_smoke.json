@@ -1,0 +1,41 @@
+{
+  "images": 12,
+  "split": "test",
+  "ids_sha256": "6c74084c3ea6e95636929e26891864e415dba2779410711ab4f02c0c0c681bdb",
+  "dictionary": [
+    [
+      123.0,
+      127.0,
+      0.3251104484545543
+    ],
+    [
+      11.0,
+      29.0,
+      0.7908805936709131
+    ],
+    [
+      220.0,
+      220.0,
+      0.622161735540665
+    ],
+    [
+      239.0,
+      214.0,
+      0.3473351977548039
+    ]
+  ],
+  "snr_db": 0,
+  "H_plugin_bits": -0.0,
+  "error_per_query": [
+    0.0,
+    1.0,
+    1.0,
+    0.0
+  ],
+  "plugin_converse_bits": 0.0,
+  "lower_bits_confidence": 0.0,
+  "confidence_if_iid": 0.95,
+  "actual_k": 102,
+  "lower_awgn_uses_if_iid": 0.0,
+  "assumption": "Fixed dictionary chosen independently of this split; confidence assumes independent images."
+}

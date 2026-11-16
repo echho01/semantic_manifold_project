@@ -1,0 +1,40 @@
+{
+  "status": "cpu_executed_gpu_pending",
+  "seed": 20260916,
+  "runtime": {"python": "3.13.5", "numpy": "2.3.5", "cpu_seconds": 56.0711944103241, "refinement_seconds": 5.874772071838379},
+  "dimension": {
+    "1": {"D0": 3.2898681336964524, "R_at_normalized_D_0.1": 1.406741376019084},
+    "2": {"D0": 2.9348022005446794, "R_at_normalized_D_0.1": 2.398849557578579},
+    "4": {"D0": 2.712579978322457, "R_at_normalized_D_0.1": 4.495579540125158}
+  },
+  "geometry_at_D_0_30_bits_interpolated": {"fixed": 1.2649853776816233, "optimized": 1.2634396235954375, "density": 1.1831919442769057, "joint": 1.1831919393534633, "BA": 1.1831913546609754},
+  "maximum_BA_dual_gap": 4.666069169023679e-05,
+  "binary_type_rate": {"rho": 0.5, "epsilon": 0.05, "bits": 0.26550220320535944},
+  "joint_BA_max_error": 4.440892098500626e-16,
+  "wireless": {
+    "trials_per_snr_method": 350, "N": 12, "noise_variance": 1.0, "gains": [1.0, 0.22],
+    "power_shares": {"equal": [0.5, 0.5], "certificate": [0.180327868852459, 0.819672131147541]},
+    "prototype_separation": 0.8587194676071499, "decision_half_margin": 0.42935973380357495,
+    "alpha": 0.05, "num_transmissions": 10500, "max_pair_bound_violation": -1.7763568394002505e-15,
+    "total_radius_violations": 0, "certification_SNR": {"equal": 39, "certificate": 36},
+    "scope": "Finite two-class synthetic episodes and known deterministic diagonal fading; no learned-image task or outage generalization."
+  },
+  "wireless_at_24dB": [
+    {"snr_db": 24, "method": "equal", "P_total": 502.37728630191594, "error_count": 102, "trials": 350, "error_rate": 0.2914285714285714, "CI_low": 0.24629080403658557, "CI_high": 0.34109502551940146, "PH_mean": 0.45228840429935796, "radius": 1.9528553100833363, "certified": 0, "radius_violation": 0},
+    {"snr_db": 24, "method": "certificate", "P_total": 502.37728630191594, "error_count": 53, "trials": 350, "error_rate": 0.15142857142857144, "CI_low": 0.11767149275824583, "CI_high": 0.1927541401983352, "PH_mean": 0.395772271742138, "radius": 1.550768175416334, "certified": 0, "radius_violation": 0}
+  ],
+  "raw_csv_sha256": {
+    "G1_dimension_rate.csv": "0c7f67880a1fb71289a11481aa5a3fefb7718f55b6559b23222dc97dce408c6a",
+    "G2_curvature_rate.csv": "e104a545b8e53a142ec68b609b4fce47b9212e781d4cf8da254431e1baf1aa7f",
+    "G3_variational_coding.csv": "31063e44153ab5dfbdad7a5631cd66acd0476f4e44044b4e29ff6b0a6fa548aa",
+    "G4_optimization.csv": "c07b4168e42b1185213c726a38686c320c3f2772f68655171ea47225d3776ffd",
+    "G5_geometry_density.csv": "20614d7a89efe39917c795a573e210eeb5cbf3d4e27a238d1d781202749853ae",
+    "G5_objective.csv": "bffd56d5298dc9f464e00cdec81d8b718a9e6b038b8c89ad764bce41e7e4d97a",
+    "T1_structure_rate.csv": "e374a9aabff9049dbd91b629eb5bf3a3d23abd7ffb10dd6eacba884425046d98",
+    "T2_joint_BA_check.csv": "cfb462d79b7d4f7dc71c8068b37f4e97a15f920578fc247dc459557738a0401f",
+    "T3_mismatch_counterexample.csv": "b72280ac6c9dc1209e1a55854301c0efabf0a613767d3869dc6126ea9f6cc388",
+    "T4_wireless_error.csv": "4cf39cec54a43cf4d27972e63c416954b96f03432a9a054ffd5fa193904ba411",
+    "T5_stability_samples.csv": "a559642fa46a60ced0a30d57c518f47f6016fc9b44e3ce8a1092cf0ba8a236ea",
+    "T7_required_power.csv": "ece908966ece4de1cd0b7295176e5bb7797e346dfd938c49dfcfa5ed0052b11c"
+  }
+}

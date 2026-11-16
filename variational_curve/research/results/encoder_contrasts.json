@@ -1,0 +1,71 @@
+{
+  "split": "test",
+  "count": 2048,
+  "seed": 31415,
+  "id_sha256": "e508eab7aba57a37f8c4ac2aefdcb89e6823c099fc20899c9d81e1be9d4edbd0",
+  "revision": "ace0aa91fc0b79953ec1ac619a25072d3a5b3037",
+  "model": "resnet18.a1_in1k",
+  "task": "coarse",
+  "modes": [
+    {
+      "mode": "fixed",
+      "checkpoint": "curve-fixed.pt",
+      "checkpoint_sha256": "89d6e940ee95c43b8f7e0c34a76cc2297c1c067889026d771713199fade4abdb",
+      "rmse_interaction_logit": 0.0,
+      "information_bits": 3.5205466747283936,
+      "fixed_distortion": 1.7804863452911377,
+      "rate_plus_lambda_distortion": 8.862005710601807,
+      "scale": 5.0,
+      "lam": 3.0,
+      "epochs": 2,
+      "anchors": 16,
+      "fit": 768,
+      "cal": 192
+    },
+    {
+      "mode": "density",
+      "checkpoint": "curve-density.pt",
+      "checkpoint_sha256": "7b9090ecee356e822247796bfc506ae2432c6da3c66c06318dedd4bcaec7bf24",
+      "rmse_interaction_logit": 0.0,
+      "information_bits": 3.5207738876342773,
+      "fixed_distortion": 1.7807283401489258,
+      "rate_plus_lambda_distortion": 8.862958908081055,
+      "scale": 5.0,
+      "lam": 3.0,
+      "epochs": 2,
+      "anchors": 16,
+      "fit": 768,
+      "cal": 192
+    },
+    {
+      "mode": "geometry",
+      "checkpoint": "curve-geometry.pt",
+      "checkpoint_sha256": "9ed8654c37a9e9ee69b4e7fec3c168e0554a35dc0fceaeff985fbfd819323749",
+      "rmse_interaction_logit": 0.26207380837706806,
+      "information_bits": 3.497530937194824,
+      "fixed_distortion": 1.7858723402023315,
+      "rate_plus_lambda_distortion": 8.855147957801819,
+      "scale": 5.0,
+      "lam": 3.0,
+      "epochs": 2,
+      "anchors": 16,
+      "fit": 768,
+      "cal": 192
+    },
+    {
+      "mode": "joint",
+      "checkpoint": "curve-joint.pt",
+      "checkpoint_sha256": "a11fb5d9a2b06387fedc36f86f6aa2c367552610b2e9fdeecaae676c474a324f",
+      "rmse_interaction_logit": 0.2619485338703523,
+      "information_bits": 3.4977505207061768,
+      "fixed_distortion": 1.7862427234649658,
+      "rate_plus_lambda_distortion": 8.856478691101074,
+      "scale": 5.0,
+      "lam": 3.0,
+      "epochs": 2,
+      "anchors": 16,
+      "fit": 768,
+      "cal": 192
+    }
+  ]
+}

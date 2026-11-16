@@ -1,0 +1,58 @@
+{
+  "source": "Executed CPU calculations and synthetic communication trials; GPU learning is pending",
+  "seed": 20260916,
+  "reproduction": "OPENBLAS_NUM_THREADS=1 python scripts/finalize_numerical_study.py",
+  "rate_scope": "test-channel mutual information; not measured entropy-coded bitstream length",
+  "geometry": {
+    "N": 96,
+    "matched_D": 0.3,
+    "rates_bits_interpolated": {
+      "fixed": 1.264985377488075,
+      "geometry": 1.2634396205544116,
+      "density": 1.1831919422065391,
+      "joint": 1.1831919511919302,
+      "BA": 1.1831913546609754
+    },
+    "BA_dual_gap_max": 0.00004666069169023679,
+    "joint_success_count": 25,
+    "interpretation": "Density-only explains essentially all joint improvement. This example does not establish an independent geometric performance gain."
+  },
+  "sphere_rates_at_normalized_D_01": {
+    "m1": 1.406741376019084,
+    "m2": 2.3988495575785787,
+    "m4": 4.495579540125159
+  },
+  "knowledge": {
+    "rho": 0.5,
+    "epsilon": 0.05,
+    "additional_bits": 0.26550220320535933,
+    "scope": "Independent binary type and circular attribute, with shared type erasure knowledge",
+    "joint_BA_product_max_error_bits": 4.440892098500626e-16
+  },
+  "wireless": {
+    "trials_per_snr_method": 350,
+    "points_per_episode": 12,
+    "real_noise_variance": 1.0,
+    "fixed_amplitude_gains": [1.0, 0.22],
+    "power_convention": "P_total = 2 * 10^(SNR/10) per two-coordinate transmitted vector; 12 vectors per episode, episode energy 12*P_total",
+    "power_shares": {
+      "equal": [0.5, 0.5],
+      "certificate": [0.180327868852459, 0.819672131147541]
+    },
+    "prototype_separation": 0.8587194676071499,
+    "decision_half_margin": 0.42935973380357495,
+    "alpha": 0.05,
+    "transmissions": 10500,
+    "paired_trials": 5250,
+    "saved_pair_checks": 144,
+    "max_PH_minus_realized_pair_bound": -1.7763568394002505e-15,
+    "observed_radius_violations": 0,
+    "first_certified_grid_SNR": {"equal": 39, "certificate": 36},
+    "selected_24dB": {
+      "equal": {"errors": 102, "trials": 350, "error_rate": 0.2914285714285714, "Wilson95": [0.24629080403658557, 0.34109502551940146]},
+      "certificate": {"errors": 53, "trials": 350, "error_rate": 0.15142857142857144, "Wilson95": [0.11767149275824583, 0.1927541401983352]},
+      "certified_at_24dB": false
+    },
+    "scope": "Fixed diagram-prototype task, perfect zero-forcing, no quantization or CSI residual; not a real-image benchmark or random-fading outage result"
+  }
+}

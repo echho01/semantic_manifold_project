@@ -1,0 +1,124 @@
+{
+  "entry": "semasia_rd.py",
+  "profiles": {
+    "pilot": {
+      "grid": {
+        "model": [
+          "resnet18.a1_in1k"
+        ],
+        "seed": [
+          1115
+        ],
+        "book": [
+          16
+        ],
+        "beta": [
+          1,
+          3
+        ]
+      },
+      "train": {
+        "fit": 768,
+        "cal": 192
+      },
+      "eval": {
+        "count": 192,
+        "repeats": 2,
+        "ebn0": [
+          0,
+          10
+        ]
+      },
+      "variants": [
+        {
+          "criterion": "posterior_kl",
+          "alphabet": "objects"
+        },
+        {
+          "criterion": "posterior_kl",
+          "alphabet": "augmented"
+        },
+        {
+          "criterion": "task_chord",
+          "alphabet": "objects"
+        },
+        {
+          "criterion": "graph_geodesic",
+          "alphabet": "objects",
+          "neighbors": 12
+        }
+      ]
+    },
+    "full": {
+      "grid": {
+        "model": [
+          "resnet18.a1_in1k",
+          "mobilenetv3_small_100.lamb_in1k"
+        ],
+        "seed": [
+          1115,
+          1116,
+          1117
+        ],
+        "book": [
+          16,
+          64,
+          256
+        ],
+        "beta": [
+          0.25,
+          0.5,
+          1,
+          2,
+          4,
+          8
+        ]
+      },
+      "train": {
+        "fit": 8192,
+        "cal": 2048,
+        "iterations": 1000
+      },
+      "eval": {
+        "ebn0": [
+          0,
+          5,
+          10,
+          15
+        ],
+        "count": 2048,
+        "repeats": 5,
+        "seed": 31415
+      },
+      "variants": [
+        {
+          "criterion": "posterior_kl",
+          "alphabet": "objects"
+        },
+        {
+          "criterion": "posterior_kl",
+          "alphabet": "augmented"
+        },
+        {
+          "criterion": "task_chord",
+          "alphabet": "objects"
+        },
+        {
+          "criterion": "graph_geodesic",
+          "alphabet": "objects",
+          "neighbors": 8
+        },
+        {
+          "criterion": "graph_geodesic",
+          "alphabet": "objects",
+          "neighbors": 12
+        },
+        {
+          "criterion": "graph_geodesic",
+          "alphabet": "objects",
+          "neighbors": 24
+        }
+      ]
+    }
+  }
+}

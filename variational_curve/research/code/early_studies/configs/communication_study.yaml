@@ -1,0 +1,35 @@
+status: cpu_executed_gpu_pending
+seed: 20260916
+cpu:
+  sphere_dimensions: [1, 2, 4]
+  circle_points: 96
+  source_cosine_amplitude: 0.85
+  geometry_fourier_coefficients: 4
+  coding_density_fourier_coefficients: 8
+  type_knowledge_probability: [0.0, 0.5, 0.8]
+  episode_points: 12
+  deterministic_channel_gains: [1.0, 0.22]
+  real_noise_variance: 1.0
+  snr_db: [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42]
+  trials_per_snr_method: 350
+  alpha: 0.05
+  shared_noise_across_allocations: true
+  interval: Wilson_95_percent_pointwise
+gpu_plan:
+  hardware_limit: 2_A800
+  geometry_primary: SEMASIA_CIFAR100_fixed_model_subsets
+  topology_primary: Omniglot
+  smoke_train_samples: 5000
+  smoke_seeds: 1
+  final_train_seeds: [20260916, 20260917, 20260918]
+  train_snr_db: [0, 5, 10, 15, 20]
+  local_dimension_candidates: [8, 16, 32, 64]
+  topology_landmarks: [16, 32]
+  initial_geometry_batch: 256
+  initial_topology_batch: 32
+  initial_geometry_lr: 0.001
+  ph_every_n_steps: 4
+  max_epochs: 100
+  pilot_timing_steps: 200
+  required_controls: [rate_task, geometry_only, density_only, joint, direct_task_code]
+  outcomes: pending_no_forecast_numbers

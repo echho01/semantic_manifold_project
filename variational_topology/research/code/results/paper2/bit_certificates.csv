@@ -1,0 +1,8 @@
+sigma_axis,fixed_minimum_bits_per_coordinate,fixed_payload_bits,midpoint_minimum_bits_per_coordinate,midpoint_payload_bits
+0.0,8,2048,6,1536
+0.002,8,2048,7,1792
+0.004,10,2560,7,1792
+0.006,,,7,1792
+0.008,,,8,2048
+0.01,,,9,2304
+0.012,,,,

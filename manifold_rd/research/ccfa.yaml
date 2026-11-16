@@ -1,0 +1,33 @@
+version: "0.4.0"
+project:
+  title: "流形语义率失真"
+  short_name: "manifold_rd"
+  root: "."
+target_venue:
+  name: "IEEE Transactions on Communications"
+  mode: "IEEE Transactions"
+stage:
+  current: "single-file manuscript and measured experiments"
+  gate: "full evaluation pending"
+  updated_at: "2026-11-16"
+artifacts:
+  manuscript: "../main.tex"
+  bibliography: "../ref.bib"
+  derivations: "derivations/"
+  experiments: "experiments/"
+  evidence_plan: "EXPERIMENTS.md"
+  results: "results/"
+claims:
+  - source: "derivations/receiver_gap.md"
+    status: "working derivation; scope and assumptions in source"
+  - source: "derivations/structure_and_limits.md"
+    status: "proved in manuscript and derivation; local constants checked numerically; equal-information convergence to the curvature constant is numerical evidence"
+experiments:
+  - source: "results/finite_rd_bounds.csv"
+    status: "measured and reported in manuscript"
+  - source: "results/theory_checks.json"
+    status: "computed and reported in manuscript; dense-alphabet values are not certificates"
+  - source: "results/semasia_smoke.json"
+    status: "executed smoke; insufficient for performance claims"
+  - source: "experiments/matrix.json"
+    status: "full campaign pending"

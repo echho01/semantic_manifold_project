@@ -1,0 +1,16 @@
+# Paper 1 experiment environment (GPU box)
+# Python >= 3.9.  Install:  pip install -r requirements.txt
+torch>=2.1
+torchvision>=0.16
+transformers>=4.38
+datasets>=2.16
+open_clip_torch>=2.24
+scikit-learn>=1.3
+scipy>=1.11
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+pyyaml>=6.0
+tqdm>=4.66
+h5py>=3.9
+ripser>=0.6     # Paper 2 persistence

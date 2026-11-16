@@ -1,0 +1,26 @@
+bottleneck  max|mine - persim|            = 0.00e+00
+H0 deaths   max|MST - ripser|             = 5.05e-08
+ellipse     Cech H1 bar = [0.0021, 0.5000)   predicted [0, 0.5); reach 0.25
+alpha H0    max|alpha - MST|              = 6.94e-18
+circle      Cech death 1.0000 (1.0),  Rips death 0.8660 (0.8660)
+native alpha vs GUDHI max dB             = 1.33e-15
+ALL PASS
+test_bottleneck_against_independent_library (test_topology.TopologyTests.test_bottleneck_against_independent_library) ... ok
+test_collapsed_interval_has_no_loop (test_topology.TopologyTests.test_collapsed_interval_has_no_loop) ... ok
+test_duplicate_noise_reference (test_topology.TopologyTests.test_duplicate_noise_reference) ... ok
+test_essential_classes (test_topology.TopologyTests.test_essential_classes) ... ok
+test_identity_alignment_reorders_caches (test_topology.TopologyTests.test_identity_alignment_reorders_caches) ... ok
+test_label_disagreement_rejected (test_topology.TopologyTests.test_label_disagreement_rejected) ... ok
+test_mapper_requires_graph_cover (test_topology.TopologyTests.test_mapper_requires_graph_cover) ... ok
+test_maxmin_unique_on_duplicates (test_topology.TopologyTests.test_maxmin_unique_on_duplicates) ... ok
+test_missing_ids_rejected (test_topology.TopologyTests.test_missing_ids_rejected) ... ok
+test_mixed_radix_nonpower_of_two (test_topology.TopologyTests.test_mixed_radix_nonpower_of_two) ... ok
+test_native_alpha_against_gudhi (test_topology.TopologyTests.test_native_alpha_against_gudhi) ... ok
+test_probe_requires_reference (test_topology.TopologyTests.test_probe_requires_reference) ... ok
+test_unused_codewords_rejected (test_topology.TopologyTests.test_unused_codewords_rejected) ... ok
+test_zero_mst_edges_are_retained (test_topology.TopologyTests.test_zero_mst_edges_are_retained) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.073s
+
+OK

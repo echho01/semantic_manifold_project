@@ -1,0 +1,65 @@
+{
+  "knowledge": {
+    "type_rate_rho05_eps005": 0.26550220320535944,
+    "product_max_error": 6.661338147750939e-16
+  },
+  "wireless": {
+    "trials_per_snr_method": 350,
+    "N": 12,
+    "noise_variance": 1.0,
+    "gains": [
+      1.0,
+      0.22
+    ],
+    "power_shares": {
+      "equal": [
+        0.5,
+        0.5
+      ],
+      "certificate": [
+        0.180327868852459,
+        0.819672131147541
+      ]
+    },
+    "prototype_separation": 0.8587194676071499,
+    "decision_half_margin": 0.42935973380357495,
+    "alpha": 0.05,
+    "transmissions": 10500,
+    "max_pair_bound_violation": -1.7763568394002505e-15,
+    "radius_violations": 0,
+    "certification_SNR": {
+      "equal": 39,
+      "certificate": 36
+    },
+    "selected_rows": [
+      {
+        "snr_db": 24,
+        "method": "equal",
+        "P_total": 502.37728630191594,
+        "error_count": 102,
+        "trials": 350,
+        "error_rate": 0.2914285714285714,
+        "CI_low": 0.24629080403658557,
+        "CI_high": 0.34109502551940146,
+        "PH_mean": 0.45228840429935796,
+        "radius": 1.9528553100833363,
+        "certified": 0,
+        "radius_violation": 0
+      },
+      {
+        "snr_db": 24,
+        "method": "certificate",
+        "P_total": 502.37728630191594,
+        "error_count": 53,
+        "trials": 350,
+        "error_rate": 0.15142857142857144,
+        "CI_low": 0.11767149275824583,
+        "CI_high": 0.1927541401983352,
+        "PH_mean": 0.395772271742138,
+        "radius": 1.550768175416334,
+        "certified": 0,
+        "radius_violation": 0
+      }
+    ]
+  }
+}

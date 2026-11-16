@@ -1,0 +1,298 @@
+{
+  "kind": "executed mathematical validation; no neural training",
+  "seed": 20260915,
+  "python": "3.9.6",
+  "sphere": [
+    {
+      "s": 30.0,
+      "distortion": 0.033148354072585755,
+      "rate_nats": 3.7985935881086133,
+      "correction": 0.1670373283480382
+    },
+    {
+      "s": 100.0,
+      "distortion": 0.0099833388902112,
+      "rate_nats": 4.994797046931669,
+      "correction": 0.16677780416205776
+    },
+    {
+      "s": 300.0,
+      "distortion": 0.0033314816872591266,
+      "rate_nats": 6.09118785428808,
+      "correction": 0.16670370664066966
+    },
+    {
+      "s": 1000.0,
+      "distortion": 0.0009998333388890215,
+      "rate_nats": 7.294382965101851,
+      "correction": 0.1666777780416838
+    },
+    {
+      "s": 3000.0,
+      "distortion": 0.00033331481502057786,
+      "rate_nats": 8.392773038955315,
+      "correction": 0.16667037039661
+    }
+  ],
+  "circle": {
+    "expected_forward_coefficient": 0.0669872981077807,
+    "observed": [
+      {
+        "s": 30.0,
+        "distortion": 0.016666666666666666,
+        "correction": 0.06638976766649485
+      },
+      {
+        "s": 100.0,
+        "distortion": 0.005000000000000002,
+        "correction": 0.06680722637515399
+      },
+      {
+        "s": 300.0,
+        "distortion": 0.0016666666666666668,
+        "correction": 0.06692719641234746
+      },
+      {
+        "s": 1000.0,
+        "distortion": 0.0005000000000000003,
+        "correction": 0.06696925942151206
+      }
+    ]
+  },
+  "kernel": {
+    "gradient": -0.46745762973316707,
+    "finite_difference": -0.467457629715895,
+    "absolute_error": 1.7272072661000948e-11,
+    "dilation_max_transition_error": 1.1102230246251565e-16
+  },
+  "persistence": {
+    "trials": [
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.01809154601231544,
+        "bottleneck": 0.013766836291956408
+      },
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.017478480116490225,
+        "bottleneck": 0.013426750217208516
+      },
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.015532936005110742,
+        "bottleneck": 0.013633629412189707
+      },
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.019089987113957596,
+        "bottleneck": 0.011592790855970536
+      },
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.019840894120787933,
+        "bottleneck": 0.014151496203304359
+      },
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.012224749730992857,
+        "bottleneck": 0.010111401888336036
+      },
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.01584316691092469,
+        "bottleneck": 0.010406284975783553
+      },
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.02046743181010857,
+        "bottleneck": 0.01406590957854048
+      },
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.017548612743414793,
+        "bottleneck": 0.01590545121427034
+      },
+      {
+        "sigma": 0.005,
+        "metric_bound": 0.02221594192245807,
+        "bottleneck": 0.022215941922457516
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.048909149263858254,
+        "bottleneck": 0.02573508592853535
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.05584953747103549,
+        "bottleneck": 0.028087864318088684
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.05598854489844629,
+        "bottleneck": 0.045888666042845916
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.06952014648201454,
+        "bottleneck": 0.06928974550634809
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.049316097386985724,
+        "bottleneck": 0.04671996228956177
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.06550412632530217,
+        "bottleneck": 0.06550412632530128
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.05509012407138392,
+        "bottleneck": 0.05509012407138325
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.06900798088742399,
+        "bottleneck": 0.059244358353076176
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.05692893036633273,
+        "bottleneck": 0.05594580736052085
+      },
+      {
+        "sigma": 0.02,
+        "metric_bound": 0.06254664172382607,
+        "bottleneck": 0.04663097704207131
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.16191589148304797,
+        "bottleneck": 0.13552353451592802
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.17789605720305834,
+        "bottleneck": 0.14154283784004285
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.16855798543483558,
+        "bottleneck": 0.14204225510604268
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.1504425669413727,
+        "bottleneck": 0.12538186567007037
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.1603569629024889,
+        "bottleneck": 0.14080494161389545
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.1855992916571172,
+        "bottleneck": 0.171678975500744
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.13370475452828678,
+        "bottleneck": 0.11902037555904943
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.14702891610473978,
+        "bottleneck": 0.11047029613369391
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.22714758955767866,
+        "bottleneck": 0.16505802672714842
+      },
+      {
+        "sigma": 0.05,
+        "metric_bound": 0.20144116940695977,
+        "bottleneck": 0.07272540458472276
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.2881544478476846,
+        "bottleneck": 0.28815444784768396
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.3115789517797365,
+        "bottleneck": 0.24703899398512275
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.4399464511119579,
+        "bottleneck": 0.25881904510252046
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.3035035917384443,
+        "bottleneck": 0.3035035917384441
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.437186161896461,
+        "bottleneck": 0.25960029241242766
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.2660616225028727,
+        "bottleneck": 0.241789268361976
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.3844612749607048,
+        "bottleneck": 0.33947356322930633
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.4106108410833824,
+        "bottleneck": 0.36051024810974575
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.37419035371916554,
+        "bottleneck": 0.3338787253458194
+      },
+      {
+        "sigma": 0.1,
+        "metric_bound": 0.3820957643784617,
+        "bottleneck": 0.29695286159669143
+      }
+    ],
+    "max_bound_ratio": 0.9999999999999992,
+    "translation_distance": 4.440892098500626e-16
+  },
+  "power": {
+    "closed_form": [
+      3.2562827767017053,
+      7.281269642666782,
+      12.61152896470775,
+      19.264428703300442
+    ],
+    "constraint": 0.8,
+    "optimizer_success": true,
+    "relative_objective_error": 2.5706834840653035e-09
+  },
+  "gaussian": {
+    "draws": 20000,
+    "nominal_alpha": 0.05,
+    "radius": 1.7398140637585973,
+    "violations": 1,
+    "one_sided_95pct_binomial_upper": 0.00023717102659408986
+  },
+  "knowledge": {
+    "H_B_given_C_nats": 0.5004024235381879,
+    "mismatch_KL_nats": 0.030595220441363067,
+    "cross_entropy_nats": 0.530997643979551,
+    "identity_error": 2.42861286636753e-17
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "entry": "semasia_curve.py",
+  "profiles": {
+    "pilot": {
+      "grid": {
+        "model": [
+          "resnet18.a1_in1k"
+        ],
+        "seed": [
+          1115
+        ],
+        "book": [
+          16
+        ],
+        "mode": [
+          "fixed",
+          "density",
+          "geometry",
+          "joint"
+        ]
+      },
+      "train": {
+        "fit": 768,
+        "cal": 192,
+        "epochs": 2
+      },
+      "eval": {
+        "count": 192,
+        "repeats": 2,
+        "ebn0": [
+          0,
+          10
+        ]
+      }
+    },
+    "full": {
+      "grid": {
+        "model": [
+          "resnet18.a1_in1k",
+          "mobilenetv3_small_100.lamb_in1k"
+        ],
+        "seed": [
+          1115,
+          1116,
+          1117
+        ],
+        "book": [
+          16,
+          64,
+          256
+        ],
+        "mode": [
+          "fixed",
+          "density",
+          "geometry",
+          "joint"
+        ],
+        "lam": [
+          1,
+          3,
+          8
+        ]
+      },
+      "train": {
+        "fit": 8192,
+        "cal": 2048,
+        "epochs": 30,
+        "scale": 5,
+        "eta": 0.1
+      },
+      "eval": {
+        "ebn0": [
+          0,
+          5,
+          10,
+          15
+        ],
+        "count": 2048,
+        "repeats": 5,
+        "seed": 31415
+      }
+    }
+  }
+}

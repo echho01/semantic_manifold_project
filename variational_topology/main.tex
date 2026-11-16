@@ -1,0 +1,242 @@
+\documentclass[10pt,conference]{IEEEtran}
+\usepackage{amsmath,amssymb,booktabs,graphicx,cite}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage{flushend}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Dgm}{\operatorname{Dgm}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\title{Topology-Aware Learning of Semantic Channel Representations for Connectivity Between Named Locations}
+\author{} % Insert the author block appropriate to the selected conference.
+\begin{document}
+\maketitle
+\begin{abstract}
+A persistence diagram can survive transmission even when the receiver connects the wrong pair of locations. We study a semantic image link whose task is to answer connectivity queries on the received image, and we model the task as a relation distortion on a readout graph shared by both terminals. For a fixed pair of locations, the difference between two merge levels gives the exact probability of disagreement under a random threshold, which supplies an almost-everywhere differentiable training loss. We prove that every diagram-based loss is constant on orbits of the readout-graph automorphisms, and we derive the relation rate--distortion function of such an orbit in closed form. It reaches $\log_2 8=3$ bits on the square grid, where the diagram rate is zero. A conditional converse relates the errors of several named queries to the budget of one transmission and extends to channel-use, ergodic-fading and outage bounds. On 320 real Omniglot glyphs, horizontal reflection preserves every cubical persistence diagram while changing 1.21\% of uniformly sampled location-pair answers and 77.82\% of answers restricted to source foreground. All 320 glyphs have eight distinguishable symmetric images, and retaining their relations to one tenth of the zero-rate distortion requires 2.31 bits on average. Separate dictionary and channel experiments quantify representation mismatch and the difference between observed reliability and a sufficient certificate.
+\end{abstract}
+\begin{IEEEkeywords}
+Joint source--channel coding, connectivity, persistent homology, rate--distortion theory, semantic communication.
+\end{IEEEkeywords}
+
+\section{Introduction}
+A map receiver may need to decide whether two marked locations lie on the same route. A glyph receiver may need to determine whether two strokes meet. The number and lifetimes of connected components give global information in either case. They do not identify which marked locations belong to each component. The distinction matters when the encoder must use a fixed number of noisy symbols, because the receiver can produce a structurally plausible image yet answer a particular question incorrectly.
+
+Deep joint source--channel coding (DeepJSCC) learns an image-to-symbol map and decoder through a physical channel \cite{bourtsoulatze2019deep}. TopoJSCC adds image-space cubical persistence and batchwise latent Vietoris--Rips persistence to this model \cite{erak2026topojscc}, and TopoCode uses persistence descriptors as side information for error detection \cite{guo2025topocodetopologicallyinformederror}. Topological autoencoders retain the identities of critical edges when comparing finite metric spaces \cite{moor2020topological}. Maximin affinity learning uses path bottlenecks to supervise connectivity \cite{turaga2009malis}. On the theory side, semantic rate--distortion models assign the fidelity criterion to a task variable observed through the source \cite{liu2022indirect,Stavrou_2023}. These lines leave open what a noisy receiver should preserve when the task is a relation between identified locations, and what that relation costs in channel resources. We assess the learned representation through a fixed semantic readout, so the analysis needs no known atlas, genus or catalogue of structural types. Our contributions are as follows.
+\begin{itemize}
+\item \emph{System model.} We define a relation distortion on a shared readout graph and keep it separate from pixel and diagram distortions. Its conditional risk is an exact function of two merge levels (Proposition~\ref{prop:risk}).
+\item \emph{Structure.} Diagram losses are invariant under readout-graph automorphisms whereas the relation distortion is not (Proposition~\ref{prop:aut}). On a symmetry orbit the relation rate--distortion function has a closed form (Theorem~\ref{thm:orbit}).
+\item \emph{Resources.} A converse ties the errors of many queries to one transmission (Theorem~\ref{thm:converse}), with channel-use, ergodic-fading and outage corollaries.
+\item \emph{Learning and evidence.} A variational objective with optional power allocation implements the model. Exact counts on real glyphs, a dictionary-mismatch experiment and a power-allocation experiment test its separate assumptions.
+\end{itemize}
+
+\section{System Model and Problem Formulation}
+\subsection{Wireless image link}
+Fig.~\ref{fig:system} shows the link. A source image $X\in[0,1]^{H\times W}$ has $n=HW$ pixels. A convolutional encoder $f_\theta$ maps $X$ to $k$ complex symbols $Z$, and the bandwidth ratio is $\rho=k/n$. The symbols are split into $J$ groups of lengths $k_j$. Each group is normalized to unit mean energy for every image and scaled by a power $p_j>0$ with $\sum_jk_jp_j=k$, so that $\|Z\|^2=k$. The receiver observes
+\begin{equation}
+ V=(Y,h),\qquad Y=hZ+N,\quad N\sim\mathcal{CN}(0,\sigma^2I_k),
+\end{equation}
+and the signal-to-noise ratio per complex symbol is $1/\sigma^2$. AWGN has $h=1$. Coherent block Rayleigh fading draws one $h\sim\mathcal{CN}(0,1)$ per image, known to the receiver only. The decoder $g_\phi$ reconstructs $\hat X=g_\phi(\tilde Z)$ from $\tilde Z=Y$ in AWGN and from the linear MMSE scaling $\tilde Z=h^*Y/(|h|^2+\sigma^2)$ under fading. The support of the codes $f_\theta(X)$ is the learned semantic representation of the source.
+\begin{figure}[t]\centering
+\begin{tikzpicture}[font=\footnotesize,>={Stealth[length=1.6mm]},
+ box/.style={draw,rounded corners=1pt,minimum height=5.2mm,inner sep=2.2pt},node distance=4.6mm]
+\node (x) {$X$};
+\node[box,right=of x] (enc) {$f_\theta$, $p$};
+\node[box,right=6.5mm of enc] (ch) {$hZ+N$};
+\node[box,right=6.5mm of ch] (dec) {$g_\phi$};
+\node[right=of dec] (xh) {$\hat X$};
+\node[box,below=5.5mm of ch] (ev) {readout $B_{\cdot}(L)$ on $G$,\ \ $L\sim\nu$};
+\draw[->] (x)--(enc);
+\draw[->] (enc)--node[above]{$Z$}(ch);
+\draw[->] (ch)--node[above]{$V$}(dec);
+\draw[->] (dec)--(xh);
+\draw[->] (x) |- (ev);
+\draw[->] (xh) |- (ev);
+\node[below=3.2mm of ev] (risk) {$\Pr[B_X(L)\ne B_{\hat X}(L)]$};
+\draw[->] (ev)--(risk);
+\end{tikzpicture}
+\caption{Semantic image link with $k$ channel uses. The evaluator applies the same named queries to the source and to the reconstruction. Queries are never sent to the decoder.}
+\label{fig:system}\end{figure}
+
+\subsection{Shared readout and relation distortion}
+The knowledge shared by both terminals is a fixed aligned graph $G=(\mathcal V,\mathcal E)$, here the image grid with four-neighbor adjacency, and a law $\nu$ on queries. The score $f_X(v)=1-X(v)$ activates high-intensity strokes or roads early. For a query $L=(a,b,t)$, the answer $B_X(L)$ is one when $a,b$ belong to the same component of the subgraph induced on $\{f_X\le t\}$. Inactive endpoints give answer zero, and for $a=b$ the answer records whether that vertex is active. An unregistered mesh or two unrelated feature bases would first need a correspondence between readout locations.
+
+When $\nu$ does not depend on the source, the semantic state of an image is its answer function $\Phi(x):L\mapsto B_x(L)$ in $L^1(\nu)$, and
+\begin{equation}
+ d_\nu(x,x')=\|\Phi(x)-\Phi(x')\|_{L^1(\nu)}
+\end{equation}
+is a pseudometric by the triangle inequality. Quotienting by almost-sure equality of answers gives a metric on distinguishable states. The pullback $(z,z')\mapsto d_\nu(g_\phi(z),g_\phi(z'))$ is a relation pseudometric on the learned representation, including points of a candidate semantic manifold. It is defined without inferring the homology of that manifold from a finite batch. A source-conditioned foreground law defines a directed evaluation loss and need not give a pseudometric.
+
+\subsection{Three distortions and the design problem}
+A code induces the pixel distortion $D_{\rm pix}=\E\|X-\hat X\|_2^2/n$, a diagram distortion $D_{\rm dgm}$ that compares unlabelled persistence diagrams of $f_X$ and $f_{\hat X}$, and the relation distortion $D_{\rm rel}=\Pr[B_X(L)\ne B_{\hat X}(L)]=\E\,d_\nu(X,\hat X)$. The query, the diagrams and the foreground mask are available to the evaluator during learning or measurement and are never sent as side information. The design problem at fixed $k$ is
+\begin{equation}
+ \min_{\theta,\phi,p}\ D_{\rm pix}+\lambda_QD_{\rm rel}+\lambda_M\E L_{\rm edge}
+ \quad\text{s.t.}\ \textstyle\sum_jk_jp_j=k, \label{eq:problem}
+\end{equation}
+where $L_{\rm edge}$ is the critical-edge regularizer of Section~\ref{sec:train}. As a source-coding benchmark, for a finite noiseless reproduction problem with allowances $(D,\delta)$ on pixel and relation costs $c^D,c^Q$, the supported kernels obey
+\begin{equation}
+ W_{ij}\ \propto\ \pi_j\,2^{-\beta_D c^D_{ij}-\beta_Q c^Q_{ij}}
+ \label{eq:source}
+\end{equation}
+with row normalization and optimal output marginal $\pi$. This follows by minimizing the conditional relative entropies to $\pi$ plus the two linear costs, then minimizing over $\pi$. The neural system instead operates at prescribed $k$ and power and is scored on the decoded image.
+
+\section{Relation Risk and What Diagrams Forget}
+\subsection{Integrating the threshold exactly}
+For a finite connected graph define the merge level
+\begin{equation}
+ m_f(a,b)=\min_{\pi:a\leadsto b}\max_{v\in\pi} f(v).
+\end{equation}
+The path includes both endpoints, so $m_f(a,a)=f(a)$.
+
+\begin{proposition}\label{prop:risk}
+Given the image pair and endpoints, suppose the threshold $T$ has a continuous CDF $F$ and is independent of the two score fields conditional on these endpoints. Then the conditional disagreement probability is
+\begin{equation}
+ |F(m_f(a,b))-F(m_{\hat f}(a,b))|. \label{eq:risk}
+\end{equation}
+Moreover $|m_f-m_{\hat f}|\le\|f-\hat f\|_\infty$.
+\end{proposition}
+\begin{IEEEproof}
+A path is active at threshold $t$ precisely when its maximum score is at most $t$, so $B_f=\mathbf 1\{m_f\le t\}$. The two answers disagree on the half-open interval between the merge levels, and integrating over that interval gives \eqref{eq:risk}. Perturbing $f$ by at most $\epsilon$ in sup norm changes the maximum on each path by at most $\epsilon$. Taking minima in both directions proves the stability statement.
+\end{IEEEproof}
+Uniform $T$ on $[0,1]$ turns \eqref{eq:risk} into $|m_f-m_{\hat f}|$. The risk splits as $[F(m_{\hat f})-F(m_f)]_++[F(m_f)-F(m_{\hat f})]_+$. The first term is the probability that the receiver separates a connected pair and the second that it joins a separated pair, so the two errors can be weighted differently. A fixed query with $|t-m_f|>\epsilon$ is unchanged by perturbations of at most $\epsilon$. Global diagram stability \cite{cohensteiner2007stability} concerns another observable, the birth and death multiset after discarding locations.
+
+Assign edge $(u,v)$ the weight $\max(f(u),f(v))$. On any minimum spanning tree (MST) the heaviest edge on the path between two distinct vertices realizes the minimax value, because deleting that edge defines a cut that no lighter edge can cross. A single tree therefore serves all pairs on an image. The implementation builds the tree, walks each queried path and gathers the maximizing vertex value in the differentiable computation. Where the ordering of distinct scores is fixed the derivative is a coordinate vector, and at ties one active branch is chosen. Pixel connectivity uses four-neighbor edges. The top-cell cubical diagram used as a comparator has its own incidence convention, including corner contacts.
+
+\subsection{Diagrams are constant on symmetry orbits}
+Let $\Aut(G)$ be the automorphism group of the readout graph and write $(f\circ\sigma)(v)=f(\sigma v)$. The square grid has the eight symmetries of the dihedral group.
+\begin{proposition}\label{prop:aut}
+(i) The merge level is symmetric and satisfies $f(a)=m_f(a,a)\le m_f(a,b)$ and $m_f(a,c)\le\max\{m_f(a,b),m_f(b,c)\}$. The sublevel $H_0$ diagram of $f$ is a function of the array $m_f$ that is invariant under relabelling both arguments by any permutation of $\mathcal V$. (ii) For $\sigma\in\Aut(G)$, $m_{f\circ\sigma}(a,b)=m_f(\sigma a,\sigma b)$ and $B_{f\circ\sigma}(a,b,t)=B_f(\sigma a,\sigma b,t)$, and all unlabelled persistence diagrams of $f\circ\sigma$ and $f$ coincide for every complex on which $\sigma$ acts, such as the clique complex of $G$ or the cubical complex of the pixel grid.
+\end{proposition}
+\begin{IEEEproof}
+Concatenating two paths gives the strong triangle inequality. At level $t$ the components are the classes of $m_f(a,b)\le t$ on $\{a:m_f(a,a)\le t\}$. The array therefore determines the merge tree and, by the elder rule, the diagram. A relabelling renames only the leaves. An automorphism maps paths from $a$ to $b$ onto paths from $\sigma a$ to $\sigma b$ and preserves their maxima. It also restricts to isomorphisms of all sublevel complexes that commute with inclusions, so the persistence modules are isomorphic in every degree.
+\end{IEEEproof}
+Hence every diagram-based loss vanishes between $f$ and $f\circ\sigma$, while $d_\nu(f,f\circ\sigma)=\E|F(m_f(a,b))-F(m_f(\sigma a,\sigma b))|$ vanishes only if the merge function is $\sigma$-invariant almost surely. The diagram keeps the unordered values of $m_f$ and discards which locations they join.
+
+\subsection{An exact source benchmark on an orbit}
+Let $\Gamma\le\Aut(G)$ and let $\mathcal O=\{x\circ\gamma:\gamma\in\Gamma\}$ be the orbit of a template $x$, with $K=|\mathcal O|$. Assume that $\nu$ is independent of the source and invariant under $(a,b,t)\mapsto(\gamma a,\gamma b,t)$, as for uniform vertex pairs. Let $\varrho_1,\ldots,\varrho_K$ be the values $d_\nu(x,x')$, $x'\in\mathcal O$.
+\begin{theorem}[Orbit rate--distortion]\label{thm:orbit}
+Let $X$ be uniform on $\mathcal O$ and restrict reproductions to $\mathcal O$. Put $\delta_{\max}=K^{-1}\sum_i\varrho_i$. The minimum information for relation distortion at most $\delta$ is, in bits,
+\begin{equation}
+ R_Q(\delta)=\log_2K-H_2(P_\beta),\qquad 0\le\delta<\delta_{\max}, \label{eq:orbit}
+\end{equation}
+where $P_\beta(i)\propto2^{-\beta\varrho_i}$ and $\beta\in(0,\infty]$ solves $\sum_iP_\beta(i)\varrho_i=\delta$. For $\delta\ge\delta_{\max}$, $R_Q(\delta)=0$. Every distortion that depends only on unlabelled persistence diagrams is identically zero on $\mathcal O$ and has zero rate.
+\end{theorem}
+\begin{IEEEproof}
+Invariance of $\nu$ and Proposition~\ref{prop:aut} give $d_\nu(g\circ\tau,g'\circ\tau)=d_\nu(g,g')$ for $\tau\in\Gamma$. Since $\Gamma$ permutes $\mathcal O$ transitively, every row and, by symmetry of $d_\nu$, every column of the distortion matrix on $\mathcal O$ is a permutation of $(\varrho_i)$. Let $\varphi(\delta)$ be the maximum entropy of a law $P$ on $K$ points with $\sum_iP(i)\varrho_i\le\delta$. It is concave, nondecreasing, and equal to $H_2(P_\beta)$ below $\delta_{\max}$. Given $\hat X=\hat x$ with conditional distortion $\delta_{\hat x}$, the conditional entropy of $X$ is at most $\varphi(\delta_{\hat x})$, so $I_2(X;\hat X)\ge\log_2K-\varphi(\delta)$ by Jensen's inequality. For achievability draw $\hat X$ uniformly and set $P(x\mid\hat x)\propto2^{-\beta d_\nu(x,\hat x)}$. The normalizer is the same in every column, and the row property makes $X$ uniform. The diagram claim is Proposition~\ref{prop:aut}.
+\end{IEEEproof}
+\begin{corollary}\label{cor:binary}
+For two equally probable templates related by a reflection with $\alpha=d_\nu(x_0,x_1)>0$,
+\begin{equation}
+ R_Q(\delta)=
+ \begin{cases}
+ 1-h_2(\delta/\alpha),&0\le\delta<\alpha/2,\\
+ 0,&\delta\ge\alpha/2 .
+ \end{cases} \label{eq:binary}
+\end{equation}
+\end{corollary}
+With a trivial stabilizer and full-support $\nu$, only the identity has $\varrho_i=0$ and $R_Q(0)=\log_2|\Gamma|$, up to three bits on the square grid. The theorem fixes the reproduction alphabet and the query law. A source-dependent foreground selection changes what the evaluator knows and cannot be substituted into \eqref{eq:orbit}.
+
+\section{Channel Resources for Many Queries}
+Let $L_{1:d}$ be the queries, $B_j=B_X(L_j)$ and $e_j=\Pr(B_j\ne B_{\hat X}(L_j))$. Shared context is $C$. Sampling may depend on $X$, but the channel noise and the sampler are independent given $(X,C)$. The physical codec never receives the evaluation queries.
+\begin{theorem}\label{thm:converse}
+For one transmission let $H_Q=H_2(B_{1:d}\mid L_{1:d},C)$. Then
+\begin{equation}
+ \Big[H_Q-\sum_{j=1}^d h_2(e_j)\Big]_+
+ \le I_2(X;V\mid C).
+ \label{eq:converse}
+\end{equation}
+For complex AWGN independent of the shared context, the right-hand side is at most $k\log_2(1+1/\sigma^2)$ under the unit average symbol-energy constraint.
+\end{theorem}
+\begin{IEEEproof}
+Given the reconstructed bits, the error indicators determine all true bits, so their joint conditional entropy is at most $\sum_jh_2(e_j)$. Apply data processing conditional on queries and context. Writing $L=L_{1:d}$, independence gives $I(X;V\mid L,C)=I(X;V\mid C)-I(L;V\mid C)\le I(X;V\mid C)$. The AWGN bound follows by the Gaussian entropy maximum and concavity under the total power budget \cite{cover2006elements}.
+\end{IEEEproof}
+\begin{corollary}\label{cor:channel}
+Let $\Delta=H_Q-\sum_jh_2(e_j)$. (i) In AWGN, $k\ge[\Delta]_+/\log_2(1+1/\sigma^2)$. (ii) Under coherent block fading with $h$ independent of $(X,L_{1:d},C)$ and unknown to the transmitter, $[\Delta]_+\le k\,\E\log_2(1+|h|^2/\sigma^2)$, which equals $k\,e^{\sigma^2}E_1(\sigma^2)/\ln2$ for Rayleigh fading. (iii) For targets $\epsilon_j\le1/2$ with $R_\epsilon=H_Q-\sum_jh_2(\epsilon_j)>0$, the conditional error rates $e_j(h)$ satisfy
+\begin{equation}
+ \Pr\{\exists j:e_j(h)>\epsilon_j\}\ \ge\ \Pr\{k\log_2(1+|h|^2/\sigma^2)<R_\epsilon\},
+\end{equation}
+which is $1-\exp[-\sigma^2(2^{R_\epsilon/k}-1)]$ for Rayleigh fading.
+\end{corollary}
+\begin{IEEEproof}
+Part (i) rearranges Theorem~\ref{thm:converse}. For (ii), $I(X;V\mid C)=I(X;Y\mid h,C)$ because $h$ is independent of $(X,C)$, and each realization is a Gaussian channel with gain $|h|^2$ and the same energy \cite{tse2005fundamentals}. For (iii) apply the theorem conditionally on $h$, where the answer entropy is still $H_Q$. If all $e_j(h)\le\epsilon_j$, monotonicity of $h_2$ on $[0,1/2]$ gives $R_\epsilon\le k\log_2(1+|h|^2/\sigma^2)$.
+\end{IEEEproof}
+The joint conditional entropy counts correlated answers only once, and pooled foreground-answer frequency cannot replace $H_Q$. Inequality \eqref{eq:converse} holds with equality when the answers are independent fair bits observed through independent binary symmetric channels. A fixed dictionary of exogenous queries across images allows empirical estimation of the joint answer distribution, though large dictionaries need many more samples. Evaluating Corollary~\ref{cor:channel} at 0, 10 and 20 dB, one bit of $\Delta$ costs at least 1.000, 0.289 and 0.150 complex uses in AWGN, and 1.162, 0.344 and 0.170 under ergodic Rayleigh fading. If the per-realization targets need $R_\epsilon/k=1$ bit per use, part (iii) shows that at 10 dB they fail on at least $1-e^{-0.1}=9.5\%$ of Rayleigh blocks for any codec.
+
+\begin{figure*}[t]\centering
+\includegraphics[width=.78\textwidth]{figures/reflection.png}
+\caption{A pair of marked foreground pixels is connected in the original glyph and disconnected in its reflection. The distribution functions at right cover all 320 images. The two endpoints of each query stay at the same coordinates across images.}
+\label{fig:reflection}\end{figure*}
+
+\section{Variational Training Under a Fixed Channel Budget}\label{sec:train}
+We train a five-convolution encoder with PReLU activations and a paired decoder on \eqref{eq:problem}. For a batch, let $L_{\rm edge}$ compare distances on critical edges between the source-image batch and the equalized codes $\tilde Z$. Each distance matrix is divided by its root mean square. We compute an MST in each metric, then compare the lengths of its selected edges in both metrics using the same pairs of sample IDs \cite{moor2020topological}. This term constrains the neighborhood organization of the received representation, whereas the within-image term supervises a relation between pixel locations. With uniform thresholds, Proposition~\ref{prop:risk} makes the relation term exact, and the training objective is
+\begin{align}
+ \mathcal L={}&\E[\|X-\hat X\|_2^2/n]
+ +\lambda_Q\E|m_{f_X}-m_{f_{\hat X}}|\nonumber\\
+ &+\lambda_M\E L_{\rm edge}(X,\tilde Z).
+ \label{eq:training}
+\end{align}
+The source determines pixel endpoints once per sample, and the evaluator uses those endpoints on the noisy reconstruction. Uniform pairs test all indexed locations. The hybrid sampler draws half of its pairs from the reference foreground when it contains at least two pixels and the rest uniformly.
+
+The optional allocator parameterizes $p_j=k e^{v_j}/\sum_\ell k_\ell e^{v_\ell}$, and the log powers $v$ receive gradients through \eqref{eq:training}. A uniform-power comparison uses the same groups and normalization. For an auxiliary linearized independent-noise bound $\sum_j c_j/p_j$ with $c_j>0$, Lagrange stationarity under the same budget instead gives $p_j\propto\sqrt{c_j/k_j}$. This allocation optimizes that bound, and gradients of the actual objective need not reproduce it.
+
+The implementation has four controls on the same channel interface. Pixel MSE alone gives a DeepJSCC-style link. A TopoJSCC-style control combines image cubical and pre/post-channel batch Rips diagram distances over finite $H_0,H_1$ features \cite{erak2026topojscc}, with a Wasserstein-2 matching under the infinity ground metric. The other two controls add to MSE the critical-edge term alone and the query term alone. The diagram control is an independent implementation of the loss family.
+
+\section{Experiments and Results}
+\subsection{Does zero diagram distortion imply zero query risk?}
+We sample 16 official evaluation images from each of the 20 Omniglot evaluation alphabets \cite{lake2015omniglot}, using seed 20261115. Each image is resized to $32\times32$ by nearest-neighbor sampling and black ink is thresholded at gray value 128. Horizontal reflection is a grid automorphism, so by Proposition~\ref{prop:aut} its diagram distance is exactly zero in every degree. The receiver observes the reflected image, and each query applies to the same coordinates as in the source.
+
+We compute the exact uniform-threshold risk without sampling pixel pairs. If $S_i$ and $\hat S_j$ denote foreground components, the number of discordant ordered pairs, with replacement, on an eligible vertex set $A$ is
+\begin{align}
+ N_A={}&\sum_i |S_i\cap A|^2+\sum_j|\hat S_j\cap A|^2\nonumber\\
+ &-2\sum_{ij}|S_i\cap\hat S_j\cap A|^2 .
+ \label{eq:count}
+\end{align}
+Each within-component term counts connected ordered pairs and the last term subtracts the twice-counted intersection. For binary scores any threshold strictly between zero and one activates exactly the foreground. Dividing \eqref{eq:count} by $|A|^2$ gives the exact image-specific disagreement. All 320 glyphs contain foreground after resizing.
+\begin{table}[t]\centering
+\caption{Exact pair-disagreement probabilities under reflection of 320 evaluation glyphs. Each image receives equal weight.}\label{tab:reflection}
+\begin{tabular}{lrrr}\toprule
+Eligible endpoints & Mean & Median & Images with error\\\midrule
+All pixels & 0.01210 & 0.01102 & 320/320\\
+Source foreground & 0.77821 & 0.83633 & 320/320\\\bottomrule
+\end{tabular}\end{table}
+Table~\ref{tab:reflection} and Fig.~\ref{fig:reflection} show the dependence on endpoint identity and sampling. Uniform queries are dominated by background pairs for which both answers are zero. Foreground sampling concentrates on stroke relations and also counts endpoints that become inactive after reflection. These numbers characterize the readout under a known transformation. They make no assumption about how often wireless channels produce reflections.
+
+\begin{table}[t]\centering
+\caption{Relation rate in bits per glyph on symmetry orbits of the same 320 glyphs with all-pixel queries. The diagram rate is zero in every column.}\label{tab:orbit}
+\begin{tabular}{lrrrr}\toprule
+$\delta/\delta_{\max}$ & 0 & 0.1 & 0.25 & 0.5\\\midrule
+Reflection pair, $K=2$ & 1.000 & 0.714 & 0.456 & 0.189\\
+Dihedral orbit, $K=8$ (mean) & 3.000 & 2.312 & 1.611 & 0.770\\\bottomrule
+\end{tabular}\end{table}
+Table~\ref{tab:orbit} evaluates Theorem~\ref{thm:orbit} with the same exact counts. All 320 glyphs have a trivial stabilizer under the eight grid symmetries. For each glyph the smallest and largest disagreements with another orbit element average 0.01131 and 0.01401, and $\delta_{\max}$ has mean 0.01154 and median 0.01049. A receiver restricted to the orbit must therefore obtain 2.31 bits on average to reach one tenth of the zero-rate relation distortion, while no information is needed to match every diagram. The reflection row follows from Corollary~\ref{cor:binary} and depends on the glyph only through $\delta_{\max}=\alpha/2$. Fig.~\ref{fig:orbit} plots the complete curves. Their spread across glyphs is small because the seven disagreements of a glyph are of similar size. On 200 random $5\times5$ templates the closed form agrees with a Blahut--Arimoto solution to within $10^{-15}$ bit.
+
+\begin{figure}[t]\centering
+\includegraphics[width=.86\columnwidth]{figures/orbit_rdf.png}
+\caption{Relation rate--distortion on symmetry orbits of the 320 glyphs from Theorem~\ref{thm:orbit}. The band covers the 10th to 90th percentile over glyphs.}
+\label{fig:orbit}\end{figure}
+
+\subsection{The topology dictionary and knowledge mismatch}
+A different experiment asks how a receiver interprets the same named items through another representation. On the 1,797 optical-recognition digits distributed by scikit-learn \cite{alpaydin1998digits,pedregosa2011scikit}, fit a 16-dimensional PCA to 1,078 reference images in the original 64-pixel space. Hold out 719 images and use 200 aligned evaluation items for the diagram calculation. Each representation uses its own reference distance scale. Vary the number of shared dictionary identities, with diagrams measured consistently by the radius-convention Rips filtration.
+\begin{table}[t]\centering
+\caption{Normalized digit-cloud bottleneck distortion as the shared dictionary grows.}\label{tab:digits}
+\begin{tabular}{lrrrrr}\toprule
+Direction $\backslash$ atoms & 16 & 32 & 64 & 128 & 200\\\midrule
+Pixels to PCA & .1554 & .1462 & .1279 & .1063 & .0555\\
+PCA to pixels & .1649 & .1356 & .1178 & .0842 & .0555\\\bottomrule
+\end{tabular}\end{table}
+At the full 200-item dictionary both directions attain the same clean discrepancy (Table~\ref{tab:digits}). Write $\delta_{\rm KB}=d_B(D_T,D_R)$ for the two full descriptors and $D_{R,K}$ for the receiver subset. The reverse triangle inequality bounds $|d_B(D_T,D_{R,K})-\delta_{\rm KB}|$ by $d_B(D_R,D_{R,K})$, which for radius-convention Rips is at most the receiver Hausdorff coverage error. At $K=200$ the subset equals the declared evaluation cloud. Extrapolating this finite equality to an unknown continuous support would require coverage and feature-scale assumptions.
+
+The dictionary can be insufficient in two ways. A finite cloud may miss an entire component when its coverage is unknown. Alternatively two branches of a level set may share the same scalar task score despite perfect coverage, and decoding the branch losslessly then requires its conditional information given the score. A binned component diagnostic on the digit representations gives 1.8246 bits for pixels and 1.5415 for PCA. These estimates describe finite partitions, depend on binning, and do not certify the Reeb graph of the source.
+
+\subsection{Power allocation and end-to-end evidence}
+A controlled two-mode Gaussian feature experiment transmits 12-point blocks drawn from circular or two-cluster prototypes. Gains are 1 and 0.22, noise variance is one, and allocation changes while total transmit power stays fixed. At 24 dB, equal shares make 102 errors in 350 trials (29.14\%, Wilson interval 24.63--34.11\%). The bound-derived shares $(0.1803,0.8197)$ make 53 errors on the same 350 trials (15.14\%, 11.77--19.28\%). The derived sufficient radii are 1.953 and 1.551, both larger than the 0.429 decision half-margin. The improvement is thus measurable at a setting where neither allocation certifies correctness. These trials use a feature-descriptor receiver, distinct from the image decoder.
+
+For the image model an Omniglot integration run trained five objectives with 12 images and evaluated each on eight official evaluation images at $16\times16$, including AWGN and coherent Rayleigh at 0 and 10 dB. The actual bandwidth was $102/256=0.3984$ complex uses per pixel. These records establish execution of the query, diagram, critical-edge and allocation pipelines. Ranking the neural methods calls for independently trained seeds and paired image and channel draws at matched bandwidth, power and PSNR. The query-converse implementation also illustrates the cost of an uninformative query dictionary. On a separate 12-image check, its four bits had a constant joint answer and yielded a zero lower bound.
+
+\section{Conclusion}
+A fixed pair of locations gives semantic topology an observable at the receiver. The merge level makes its expected threshold error computable, and the converse ties several answers to one physical communication budget, including its ergodic and outage forms under fading. Diagram losses cannot separate the symmetric images of a template. On real glyphs these images differ in location-dependent answers, most strongly when queries select ink, and distinguishing them carries a closed-form rate of up to three bits. The dictionary and power experiments identify two further limits on reliable structure transfer: a growing dictionary can leave a representation mismatch, and empirical improvement can appear before a sufficient stability margin is reached. Multi-seed training at matched bandwidth and PSNR remains necessary to rank the learned codecs.
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+\end{document}

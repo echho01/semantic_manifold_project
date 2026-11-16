@@ -1,0 +1,53 @@
+# Local OS files and editor backups
+.DS_Store
+._*
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# Local secrets; examples can be versioned
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+
+# Python environments and disposable caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.ipynb_checkpoints/
+digits_cache/
+
+# Downloaded datasets, scratch runs and model weights
+data/
+runs/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Reproducible LaTeX build output; keep research figures and results
+build/
+*.aux
+*.log
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+
+# Literature full texts remain in Seafile; index and bibliography are tracked
+/refs/**/*.pdf

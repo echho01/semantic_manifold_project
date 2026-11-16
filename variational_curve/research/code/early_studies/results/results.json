@@ -1,0 +1,14 @@
+{
+  "status": "executed_analytic_and_synthetic_checks",
+  "seed": 260906,
+  "checks": {
+    "sphere_coefficient": {"target": 0.16666666666666666, "observed": 0.1666703703966101, "pass": true},
+    "density_kernel_coefficient": {"target_J_over_2": 0.0669872981077807, "observed": 0.06698128443893835, "pass": true},
+    "finite_kernel_scale_invariance": {"max_absolute_error": 1.3877787807814457e-17, "pass": true},
+    "surface_variational_gradient": {"analytic": 0.2758965770926913, "finite_difference": 0.275896577084378, "absolute_error": 8.313294497241941e-12, "pass": true},
+    "common_translation": {"bottleneck": 0.0, "pass": true},
+    "pairwise_topology_certificate": {"trials": 48, "max_ratio": 0.9174882557461306, "pass": true},
+    "minimum_certificate_power": {"closed_form": 751.2650644025064, "SLSQP": 751.2650643894826, "relative_error": 1.7335741235446485e-11, "allocation": [147.85367798936102,233.77719143974278,369.6341949734026], "pass": true},
+    "gaussian_radius_mc": {"draws": 20000,"alpha": 0.05,"violation_count": 0,"violation_fraction": 0.0,"radius": 0.6246837757673512,"pass": true}
+  }
+}

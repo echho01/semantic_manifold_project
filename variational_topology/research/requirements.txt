@@ -1,0 +1,4 @@
+-r code/requirements.txt
+gudhi>=3.9
+Pillow>=9.1
+torch>=2.4

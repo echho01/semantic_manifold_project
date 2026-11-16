@@ -1,0 +1,20 @@
+{
+  "command": "python code/tests/test_numerics.py -v",
+  "exit_code": 0,
+  "elapsed_seconds": 8.978272199630737,
+  "tests_run": 10,
+  "tests_passed": 10,
+  "source_sha256": {
+    "code/tests/test_numerics.py": "7b9ecdd8c22a76d8d053e21a5c426fbaeab78ce1d521e58ef1f0fc286c4ab476",
+    "code/embeddings/run_all.py": "ae8ec0b2b42cc3cc2fbbfb46d18ed13ffc34bec5930624c53e41c087f8a7b12c",
+    "code/embeddings/rd.py": "b60d81300b847cc07e59f32de9e81d6936982edd01f7f2cdefad3d16e8b7c431",
+    "code/embeddings/task_mismatch.py": "c2c89118a096b13d87cdeae14b135789376bad6cd3210677df19608a6f5b5dad",
+    "code/embeddings/manifold_gain.py": "27a9ac06b69a95ac41f4081651521b35577642dea4468c5e02b9466d735d8cfa",
+    "code/embeddings/selftest_rd.py": "f433332b5ec1524b68dc26561b653100cad46790a2d25e6980515a15e5def1e0",
+    "code/embeddings/models.py": "542db67a1ac0d74480f8cecea648ed3b6c5c8725c7d89002930a827f47f527f0",
+    "code/embeddings/selftest.py": "41110cbd8b235db3e84c76c03a7e67c77120f1f02cd0a668e658b937075abf5e",
+    "code/embeddings/data_sources.py": "2965a90ef8eb0902e8f54215c872f7d951906d758972f299d7f45d40bbc436a0",
+    "code/embeddings/geometry.py": "a7962149df373a82ea100556ad09539027a3129745517b879c5ccae5aa632b59",
+    "code/synthetic/run_paper1.py": "d72c06d1146a6e027b139afdf335a21b0654748c9f6b69c783dd23e31f1a94a6"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "source_measure": "uniform surface area on torus of revolution, major radius 2 and minor radius 1",
+  "n_entropy_samples": 500000,
+  "entropy_seed": 20661020,
+  "exact_branch_entropy": 0.3537667163287371,
+  "quadrature_error_estimate": 3.927599538141799e-15,
+  "empirical_middle_mass": 0.354436,
+  "middle_mass_wilson95": [
+    0.3531112508015537,
+    0.355762985893709
+  ],
+  "quantization": [
+    {
+      "step": 0.4,
+      "measured_mse": 0.013194916148803738,
+      "score_entropy": 3.9490681477728407,
+      "branch_entropy": 4.476340434748024,
+      "excess": 0.5272722869751831,
+      "exact_limit": 0.3537667163287371
+    },
+    {
+      "step": 0.2,
+      "measured_mse": 0.0033592508743003867,
+      "score_entropy": 4.893448785663911,
+      "branch_entropy": 5.2478697605773,
+      "excess": 0.3544209749133893,
+      "exact_limit": 0.3537667163287371
+    },
+    {
+      "step": 0.1,
+      "measured_mse": 0.0008350121299464384,
+      "score_entropy": 5.892489014086305,
+      "branch_entropy": 6.246891595409688,
+      "excess": 0.35440258132338354,
+      "exact_limit": 0.3537667163287371
+    },
+    {
+      "step": 0.05,
+      "measured_mse": 0.00020873491973653137,
+      "score_entropy": 6.891958612718932,
+      "branch_entropy": 7.246321693079297,
+      "excess": 0.3543630803603648,
+      "exact_limit": 0.3537667163287371
+    },
+    {
+      "step": 0.02,
+      "measured_mse": 3.3375874697749464e-05,
+      "score_entropy": 8.213398175686486,
+      "branch_entropy": 8.567698210839465,
+      "excess": 0.3543000351529795,
+      "exact_limit": 0.3537667163287371
+    },
+    {
+      "step": 0.01,
+      "measured_mse": 8.329960291602514e-06,
+      "score_entropy": 9.212835465082188,
+      "branch_entropy": 9.567003624077836,
+      "excess": 0.35416815899564824,
+      "exact_limit": 0.3537667163287371
+    }
+  ],
+  "diagnostics": [
+    {
+      "link": 0.25,
+      "n_bins": 20,
+      "binned_entropy": 0.29964955173253877,
+      "mapper_nodes": 14,
+      "mapper_edges": 14,
+      "mapper_beta0": 1,
+      "mapper_beta1": 1
+    },
+    {
+      "link": 0.25,
+      "n_bins": 30,
+      "binned_entropy": 0.3328169719312498,
+      "mapper_nodes": 14,
+      "mapper_edges": 14,
+      "mapper_beta0": 1,
+      "mapper_beta1": 1
+    },
+    {
+      "link": 0.25,
+      "n_bins": 40,
+      "binned_entropy": 0.3243776797038385,
+      "mapper_nodes": 14,
+      "mapper_edges": 14,
+      "mapper_beta0": 1,
+      "mapper_beta1": 1
+    },
+    {
+      "link": 0.3,
+      "n_bins": 20,
+      "binned_entropy": 0.29964955173253877,
+      "mapper_nodes": 14,
+      "mapper_edges": 14,
+      "mapper_beta0": 1,
+      "mapper_beta1": 1
+    },
+    {
+      "link": 0.3,
+      "n_bins": 30,
+      "binned_entropy": 0.3328169719312498,
+      "mapper_nodes": 14,
+      "mapper_edges": 14,
+      "mapper_beta0": 1,
+      "mapper_beta1": 1
+    },
+    {
+      "link": 0.3,
+      "n_bins": 40,
+      "binned_entropy": 0.3243776797038385,
+      "mapper_nodes": 14,
+      "mapper_edges": 14,
+      "mapper_beta0": 1,
+      "mapper_beta1": 1
+    },
+    {
+      "link": 0.35,
+      "n_bins": 20,
+      "binned_entropy": 0.29964955173253877,
+      "mapper_nodes": 14,
+      "mapper_edges": 14,
+      "mapper_beta0": 1,
+      "mapper_beta1": 1
+    },
+    {
+      "link": 0.35,
+      "n_bins": 30,
+      "binned_entropy": 0.3328169719312498,
+      "mapper_nodes": 14,
+      "mapper_edges": 14,
+      "mapper_beta0": 1,
+      "mapper_beta1": 1
+    },
+    {
+      "link": 0.35,
+      "n_bins": 40,
+      "binned_entropy": 0.3243776797038385,
+      "mapper_nodes": 14,
+      "mapper_edges": 14,
+      "mapper_beta0": 1,
+      "mapper_beta1": 1
+    }
+  ]
+}
