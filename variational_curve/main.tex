@@ -1,171 +1,170 @@
 \documentclass[journal]{IEEEtran}
 \usepackage{amsmath,amssymb,booktabs,cite,graphicx}
 \usepackage{flushend}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage[hidelinks]{hyperref}
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
 \newcommand{\E}{\mathbb E}
+\newcommand{\M}{\mathcal M}
 \newcommand{\KLb}{D_{\mathrm{KL},2}}
-\newcommand{\Sep}{\mathcal S_{\rm sep}}
 \DeclareMathOperator{\Cov}{Cov}
-\DeclareMathOperator{\rank}{rank}
-\title{When Does a Learned Coding Surface Change a Semantic Encoder?}
+\DeclareMathOperator{\tr}{tr}
+\title{Variational Coding Surfaces for Semantic Communication: Isometry Defect, Area and Reach}
 \author{} % Supply the confirmed byline at submission.
 \begin{document}
 \maketitle
 \begin{abstract}
-A semantic encoder that assigns observations to shared reconstruction anchors can be changed by reshaping its coding surface or by reweighting the anchors. We separate the two effects when every method is scored by one fixed task distortion. For finite Gibbs encoders, a cost change is absorbed by anchor masses exactly when its two-by-two cross differences vanish. The excess of the rate--distortion Lagrangian over the Blahut optimum is a divergence between encoders, and suitable masses keep it below $\epsilon^2/(2\ln2)$ bits, where $\epsilon$ is the largest non-absorbable logit residual. A $d$-dimensional surface with dot-product logits reproduces the optimal encoder if and only if the doubly centered evaluation cost has rank at most $d$, and a single Euclidean surface does so only for costs of negative type. On a nonuniform 96-state circle at squared-arc distortion 0.30, mass optimization on the intrinsic cost attains the optimal 1.1832 bits per state, the best single Euclidean chord surface needs 1.1899, and spectral dot-product surfaces of dimension 16 and 32 need 1.1837 and 1.1833. Paired measurements on frozen image representations show a nonzero residual at one operating point.
+A semantic transmitter codes a learned representation in the Euclidean geometry of a coding surface, while fidelity is judged by a semantic metric. We ask which properties of the surface a rate--distortion criterion selects. For an isotropic digital coder with one global scale, the high-resolution rate exceeds the semantic rate--distortion function by an isometry defect, a functional of the induced metric that vanishes exactly for isometric surfaces up to scale. Its first variation has a closed form, and a smooth codeword density cannot change it. Under a joint task and fidelity metric with weight $\eta$ on task-null directions, coding in the raw geometry loses about $\frac{m-r}2\ln(1/\eta)$, and the minimizer is the surface that is isometric for the joint metric. For an analog mapping the weak-noise distortion is instead bounded by the area of the surface, which power and reach limit, and the optimal area density is the source density to the power $m/(m+2)$. On a circle the computed rate excess converges to the defect of 0.211 bit, while a density-only gap decays from 0.195 to 0.002 bit. On a torus whose task ignores one coordinate, rescaling that coordinate to its weight in the criterion recovers 0.855 of a 0.869-bit loss. On frozen image features, a surface learned from the features alone lowers the rate excess of the raw feature geometry from 1.8--3.5 bits to 0.3--0.4 bit on held-out images.
 \end{abstract}
 \begin{IEEEkeywords}
-Semantic communication, rate--distortion theory, Blahut--Arimoto algorithm, metric learning, softmax bottleneck.
+Semantic communication, rate--distortion theory, calculus of variations, Riemannian geometry, joint source--channel coding.
 \end{IEEEkeywords}
 
 \section{Introduction}
-\IEEEPARstart{T}{ask}-oriented transmitters map a learned representation to a finite set of receiver actions and are trained end to end \cite{xie2021deepsc,gunduz2023beyond}. A dense region of the learned surface may attract more probability because anchors are closer, because they carry larger prior masses, or both. Distortion measured in the updated coordinates compounds the ambiguity, since a contraction lowers the measured loss with identical decoded objects. We therefore fix the evaluation cost and ask which geometric changes produce assignments that mass changes cannot.
+\IEEEPARstart{T}{ask}-oriented transmitters map a learned representation to channel symbols or to a finite set of receiver actions and are trained end to end \cite{xie2021deepsc,gunduz2023beyond}. The map defines a surface in a Euclidean space. Quantizers, additive noise and Gibbs-type assignments act in the geometry of that surface, whereas the fidelity that matters is semantic. A surface can be stretched, bent, enlarged or flattened, and it is not evident which of these changes a rate--distortion criterion rewards. Distortion measured in the learned coordinates compounds the ambiguity, since a contraction lowers the measured loss with identical decoded objects.
 
-Indirect and goal-oriented rate--distortion theory turns a latent semantic criterion into a cost on the observable source \cite{liu2022indirect,stavrou}, with shared side information entering as a conditional problem \cite{Guo_2026}. For a finite cost matrix, the Blahut iteration and its semantic extension optimize the reproduction mass \cite{blahut1972computation,csiszar1974,Han_2025}, which also underlies empirical bounds \cite{yang_sandwich,yang_wgd}. Geometry enters through quantizer point density \cite{iacobelli2016quantization}, pulled-back information metrics and the geometry of softmax heads \cite{arvanitidis2022pullinginformationgeometry,park2026informationgeometrysoftmaxprobing}, and isometric or low-bending embeddings \cite{kato,braunsmann}. These works do not identify what a learned surface adds once the masses are free. The contributions of this letter are as follows.
+Indirect and goal-oriented rate--distortion theory places the criterion on a task variable \cite{liu2022indirect,stavrou,Guo_2026}, and for a finite cost matrix the Blahut iteration optimizes the reproduction mass \cite{blahut1972computation,Han_2025,yang_sandwich}. Geometry enters coding through high-resolution theory for locally quadratic distortions and companding \cite{linder1999high,linder1999companding}, quantizer point densities on manifolds \cite{iacobelli2016quantization}, pulled-back information metrics \cite{arvanitidis2022pullinginformationgeometry,park2026informationgeometrysoftmaxprobing}, autoencoders regularized toward isometric or low-bending embeddings \cite{kato,braunsmann}, and analog Shannon--Kotel'nikov mappings \cite{hekland2009shannon}. These works do not give the functional of the surface that the rate itself induces for a semantic metric, nor do they separate what a surface adds from what a codeword density adds. This letter fixes the evaluation metric and treats the surface as the variable.
 \begin{itemize}
-\item An exact criterion separating mass from geometry, a scalar residual that measures it, and the first variation of the constrained objective.
-\item An identity for the excess over the Blahut optimum, which bounds the gain of any surface by the squared interaction residual.
-\item The interaction rank of an evaluation cost. It equals the smallest surface dimension that realizes the optimal encoder, and a negative-type condition governs a single shared Euclidean surface.
-\item A matched-distortion study of four encoder families and spectral surfaces, and paired measurements on frozen image features with a transmitted index.
+\item For an isotropic digital coder we derive the \emph{isometry defect}, its sign, its first variation and its minimizers (Theorem~\ref{thm:defect}, Proposition~\ref{prop:variation}).
+\item Under a joint task and fidelity metric the defect prices the anisotropy of the criterion: a surface that keeps task-null directions at the scale of task-sensitive ones loses a rate that grows as the fidelity weight decreases (Corollary~\ref{cor:dim}).
+\item For an analog mapping the functional is the area of the surface under power and reach constraints, with a companding law for nonuniform sources (Theorem~\ref{thm:area}).
+\item A finite criterion and an excess identity carry the theory to codebooks (Proposition~\ref{prop:contrast}), with exact computations, an analog mapping at equal power and reach, and matched-distortion measurements on frozen image features.
 \end{itemize}
 
-\section{System Model and Problem Formulation}
-\subsection{Semantic source and fixed evaluator}
-A sensor observes $X$. The context $C$ holds the task index and all knowledge shared before transmission, including the task head and the anchors. A frozen reference encoder gives the unit feature $U=E_0(X,C)$, and $q(u)=P(Y=\cdot\mid U=u,C)$ is the posterior of the task variable $Y$. Under log loss the indirect problem reduces to a cost on $U$ \cite{liu2022indirect}, and replacing $u$ by $u'$ costs $D_{\rm KL}(q(u)\Vert q(u'))=\tfrac12 v^\top J_q^\top{\rm diag}(1/q)J_q v+o(\|v\|^2)$ for $v=u'-u$. This Fisher pullback \cite{arvanitidis2022pullinginformationgeometry} is degenerate along directions that leave the posterior unchanged. We add $\eta g_0$, with $g_0$ the unit-feature metric and $\eta>0$, and realize the sum by the lift $z(u)=(2\sqrt{q(u)},\sqrt{\eta}\,u)$, whose squared chord agrees with the regularized metric to second order.
+\section{System Model and Variational Problem}
+\subsection{Semantic source and metric}
+A frozen reference encoder gives a representation $U$ on a compact smooth manifold $\M$ of dimension $m$ without boundary, with a continuous positive density $p$ relative to the volume $V_g$ of a semantic metric $g$, and $h_g(p)=-\int p\ln p\,dV_g$. A cost $\delta$ is \emph{locally Riemannian with metric $g$} if $|\delta-d_g^2|\le c_0d_g^3$ near the diagonal and $\delta$ is bounded away from zero outside every neighborhood of the diagonal. For a task posterior $q(u)$ with Fisher pullback $G_q=J_q^\top\mathrm{diag}(1/q)J_q$ of rank $r$ \cite{arvanitidis2022pullinginformationgeometry}, the joint cost $D_{\rm KL}(q(u)\Vert q(\hat u))+\eta\,d_{g_0}(u,\hat u)^2$ has the metric $g_\eta=\tfrac12G_q+\eta g_0$. The rate--distortion function for reproductions on $\M$ is
+\begin{equation}
+ R_g(D)=h_g(p)-\frac m2\ln\frac{2\pi eD}{m}+o(1),\qquad D\downarrow0, \label{eq:rg}
+\end{equation}
+in nats \cite{linder1999high}. Transporting source, alphabet and cost through a bijection preserves $R_g$, so a surface can matter only for a coder that is restricted to its geometry.
 
-The finite study has states $z_i$ with probabilities $p_i>0$, $i\le n$, and $M$ shared anchors $\bar z_j$. The evaluation cost $C^g_{ij}\ge0$ is fixed on actual pairs, as $\|z_i-\bar z_j\|^2$ or a squared intrinsic distance. For squared intrinsic distance on a compact boundaryless $m$-manifold with smooth positive density, the rate--distortion function has leading term $h_g(p)-(m/2)\ln(2\pi eD/m)$ nats \cite{linder1999high}. Expanding the volume element adds $D\,\E[\mathrm{Scal}_g]/(6m)$ under uniform remainder conditions, which is $D/6$ on the unit two-sphere, whereas ambient chord loss brings in the second fundamental form. The training criterion is thus part of the benchmark. Transporting source, alphabet and cost through a bijection preserves the function. A learned chart can therefore help only a restricted interface, as specified next and shown in Fig.~\ref{fig:system}.
+\subsection{Coding surface and two coders}
+A \emph{coding surface} is a smooth embedding $F:\M\to\mathbb R^k$ with induced metric $h=J_F^\top J_F$ and area $V_h$. We call $F$ isometric up to scale if $h=c\,g$ for a constant $c>0$.
 
+\emph{Digital coder.} The transmitter draws a reproduction from
+\begin{equation}
+ W(da\mid u)\ \propto\ \mu(a)\,e^{-s\|F(u)-F(a)\|^2}\,dV_h(a), \label{eq:kernelc}
+\end{equation}
+with one global scale $s>0$ and a mass $\mu$ in a bounded subset of $C^1(\M)$ with a positive lower bound. It is the continuum form of the Gibbs encoder of learned codebooks. With $\mu$ optimized it is also the family of rate--distortion optimal test channels for the squared chord of the surface, so $R_F$ is the rate of a coder designed for the Euclidean distortion of the surface and judged by the semantic one. The scale is global because a Lagrange multiplier is. A code with a locally adapted scale is a different surface in this description. Let $R_F(D)$ be the least information $I(U;A)$ in this family subject to $\E\,\delta(U,A)\le D$, with $\delta$ locally Riemannian with metric $g$.
 
-\subsection{Encoder family, payload and link}
-\begin{figure}[t]\centering
-\begin{tikzpicture}[font=\footnotesize,>={Stealth[length=1.6mm]},
- blk/.style={draw,rounded corners=1pt,minimum height=6mm,inner sep=2.5pt,align=center}]
-\node[blk] (e0) {$E_0$};
-\node[blk,right=5.5mm of e0] (f) {lift $z$,\\surface $F$};
-\node[blk,right=5.5mm of f] (w) {Gibbs kernel\\$W(C^h,m,s)$};
-\node[blk,right=5.5mm of w] (tx) {BPSK,\\$N_{\rm b}$ bits};
-\node[blk,below=8mm of tx] (ch) {AWGN /\\Rayleigh};
-\node[blk,left=5.5mm of ch] (det) {detect\\$K_{\ell j}$};
-\node[blk,left=5.5mm of det] (look) {anchor\\$\bar z_{\hat J}$};
-\node[blk,left=5.5mm of look] (ev) {cost $C^g$\\(evaluator)};
-\node[inner sep=1pt] (ctx) at ($(f.south)!0.5!(look.north)$) {shared $C$: head $q$, anchors $\bar z_j$};
-\draw[->] ([xshift=-5mm]e0.west) node[left,inner sep=1pt]{$X$} -- (e0);
-\draw[->] (e0) -- node[above,inner sep=1pt]{$U$} (f);
-\draw[->] (f) -- (w);
-\draw[->] (w) -- node[above,inner sep=1pt]{$J$} (tx);
-\draw[->] (tx) -- (ch);
-\draw[->] (ch) -- (det);
-\draw[->] (det) -- node[above,inner sep=1pt]{$\hat J$} (look);
-\draw[->] (look) -- (ev);
-\draw[->,densely dotted] (ctx.north-|f) -- (f.south);
-\draw[->,densely dotted] (ctx.south-|look) -- (look.north);
-\end{tikzpicture}
-\caption{Finite semantic interface. Only the index $J$ crosses the link. The evaluator is common to all encoders and is never retrained.}
-\label{fig:system}\end{figure}
-A stochastic encoder $W_{ij}=\Pr(J=j\mid i)$ has output marginal $\bar W_j=\sum_i p_iW_{ij}$ and
-\begin{align}
- I_2(W)&=\sum_{ij}p_iW_{ij}\log_2(W_{ij}/\bar W_j),\nonumber\\
- D_g(W)&=\sum_{ij}p_i W_{ij} C^g_{ij}.
-\end{align}
-The transmitter computes a coding cost $C^h_{ij}=\|F(z_i)-F(\bar z_j)\|^2$ on a surface $F$ and draws $J$ from the Gibbs kernel
+\emph{Analog mapping.} The transmitter sends $F(U)$ over $k$ real uses of a Gaussian channel with noise variance $\sigma^2$, and the receiver returns the nearest point of the surface. For noise well inside the reach of $F(\M)$ the distortion is, to leading order,
+\begin{equation}
+ D_{\rm w}[F]=\sigma^2\,\E\,\tr(h^{-1}g), \label{eq:weak}
+\end{equation}
+because the projection keeps the tangential noise, whose covariance in a chart is $\sigma^2h^{-1}$.
+
+\subsection{Finite interface}
+In an implementation the states $z_i$ have probabilities $p_i$, the receiver holds $M$ shared anchors $\bar z_j$, and a fixed evaluation cost $C^g_{ij}$ scores every method. The coding cost is $C^h_{ij}=\|F(z_i)-F(\bar z_j)\|^2$ and the encoder is
 \begin{equation}
  W_{ij}(C^h,m,s)=\frac{m_j\exp(-sC^h_{ij})}{\sum_k m_k\exp(-sC^h_{ik})},\label{eq:kernel}
 \end{equation}
-with scale $s>0$ and masses $m_j>0$. In a quadrature $m_j\propto v_jr_j$ combines a cell volume and a density, which act only through their product. The index uses $N_{\rm b}=\lceil\log_2 M\rceil$ uncoded BPSK symbols over AWGN or coherent block Rayleigh fading. If $K_{\ell j}$ is the probability of detecting $j$ when $\ell$ is sent, the receiver returns $\bar z_{\hat J}$ with expected distortion
+where a mass $m_j$ combines a cell volume and a density. With $\bar W_j=\sum_ip_iW_{ij}$, $I_2(W)=\sum_{ij}p_iW_{ij}\log_2(W_{ij}/\bar W_j)$ and $D_g(W)=\sum_{ij}p_iW_{ij}C^g_{ij}$, the learning problem is
 \begin{equation}
- D_{\rm rx}=\sum_{i\ell j}p_iW_{i\ell}K_{\ell j}C^g_{ij}.\label{eq:rx}
+ \min_{F,m,s}\ L=I_2(W)+\lambda D_g(W)+\gamma B_{\rm s}(F) \label{eq:objective}
 \end{equation}
-For independent bit errors of probability $e$, $K_{\ell j}=e^{d_H(\ell,j)}(1-e)^{N_{\rm b}-d_H(\ell,j)}$. Under block fading this expression is evaluated at the common gain and then averaged. We keep three quantities apart: the test-channel information $I_2(W)$, which long-block source codes can approach, the fixed payload $N_{\rm b}$, and $D_{\rm rx}$.
+subject to $(1-\alpha)\|z-v\|\le\|F(z)-F(v)\|\le(1+\alpha)\|z-v\|$, with a smoothness penalty $B_{\rm s}$. The index $J$ is sent with $N_{\rm b}=\lceil\log_2M\rceil$ uncoded BPSK symbols. If $K_{\ell j}$ is the probability of detecting $j$ when $\ell$ is sent, the received distortion is $D_{\rm rx}=\sum_{i\ell j}p_iW_{i\ell}K_{\ell j}C^g_{ij}$. The information $I_2(W)$, the payload $N_{\rm b}$ and $D_{\rm rx}$ are kept apart.
 
-\subsection{Problem}
-For a slope $\lambda>0$ and a penalty weight $\gamma\ge0$ we study
+\section{Variational Theory of the Surface}
+\subsection{Isometry defect}
+\begin{theorem}[Isometry defect]\label{thm:defect}
+Under the assumptions of Section~II, as $D\downarrow0$,
 \begin{align}
- \min_{F,m,s}\ & L=I_2(W)+\lambda D_g(W)+\gamma B_{\rm s}(F)\label{eq:objective}\\
- \text{s.t.}\ & (1-\alpha)\|z-v\|\le\|F(z)-F(v)\|\le(1+\alpha)\|z-v\|,\nonumber
+ R_F(D)&=h_g(p)-\frac m2\ln\frac{2\pi eD}{m}+\Lambda[h]+o(1),\label{eq:rf}\\
+ \Lambda[h]&=\frac m2\ln\Big(\frac1m\,\E\,\tr(h^{-1}g)\Big)+\frac12\,\E\ln\det(g^{-1}h).\label{eq:defect}
 \end{align}
-with $W$ from \eqref{eq:kernel}, a smoothness penalty $B_{\rm s}$ and $0\le\alpha<1$. Source weights, anchors, evaluator and radio are common to all methods. Four families are compared: fixed surface with uniform masses, learned masses, learned surface, and both. The reference is the finite Blahut value $F(\lambda)=\min_W I_2(W)+\lambda D_g(W)$ over all channels, attained by $W^\star_{ij}\propto\pi^\star_j2^{-\lambda C^g_{ij}}$ with $\pi^\star$ its own output marginal \cite{blahut1972computation}.
-
-\begin{figure*}[t]\centering
-\includegraphics[width=.8\textwidth]{figures/circle_ablation.png}
-\caption{Achieved information for the four encoder families on the nonuniform circle (left). Subtracting the finite Blahut curve at the same distortion resolves the contribution of the mass model (right). The dashed vertical line marks the comparison in Table~\ref{tab:circle}.}
-\label{fig:ablation}\end{figure*}
-
-\section{Mass, Geometry and Interaction Rank}
-Let $\Sep=\{\Delta:\Delta_{ij}=a_i+b_j\}$ be the additively separable $n\times M$ matrices and $H_n=I_n-\mathbf 1\mathbf 1^\top/n$.
-\subsection{What mass optimization can absorb}
-\begin{proposition}\label{prop:contrast}
-Fix $s>0$, a cost $C$ and strictly positive masses $m$. For another cost $C'$ there exist strictly positive $m'$ with $W(C',m',s)=W(C,m,s)$ if and only if $\Delta=C'-C\in\Sep$. Equivalently, for all $i,i',j,k$,
-\begin{equation}
- \Delta_{ij}-\Delta_{ik}-\Delta_{i'j}+\Delta_{i'k}=0.\label{eq:contrast}
-\end{equation}
-\end{proposition}
-\begin{IEEEproof}
-Equality of the log odds of $j$ against $k$ in row $i$ requires $s(\Delta_{ij}-\Delta_{ik})=\ln(m'_j/m_j)-\ln(m'_k/m_k)$. The right side does not depend on $i$, which gives \eqref{eq:contrast}. Conversely fix $(i_0,k_0)$ and set $a_i=\Delta_{ik_0}$, $b_j=\Delta_{i_0j}-\Delta_{i_0k_0}$. Vanishing contrasts give $\Delta_{ij}=a_i+b_j$. Then $m'_j\propto m_je^{sb_j}$ cancels $b_j$ and row normalization cancels $a_i$.
-\end{IEEEproof}
-With different scales the test applies to $s'C'-sC$. With zero masses it applies to the common support, and different supports are distinguishable at once. The criterion acts on assignment probabilities and is independent of ambient coordinates. An observable scalar is the root mean square of $H_n(s\Delta)H_M$, in logit units. It vanishes exactly in Proposition~\ref{prop:contrast}. A zero residual means equivalence with unrestricted positive masses, which a low-dimensional mass model may not represent. A nonzero residual shows a change of assignment odds. Its sign does not predict a rate saving.
-
-\subsection{First variation}
-Write $A_{ij}=\log_2(W_{ij}/\bar W_j)+\lambda C^g_{ij}$ and $S_{ij}=\delta\ln m_j-s\,\delta C^h_{ij}-C^h_{ij}\delta s$. Row normalization gives $\delta W_{ij}=W_{ij}(S_{ij}-\E_{W_i}S_{ij})$, the constants from the two entropies cancel, and
-\begin{equation}
- \delta L=\sum_i p_i\Cov_{W_i}(A_{ij},S_{ij})+\gamma\,\delta B_{\rm s}. \label{eq:variation}
-\end{equation}
-For squared chords $\delta C^h_{ij}=2\langle F_i-F_j,\delta F_i-\delta F_j\rangle$. For any auxiliary mass $\pi$,
-\begin{equation}
- \sum_i p_i\KLb(W_i\Vert\pi)=I_2(W)+\KLb(\bar W\Vert\pi),\label{eq:aux}
-\end{equation}
-so minibatches train an upper bound through $\pi$ while evaluation uses the full $\bar W$. The auxiliary $\pi$ estimates a marginal and has a different role from the encoder mass $m$.
-
-\subsection{Distance from the Blahut optimum}
-\begin{proposition}\label{prop:excess}
-Let $(W^\star,\pi^\star)$ attain $F(\lambda)$ and let $V$ be a channel supported on the support of $\pi^\star$. Then
-\begin{equation}
- L(V)-F(\lambda)=\sum_i p_i\KLb(V_i\Vert W^\star_i)-\KLb(\bar V\Vert\pi^\star),\label{eq:excess}
-\end{equation}
-where $L=I_2+\lambda D_g$. If $sC^h-\lambda\ln2\,C^g=a_i+b_j+E_{ij}$ with $|E_{ij}|\le\epsilon$, the masses $m_j\propto\pi^\star_je^{b_j}$ give
-\begin{equation}
- L\big(W(C^h,m,s)\big)-F(\lambda)\le\frac{\epsilon^2}{2\ln2}\ \text{bits}.\label{eq:eps}
-\end{equation}
-\end{proposition}
-\begin{IEEEproof}
-With $Z_i=\sum_j\pi^\star_j2^{-\lambda C^g_{ij}}$, $\KLb(V_i\Vert\pi^\star)+\lambda\sum_jV_{ij}C^g_{ij}=\KLb(V_i\Vert W^\star_i)-\log_2Z_i$ and $F(\lambda)=-\sum_ip_i\log_2Z_i$. Averaging over $i$ and applying \eqref{eq:aux} with $\pi=\pi^\star$ proves \eqref{eq:excess}. For the second claim, the chosen masses give $V_{ij}\propto W^\star_{ij}e^{-E_{ij}}$. This is an exponential tilt of $W^\star_i$ by a function of range at most $2\epsilon$, whose divergence is at most $(2\epsilon)^2/8$ nats because the variance of the tilting function never exceeds $\epsilon^2$.
-\end{IEEEproof}
-Taking $\epsilon$ as the smallest sup-norm distance from $sC^h-\lambda\ln2\,C^g$ to $\Sep$, and minimizing over $s$, bounds how far mass optimization on $C^h$ is from optimal. No surface beats $F(\lambda)$, so this also bounds the gain of any reshaping over mass-only training on the same surface. In particular, $C^h=C^g$ and $s=\lambda\ln2$ give $\epsilon=0$, and optimal masses realize the Blahut optimum. A credible geometric gain therefore needs a declared restriction such as a surface dimension, a mass model, a fixed scale or reuse across tasks. The first term of \eqref{eq:excess} weights the residual by the encoder itself and is much sharper than \eqref{eq:eps} when large residuals fall on improbable pairs.
-
-\subsection{Interaction rank}
-Dot-product heads compute logits $\langle x_i,y_j\rangle+\beta_j$ from $d$-dimensional embeddings. Up to row and column terms this is the bilinear cost $C^h_{ij}=\|x_i-y_j\|^2$, where states and anchors may use different maps. Let $T=H_nC^gH_M$ and call $r_{\rm int}=\rank T$ the \emph{interaction rank} of the evaluator.
-\begin{theorem}\label{thm:rank}
-Let $W^\star$ attain $F(\lambda)$ with $\pi^\star>0$. The family $\{W(C^h,m,s)\}$ of bilinear costs in $\mathbb R^d$ contains $W^\star$ if and only if $r_{\rm int}\le d$. If $\pi^\star$ has zero entries, the statement holds with $C^g$ restricted to the supported columns and masses on that support.
+Moreover $\Lambda[h]\ge0$, with equality if and only if $F$ is isometric up to scale $p$-almost everywhere, and $\Lambda[h]\le\frac m2\ln(b/a)$ whenever $a\,g\preceq h\preceq b\,g$.
 \end{theorem}
 \begin{IEEEproof}
-$W^\star=W(C^g,\pi^\star,\lambda\ln2)$ is a Gibbs kernel. By Proposition~\ref{prop:contrast} applied to the scaled costs, $W(C^h,m,s)=W^\star$ for some $m$ if and only if $sC^h-\lambda\ln2\,C^g\in\Sep$. Since $\|x_i\|^2+\|y_j\|^2\in\Sep$ and double centering annihilates exactly $\Sep$, the condition is $-2sH_nXY^\top H_M=\lambda\ln2\,T$, whose left side has rank at most $d$. Conversely factor $T=UV^\top$ with $d$ columns and set $X=-(\lambda\ln2/(2s))U$, $Y=V$. Then $H_nXY^\top H_M=-(\lambda\ln2/(2s))T$ because $T$ is already doubly centered.
+The squared chord is locally Riemannian with metric $h$. By Laplace's method the kernel \eqref{eq:kernelc} is, uniformly, a Gaussian with covariance $h^{-1}/(2s)$ in a chart, and a $C^1$ mass changes only lower-order terms. Hence $I=h_h(p)-\frac m2\ln(\pi e/s)+o(1)$ and $\E\delta=\E\tr(h^{-1}g)/(2s)\,(1+o(1))$. Eliminating $s$ and using $h_h(p)=h_g(p)+\frac12\E\ln\det(g^{-1}h)$ gives \eqref{eq:rf}. Jensen's inequality and the inequality of arithmetic and geometric means applied to the eigenvalues $\zeta_i$ of $h^{-1}g$ give $\ln(\frac1m\E\sum_i\zeta_i)\ge\frac1m\E\sum_i\ln\zeta_i$, with equality if and only if all $\zeta_i$ equal one constant. The upper bound uses $\zeta_i\in[1/b,1/a]$.
 \end{IEEEproof}
-One embedding serves all slopes when $s\propto\lambda$. The obstruction is of the softmax-bottleneck type \cite{yang2018breaking}: $\ln W$ has rank at most $d+2$ in the family. Here it is applied to the optimal test channel, and it is measured by a property of the evaluator alone. If $C^g$ is itself a squared distance between points of $\mathbb R^{d_0}$, then $r_{\rm int}\le d_0$.
+By \eqref{eq:rg} the defect is the high-resolution rate loss $R_F-R_g$. It is $\frac m2$ times the gap between the logarithm of the mean and the mean logarithm of the eigenvalues of $h^{-1}g$, taken over directions and over the source. It is invariant to the scale of the surface, so area is irrelevant to the digital coder, and it does not involve the bending of the surface, which enters only at order $D$ through the difference between chords and geodesics. A smooth mass cannot reduce it. This is the variable-rate statement: at high resolution the optimal reproduction density of an entropy-constrained code does not depend on the source density \cite{linder1999high}. Under a fixed number of codewords the density does matter, and the corresponding law appears in Theorem~\ref{thm:area}. Codeword density therefore matters at low resolution and geometry at high resolution, which Section~IV makes quantitative.
 
-\begin{corollary}\label{cor:single}
-Let states and anchors be the same $n$ points with one map, $C^h_{ij}=\|F_i-F_j\|^2$, and let $C^g$ be symmetric with zero diagonal and $\pi^\star>0$. Some surface in $\mathbb R^d$ realizes $W^\star$ if and only if $-H_nC^gH_n$ is positive semidefinite of rank at most $d$.
+\subsection{First variation and anisotropic criteria}
+\begin{proposition}\label{prop:variation}
+With $T=\E\,\tr(h^{-1}g)$,
+\begin{equation}
+ \delta\Lambda=\frac12\,\E\,\tr\Big[h^{-1}\delta h\Big(I-\frac mT\,h^{-1}g\Big)\Big], \label{eq:dlambda}
+\end{equation}
+and $\delta h=J_F^\top\delta J_F+\delta J_F^\top J_F$ for a variation of the surface. As a functional of the metric, $\Lambda$ is stationary if and only if $h^{-1}g=(T/m)I$ $p$-almost everywhere, and every such point is a global minimizer.
+\end{proposition}
+\begin{IEEEproof}
+Differentiate \eqref{eq:defect} with $\delta(h^{-1})=-h^{-1}\delta h\,h^{-1}$ and $\delta\ln\det h=\tr(h^{-1}\delta h)$. The bracket must vanish for all symmetric $\delta h$, and Theorem~\ref{thm:defect} gives the minimum.
+\end{IEEEproof}
+The gradient pushes the surface to stretch where $h^{-1}g$ exceeds its mean and to contract where it falls below.
+\begin{corollary}[Task-null directions]\label{cor:dim}
+Let $h^{-1}g$ have eigenvalues $\zeta_1,\dots,\zeta_r$ on task-sensitive directions and let the surface scale the $m-r$ task-null directions of $g_\eta$ by $\varepsilon$, so that their eigenvalue is $\eta/\varepsilon^2$. With $\bar\zeta=\frac1r\E\sum_{i\le r}\zeta_i$, the defect is minimized over $\varepsilon$ at $\varepsilon^2=\eta/\bar\zeta$. A surface with $\varepsilon=1$ loses
+\begin{equation}
+ \frac{m-r}2\ln\frac{\bar\zeta}{\eta}+\frac m2\ln\frac{r\bar\zeta+(m-r)\eta}{m\bar\zeta} \label{eq:dimloss}
+\end{equation}
+nats relative to that minimum.
 \end{corollary}
 \begin{IEEEproof}
-The matrix $sC^h-\lambda\ln2\,C^g=a_i+b_j$ is symmetric with zero diagonal. Hence $a_i+b_i=0$ and $a_i-b_i$ is constant, so $a_i+b_j=0$. Thus $(\lambda\ln2/s)C^g$ must be a Euclidean squared-distance matrix, which is Schoenberg's condition \cite{schoenberg1935}.
+The stationarity condition of $\frac m2\ln\big((r\bar\zeta+(m-r)\nu)/m\big)-\frac{m-r}2\ln\nu$ in $\nu=\eta/\varepsilon^2$ is $\nu=\bar\zeta$.
 \end{IEEEproof}
-Squared arc length on a circle has Fourier coefficients $4(-1)^k/k^2$ of alternating sign, so it is not of negative type. No single Euclidean surface of any dimension reproduces its optimal encoder, whereas a bilinear surface does so at $d=r_{\rm int}$ and approximately below it. A non-iterative baseline keeps the $d$ leading singular triplets of $T$. Its residual has entries at most $\sigma_{d+1}(T)$ \cite{eckart1936}, so by \eqref{eq:eps} its excess is at most $(\lambda\ln2\,\sigma_{d+1}(T))^2/(2\ln2)$ bits.
+The minimizer is the isometric surface of Theorem~\ref{thm:defect} written in the raw chart. The scale $\varepsilon\propto\sqrt\eta$ of its task-null directions is the weight that $g_\eta$ itself gives them, so the corollary does not select a dimension: for every $\eta>0$ the optimal surface has dimension $m$. What it quantifies is the cost of ignoring the anisotropy. A surface that keeps the null directions at unit scale pays about $\frac{m-r}2\ln(1/\eta)$, which is unbounded as $\eta\downarrow0$. A surface collapsed to $r$ dimensions is not an embedding and lies outside the theorem. It cannot reach a distortion below $\eta$ times the zero-rate squared error of the null directions, and is admissible only above that level. A pure coordinate change that leaves $h$ proportional to $g$ gains nothing.
 
-These statements suggest a three-step diagnosis before training a surface. First, the singular values of $T$ show which surface dimensions can matter for the declared evaluator. Second, the doubly centered residual of a candidate coding cost tests whether it differs from the reference beyond a mass change. Third, a sweep of slopes compares rates at equal $D_g$, since neither a nonzero residual nor a lower Lagrangian at one slope establishes a saving.
+\subsection{Area, reach and power for an analog mapping}
+The reach $\tau$ of $F(\M)$ is the largest radius within which the nearest-point projection is unique \cite{federer1959curvature}. Let $\omega_n$ be the volume of the unit ball of $\mathbb R^n$ and $\|p\|_\alpha=(\int p^\alpha dV_g)^{1/\alpha}$.
+\begin{theorem}[Area, reach and power]\label{thm:area}
+Let $F(\M)$ lie in a ball of radius $\rho$ in $\mathbb R^k$, $k>m$, with reach at least $\tau$. Then
+\begin{align}
+ D_{\rm w}[F]&\ \ge\ m\sigma^2\,\|p\|_{\frac m{m+2}}\,V_h^{-2/m},\label{eq:area}\\
+ V_h&\ \le\ \frac{2^k\,\omega_k\,(\rho+\tau/2)^k}{\omega_{k-m}\,\tau^{k-m}}.\label{eq:pack}
+\end{align}
+Equality holds in \eqref{eq:area} if and only if $h=c\,g$ with $c\propto p^{2/(m+2)}$. Moreover $\|p\|_{m/(m+2)}\ge e^{2h_g(p)/m}$, with equality for a uniform source.
+\end{theorem}
+\begin{IEEEproof}
+The inequality of arithmetic and geometric means gives $\tr(h^{-1}g)\ge m\,\varsigma^{-2/m}$ with $\varsigma=\sqrt{\det(g^{-1}h)}$ the area density, and $V_h=\int\varsigma\,dV_g$. H\"older's inequality with exponents $(m+2)/m$ and $(m+2)/2$ applied to $p^{m/(m+2)}=(p\,\varsigma^{-2/m})^{m/(m+2)}\varsigma^{2/(m+2)}$ gives \eqref{eq:area} and its equality case. For \eqref{eq:pack}, the normal exponential map is injective on the tube of radius $\tau/2$, and its Jacobian is at least $(1-|\nu|/\tau)^m\ge2^{-m}$ because the principal curvatures are at most $1/\tau$ \cite{gray2004tubes}. The tube therefore has volume at least $V_h\,\omega_{k-m}(\tau/2)^{k-m}2^{-m}$ and lies in a ball of radius $\rho+\tau/2$. The last claim compares R\'enyi and Shannon entropies.
+\end{IEEEproof}
+For the analog mapping the functional to maximize is the area of the surface, subject to a power constraint through $\rho$ and to a noise margin through $\tau$. Taking $\tau$ proportional to $\sigma$ in \eqref{eq:pack} makes the bound scale as $(\sigma^2/\rho^2)^{k/m}$, the exponent of the Shannon limit for $k$ real uses per $m$-dimensional source, and the folded curves of \cite{hekland2009shannon} are constructions toward it. Unlike the digital case, the optimal surface is not isometric for a nonuniform source. Its area density follows $p^{m/(m+2)}$, the point-density law of high-resolution quantization \cite{iacobelli2016quantization}, here for a continuous mapping.
+
+Curvature enters through the reach. The Gauss equation bounds the scalar curvature of the induced metric by $\mathrm{Scal}_h\le m(m-1)/\tau^2$, so a surface whose scalar curvature is positive somewhere satisfies $\tau\le\sqrt{m(m-1)/\max\mathrm{Scal}_h}$. Flat and negatively curved surfaces are not constrained in this way. An isometric surface inherits the curvature of the semantic metric, which caps its noise margin at a given scale. The intrinsic curvature term of the semantic rate, $\E[\mathrm{Scal}_g]D/(6m)$, belongs to $g$ and no surface changes it.
+
+\subsection{Finite counterpart}
+Let $H_n=I_n-\mathbf 1\mathbf 1^\top/n$, and let $F(\lambda)=\min_WI_2(W)+\lambda D_g(W)$ be the Blahut value, attained by $W^\star_{ij}\propto\pi^\star_j2^{-\lambda C^g_{ij}}$.
+\begin{proposition}\label{prop:contrast}
+(i) For fixed $s$ and positive masses, a second cost $C'$ gives the same encoder \eqref{eq:kernel} as $C$ for some positive masses if and only if $\Delta=C'-C$ has the form $a_i+b_j$, that is, $H_n\Delta H_M=0$. (ii) If $sC^h-\lambda\ln2\,C^g=a_i+b_j+E_{ij}$ with $|E_{ij}|\le\epsilon$, the masses $m_j\propto\pi^\star_je^{b_j}$ give $I_2+\lambda D_g\le F(\lambda)+\epsilon^2/(2\ln2)$ bits.
+\end{proposition}
+\begin{IEEEproof}
+(i) Equal log odds of $j$ against $k$ in every row require $s(\Delta_{ij}-\Delta_{ik})$ to be independent of $i$. Conversely $m'_j\propto m_je^{sb_j}$ cancels $b_j$ and normalization cancels $a_i$. (ii) For any channel $V$ on the support of $\pi^\star$, $L(V)-F(\lambda)=\sum_ip_i\KLb(V_i\Vert W^\star_i)-\KLb(\bar V\Vert\pi^\star)$, and the chosen masses make $V_i$ an exponential tilt of $W^\star_i$ by a function of range at most $2\epsilon$.
+\end{IEEEproof}
+A difference of two smooth costs that vanishes to first order on the diagonal is additively separable only if it vanishes, so a nonzero root-mean-square of $H_n(s\Delta)H_M$ is the finite signature of $h\ne c\,g$. It is measured in logit units, and its sign does not predict a rate saving. With $A_{ij}=\log_2(W_{ij}/\bar W_j)+\lambda C^g_{ij}$ and $S_{ij}=\delta\ln m_j-s\,\delta C^h_{ij}-C^h_{ij}\delta s$, the finite form of \eqref{eq:dlambda} is
+\begin{equation}
+ \delta L=\sum_i p_i\Cov_{W_i}(A_{ij},S_{ij})+\gamma\,\delta B_{\rm s}, \label{eq:variation}
+\end{equation}
+with $\delta C^h_{ij}=2\langle F_i-F_j,\delta F_i-\delta F_j\rangle$. If $C^h=C^g$ and $s=\lambda\ln2$, optimal masses attain $F(\lambda)$ and no surface can improve on it.
 
 \section{Implementation and Results}
-\subsection{Bounded learned surface}
-With $z$ the lift of Section~II and $C^g_{ij}=\|z_i-\bar z_j\|^2$, the learned surface is
-\begin{equation}
- F(z)=z+\alpha B_1\tanh(A_1z),\qquad 0\le\alpha<1 ,
-\end{equation}
-with the Frobenius norms of $A_1,B_1$ clipped to one. The perturbation is $\alpha$-Lipschitz, which enforces the constraint in \eqref{eq:objective} on new inputs as well as on training points and excludes collapse. The penalty $B_{\rm s}$ is the sample mean of $\|F(z)+F(v)-2F((z+v)/2)\|^2$ for a nearest distinct anchor $v$. The midpoint lives in the ambient space, so the penalty regularizes the extension used by the encoder and does not estimate intrinsic curvature. Training follows \eqref{eq:variation} with the auxiliary mass of \eqref{eq:aux}.
+\subsection{Isometric lift}
+For a unit feature $u$ and a frozen head $q$, the lift $z=(2\sqrt{q(u)},\sqrt{2\eta}\,u)$ has squared chord equal to twice the joint cost to second order, since the chord of $2\sqrt q$ is the full Fisher form and the KL divergence is half of it. It is therefore isometric up to scale for $g_\eta$, and $C^g_{ij}=\|z_i-\bar z_j\|^2$. A surface that deforms this lift can only add defect at high resolution: for $F(z)=z+\alpha B_1\tanh(A_1z)$ with unit Frobenius norms the perturbation is $\alpha$-Lipschitz, so $(1-\alpha)^2g\preceq h\preceq(1+\alpha)^2g$ and Theorem~\ref{thm:defect} bounds the defect by $m\ln\frac{1+\alpha}{1-\alpha}$. The informative experiment therefore starts from a surface that is not isometric, the raw features, and learns $F$ by descending the finite Lagrangian whose variation is \eqref{eq:variation}, without the bending penalty ($\gamma=0$).
 
-\subsection{A circle on which density explains the rate saving}
-On a 96-point circle use $\theta_i=2\pi(i+1/2)/96$, $p_i=(1+0.85\cos\theta_i)/96$ and the same points as anchors. The evaluator is squared shortest arc on the original circle. A positive speed with four Fourier coefficients, normalized to circumference $2\pi$, defines the coding arcs. Eight further coefficients parameterize log density relative to the arc quadrature weights, so geometry-only training also moves the cell volumes. All four families optimize the scale on the same 25 slopes, and a finite Blahut solver on the original cost gives the reference.
+\subsection{Defect, density and anisotropy}
+\begin{figure}[t]\centering
+\includegraphics[width=\columnwidth]{figures/surface_functional.png}
+\caption{Rate excess over the Blahut optimum at equal distortion. (a) Circle: a mismatched surface on a uniform source approaches the defect (dotted), while a matched surface with uniform masses on a nonuniform source loses only at low resolution. (b) Torus with a task-null coordinate under the joint cost, $\eta=0.01$, with the three defects (dotted).}
+\label{fig:functional}\end{figure}
+\begin{table}[t]
+\caption{Rate excess in bits over the Blahut optimum at equal distortion on 720-state grids, and the isometry defect $\Lambda$.}\label{tab:defect}\centering
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}llcccc@{}}\toprule
+\multicolumn{2}{@{}l}{Circle, $g=d\theta^2$} & $D\!=\!0.3$ & $0.03$ & $0.005$ & $\Lambda$\\\midrule
+Uniform $p$ & $h\ne g$, uniform mass & 0.186 & 0.209 & 0.211 & 0.211\\
+            & $h\ne g$, optimized mass & 0.198 & 0.210 & 0.211 & 0.211\\
+Tilted $p$  & $h\ne g$, optimized mass & 0.124 & 0.139 & 0.140 & 0.141\\
+            & $h=g$, uniform mass & 0.084 & 0.010 & 0.002 & 0\\\midrule
+\multicolumn{2}{@{}l}{Torus, joint cost} & $D\!=\!0.03$ & $0.003$ & $0.0005$ & $\Lambda$\\\midrule
+\multicolumn{2}{@{}l}{Raw, $h=I$} & 0.807 & 0.864 & 0.868 & 0.869\\
+\multicolumn{2}{@{}l}{Rescaled $\phi$, $\varepsilon^2=0.0909$} & 0.024 & 0.014 & 0.014 & 0.014\\
+\multicolumn{2}{@{}l}{Matched, $h=g_\eta$} & 0.007 & 0.000 & 0.000 & 0\\\bottomrule
+\end{tabular}\end{table}
+Two computations on finite grids test the theory with the coder \eqref{eq:kernel} at one global scale. On a circle with $g=d\theta^2$ the surface has $h=(1+0.5\cos\theta)^2d\theta^2$, and the source is uniform or tilted, $p\propto1+0.85\cos\theta$. Rates are compared with the Blahut optimum of the evaluation cost at equal $D_g$ (Table~\ref{tab:defect}, Fig.~\ref{fig:functional}). For the uniform source the excess rises to 0.2110 bit at $D_g=0.005$ against $\Lambda=0.2112$ bit, and optimizing the masses for the coding cost does not remove it. For the tilted source the defect is 0.141 bit and the optimized-mass excess reaches 0.140 bit. The matched surface with uniform masses shows the opposite behavior. Its excess is a density effect that falls from 0.195 bit at $D_g=1$ to 0.002 bit at $D_g=0.005$.
+
+The second computation takes a uniform source on the flat torus $(\theta,\phi)$ with the three-class posterior $q_i(\theta)=1/3+0.2\cos(\theta-2\pi i/3)$, which ignores $\phi$, and the joint cost with $\eta=0.01$. Here $m=2$, $r=1$ and $\bar\zeta=0.11$ in the raw chart. The raw surface loses 0.869 bit by \eqref{eq:defect}. Scaling $\phi$ by $\varepsilon^2=\eta/\bar\zeta$ leaves 0.014 bit, so the scale of the null coordinate alone accounts for the loss \eqref{eq:dimloss} of 0.855 bit, and matching the remaining variation of the Fisher speed removes the rest. The computed excesses at $D=5\times10^{-4}$ nat are 0.868, 0.014 and 0.000 bit. These are operating points of finite grids, whose Blahut references have dual gaps below 0.002 bit.
+
+\subsection{A circle on which density explains the saving}
+On a 96-point circle use $\theta_i=2\pi(i+1/2)/96$, $p_i=(1+0.85\cos\theta_i)/96$ and the same points as anchors. The evaluator is squared shortest arc. A positive speed with four Fourier coefficients defines the coding arcs, eight further coefficients parameterize log density relative to the arc quadrature weights, and all families optimize the scale on the same 25 slopes.
 \begin{table}[t]
 \caption{Rates at fixed squared arc distortion $D_g=0.30$. Values interpolate achievable points on the same 96-state source.}\label{tab:circle}\centering
 \begin{tabular}{lc}\toprule Encoder family & Information (bit/state)\\\midrule
@@ -175,39 +174,38 @@ Fixed surface, learned density & 1.183192\\
 Learned surface and density & 1.183192\\
 Finite Blahut reference & 1.183191\\\bottomrule
 \end{tabular}\end{table}
-Table~\ref{tab:circle} attributes 0.08179 bit per state of saving to density alone, against 0.00155 for the speed change with fixed density. This is the case $\epsilon=0$ of Proposition~\ref{prop:excess}: the fixed surface carries the evaluation cost, and masses suffice. The joint and density rates differ by less than $10^{-7}$ bit, below the precision of interpolation on the common slope grid. These are rates of stochastic test channels, not fixed-length packet savings. Figure~\ref{fig:ablation} compares interpolants over the shared distortion range, and every abscissa uses squared arc on the unwarped circle. Measuring distortion along the learned arc would move points horizontally as well and confound the comparison.
+Table~\ref{tab:circle} attributes 0.08179 bit per state of saving to density alone, against 0.00155 for the speed change with fixed density. The theory explains both numbers. The fixed surface already carries the evaluation metric, so its defect is zero and Proposition~\ref{prop:contrast}(ii) applies with $\epsilon=0$, while the operating point of about 1.2 bits lies in the low-resolution regime where density dominates. The joint and density rates differ by less than $10^{-7}$ bit, below the precision of interpolation on the common slope grid. These are rates of stochastic test channels, not fixed-length packet savings, and every abscissa uses squared arc on the unwarped circle.
 
+\subsection{An analog mapping at equal power and reach}
+Theorem~\ref{thm:area} is tested on the tilted circular source $p\propto1+0.85\cos\theta$ with $g=d\theta^2$. The surface is the circle $F(\theta)=\rho(\cos s(\theta),\sin s(\theta))$ in two real channel uses, so every choice of $s$ has the same power $\rho^2$, reach $\rho$ and length $2\pi\rho$, and only the area density $s'$ differs. The receiver returns the nearest point, and the distortion $\E(\theta-\hat\theta)^2$ is computed exactly by quadrature of the phase-error density.
 \begin{table}[t]
-\caption{Restricted surfaces on the same circle with optimized masses and scale. Excess and bound are in bits at the grid slope $\lambda\ln2=1.542$ with matched scale and centering masses.}\label{tab:rank}\centering
-\begin{tabular}{lccc}\toprule
-Coding surface & Rate at $0.30$ & Excess \eqref{eq:excess} & Bound \eqref{eq:eps}\\\midrule
-Euclidean chord, $d=2$ & 1.189914 & --- & ---\\
-Spectral, $d=2$ & 1.189897 & 0.10346 & 11.40\\
-Spectral, $d=4$ & 1.210406 & 0.07020 & 4.262\\
-Spectral, $d=8$ & 1.187964 & 0.00860 & 1.325\\
-Spectral, $d=16$ & 1.183713 & 0.00074 & 0.360\\
-Spectral, $d=32$ & 1.183265 & 0.00006 & 0.082\\\bottomrule
+\caption{Exact distortion of two analog surfaces of equal power, reach and length, and the bound \eqref{eq:area}.}\label{tab:analog}\centering
+\begin{tabular}{rcccc}\toprule
+$\rho^2/\sigma^2$ & Isometric & $s'\propto p^{1/3}$ & Bound & Ratio\\\midrule
+10 dB & $1.158\!\times\!10^{-1}$ & $1.008\!\times\!10^{-1}$ & $8.48\!\times\!10^{-2}$ & 0.871\\
+20 dB & $1.010\!\times\!10^{-2}$ & $8.59\!\times\!10^{-3}$ & $8.48\!\times\!10^{-3}$ & 0.850\\
+30 dB & $1.001\!\times\!10^{-3}$ & $8.49\!\times\!10^{-4}$ & $8.48\!\times\!10^{-4}$ & 0.848\\\bottomrule
 \end{tabular}\end{table}
-Table~\ref{tab:rank} restricts the surface instead. The centered squared-arc cost has numerical rank 95 with singular values $192.07, 48.07, 21.40, 12.07,\dots$ in equal pairs, and $-T$ has eigenvalues of both signs. The best unit-circle chord surface with free masses and scale stays 0.0067 bit above the Blahut rate, consistent with Corollary~\ref{cor:single}, which excludes exact optimality for every single Euclidean surface. Spectral surfaces approach the optimum as $d$ grows, as Theorem~\ref{thm:rank} predicts, and the supremum residual of the truncation falls from 2.58 to 0.22. The approach is not monotone: $d=4$ is worse than $d=2$ because the truncated series is flat near zero arc, where the encoder concentrates. The encoder-weighted divergence in \eqref{eq:excess} captures this effect, while the worst-case bound \eqref{eq:eps} becomes informative only once the logit residual is below one. The optimal marginal has full support at this slope.
+In Table~\ref{tab:analog} the companded surface approaches the bound from above and meets it within 0.2\% at 30 dB, and its ratio to the isometric surface tends to $\|p\|_{1/3}/(2\pi)^2=0.848$. The isometric surface, optimal for the digital coder, is therefore 0.72 dB worse here at equal resources. At 10 dB both exceed their weak-noise values by 16 to 19\%, since the noise is no longer small against the reach. The packing bound \eqref{eq:pack} gives $V_h\le4.5\pi\rho$ for this circle, a factor 2.25 above its length.
 
-\subsection{Paired measurements on real feature clouds}
-SEMASIA supplies frozen CIFAR-100 representations \cite{semasia}. On ResNet-18 we use the 20-way coarse task, disjoint fitting and calibration IDs, and the same anchors, costs and channel model for all four modes. The code stores the two-layer deformation, masses and head.
+\subsection{Raw and learned surfaces on real feature clouds}
+SEMASIA supplies frozen CIFAR-100 representations \cite{semasia}. On ResNet-18 features $u$ with the 20-way coarse task, a calibrated head $q$ and $\eta=0.05$, the evaluation cost is $C^g_{ij}=\|z_i-\bar z_j\|^2$ of Section~IV-A. Three surfaces are compared on 4,096 official test images with 256 anchors from the training set. The \emph{raw} surface is $F(u)=u$, the geometry in which a codebook on the features would act, and it is not isometric for $g_\eta$. The \emph{learned} surface is $F(u)=(c\,u,\,f(u))$ with a two-layer network $f$ of width 256 and 32 outputs. It is trained on 8,192 training images to minimize the Lagrangian of the evaluation cost summed over ten scales, and it sees features only. The lift $z$ is the isometric reference, for which the coder attains the Blahut optimum of $C^g$. Every coder uses one global scale and masses that are Blahut-optimal for its own surface cost.
 \begin{table}[t]
-\caption{The same 2,048 official SEMASIA test IDs and 16 anchors. Residual is RMS doubly centered $5(C^h-C^g)$ in logit units.}\label{tab:real}\centering
-\begin{tabular}{lrrrr}\toprule
-Mode & Residual & $I_2$ & $D_g$ & $I_2+3D_g$\\\midrule
-Fixed & 0 & 3.5205 & 1.7805 & 8.8620\\
-Density & 0 & 3.5208 & 1.7807 & 8.8630\\
-Geometry & 0.2621 & 3.4975 & 1.7859 & 8.8551\\
-Joint & 0.2619 & 3.4978 & 1.7862 & 8.8565\\\bottomrule
+\caption{Rate excess in bits over the Blahut optimum of $C^g$ at equal evaluation distortion on 4,096 held-out images. The learned column gives the range over three training seeds.}\label{tab:real}\centering
+\begin{tabular}{cccc}\toprule
+$D_g$ & Optimum & Raw surface & Learned surface\\\midrule
+3.5 & 0.91 & 1.85 & 0.28--0.38\\
+3.0 & 1.37 & 2.47 & 0.35--0.38\\
+2.5 & 1.89 & 3.52 & 0.28--0.44\\
+2.0 & 2.42 & --- & 0.35--0.43\\
+1.5 & 3.01 & --- & 0.49--0.52\\
+1.0 & 3.78 & --- & 1.71--1.99\\\midrule
+Least $D_g$ & 0.48 & 2.20 & 0.93--0.96\\\bottomrule
 \end{tabular}\end{table}
-Table~\ref{tab:real} evaluates all saved encoders on the same 2,048 official test IDs. At fixed scale $s=5$, geometry changes the row odds beyond what any change of masses can produce. Its information decreases by 0.0230 bit per image relative to the fixed mode, while $D_g$ increases by 0.0054. This single operating point documents a tradeoff, and a gain at equal distortion requires a slope sweep. The last column excludes the training penalty and uses the full-test output marginal. The saved run uses 768 fitting images, 192 calibration images, 16 anchors and two epochs. Its four-bit interface verifies that training, held-out inference and index transmission are connected. Replicated training and matched-distortion sweeps on larger codebooks are needed to compare rate gains across backbones.
-
-\subsection{From the stochastic encoder to a received index}
-Equation \eqref{eq:rx} evaluates a trained surface on a physical link, where geometry, masses and bit-to-anchor assignment all affect the received distortion. In a separate link check, the joint checkpoint sent four bits per image on 192 official test IDs, with two noise and index draws. Clean reception gave fixed distortion 1.7921. At $E_b/N_0=0$ dB, AWGN gave 3.1857 with index error 0.3073, and Rayleigh gave 3.5210 with index error 0.3984. At 10 dB the Rayleigh index error fell to 0.0625 and the distortion to 2.0190. These are measurements at a common physical payload. The information figures in Table~\ref{tab:real} describe the stochastic encoder before detection.
+Table~\ref{tab:real} shows the effect that Theorem~\ref{thm:defect} describes on a real cloud. Where the raw surface can reach the distortion at all, it pays 1.8 to 3.5 bits more than the optimum, and it cannot go below $D_g=2.20$ because its nearest anchors are near in feature distance and far in the joint cost. The learned surface removes most of this loss on images it has not seen. Its excess is 0.28 to 0.44 bit for $D_g\ge2$, and its least distortion is 0.93 to 0.96. It does not reach the isometric reference: the excess grows to about 1.8 bits at $D_g=1$, and the last row leaves a gap to 0.48. MobileNetV3-Small features give the same picture: the raw surface pays 2.4 to 5.2 bits where it reaches the distortion and stops at $D_g=2.49$, and the learned surface pays 0.13 to 0.47 bit for $D_g\ge2$ and reaches 0.94 to 0.96. These are achievable points of a finite problem with 256 anchors at rates below eight bits, outside the high-resolution regime of the theorem, and the learned surface was trained with the same head that defines the evaluation.
 
 \section{Conclusion}
-A geometric deformation changes a finite Gibbs encoder beyond mass reweighting exactly when it changes a cross difference of coding costs, and its possible benefit in the rate--distortion Lagrangian is bounded by the squared interaction residual between coding logits and the evaluation cost. The interaction rank of the evaluator gives the surface dimension at which a dot-product encoder becomes optimal, and negative type decides whether one shared Euclidean surface can be. On the circle, density on the intrinsic cost is already optimal and low-dimensional surfaces pay a measurable rate. Whether geometry saves rate on real feature clouds remains to be settled by matched-distortion sweeps.
+Treating the coding surface as the variable of a rate--distortion problem yields two functionals. A digital coder that is isotropic on the surface pays the isometry defect, which is zero for isometric surfaces up to scale, indifferent to area and to a smooth codeword density, and large for a surface that ignores the anisotropy of a joint task and fidelity metric. An analog mapping is governed by the area that power and reach allow, with a companded area density. Exact computations reproduce the defect and separate the low-resolution regime, where density explains the saving, from the high-resolution regime, where geometry does. On real feature clouds a learned surface recovers most of the rate that the raw feature geometry loses, at matched distortion and over three seeds, without reaching the isometric reference at small distortion.
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
 \end{document}

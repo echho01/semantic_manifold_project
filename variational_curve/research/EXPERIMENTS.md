@@ -14,23 +14,7 @@
 
 **真实点云与通信系统。** 使用[官方数据](https://huggingface.co/datasets/spaicom-lab/semasia-cifar100)的 ResNet-18 和 MobileNetV3-Small；校验每个模型各 split 的 SHA-256 和 model_name。按排序后的图像 ID 同步抽取。拟合、温度校准、验证三者从官方 train 互斥抽取；最后才用官方 test。模型、单位归一化、参考损失权重 eta 固定，20 粗类为主、100 细类为敏感性任务。不同模型的特征维数不需相同，不把两者拼成一个物理流形。`experiments/semasia_curve.py` 优化互信息加固定失真；反向传播使用可优化的全局边缘上界，每个 epoch 与测试均用实际输出边缘重算 I。训练结束后冻结映射和锚质量。收发双方预先共享同一头和锚点；采样码字索引后真正生成比特、调制并硬判决。无信道、AWGN 和每索引一次相干 Rayleigh 的 SNR 标记均为 Eb/N0；一个比特占一个实 BPSK 使用。
 
-**实验矩阵与判定。** 扫 M=16/64/256、lambda=1/3/8、两骨干、3 个训练种子。在一组源/任务内预先固定 eta，先在验证集为各方法公平扫描尺度 s（默认 5）和学习率，比较在相同固定失真的 I，另外比较同等实际位数/功率的性能。输出真实标签 NLL/准确率、后验 KL、固定几何失真、BER/BLER、各组参数量、总训练时间；消融禁用平滑或改变秩。预期可证伪：若 joint 对 density 的配对区间跨零或检索/直接判决更优，只报告该工作点和失败范围。`results/*_paired/` 下的图像 ID、每次噪声重复 KL/正确性可用于配对，先在每图内平均重复，按 ID 重采样，在独立训练种子上报告波动。更换评价准则单列，不能拿一个方法自己学出的距离评价所有方法。
-
-**已执行的短验证。** 真实 ResNet-18 的四组都训练两轮、重新加载检查点，并在 192 张官方测试图上做干净、AWGN、Rayleigh 评估：见 [固定](results/semasia_smoke_fixed.json)、[仅概率](results/semasia_smoke_density.json)、[仅曲面](results/semasia_smoke_geometry.json)、[联合](results/semasia_smoke.json)。16 个锚，4 个真实使用；联合模式测试 I 约 3.448 bit/图，预期干净后验 KL 约 1.748 bit。不同损失、不同约束下不能拿这个数和工作一的 BA 比较优劣。全数据量、训练收敛和独立几何收益还未得到验证。
-
-从本项目根目录运行；先打开生成的清单确认工作量。`plan` 只列配置；`train` 保存检查点；`validation` 与 `test` 各自读取已训练的检查点，写独立 JSON。复制 `experiments/matrix.json` 后可用 `--spec my-matrix.json` 只跑选定设置。全面板作业较多，请先跑 pilot；不要用正式测试集挑超参数。
-~~~sh
-python experiments/run_matrix.py plan --profile full --data data/semasia --out runs/matrix
-python experiments/run_matrix.py train --profile pilot --device cuda --download --data data/semasia --out runs/matrix
-python experiments/run_matrix.py validation --profile pilot --device cuda --data data/semasia --out runs/matrix
-python experiments/run_matrix.py test --profile pilot --device cuda --download --data data/semasia --out runs/matrix
-~~~
-
-已有结果做配对检验的命令（差值方向是第一个减第二个，区间以这两份固定检查点为条件）：
-
-~~~sh
-python experiments/compare.py results/semasia_smoke.json results/semasia_smoke_density.json --channel clean --metric accuracy
-~~~
+**正式对照。** 真实特征上的同失真比较由 `experiments/raw_surface.py` 完成，协议和结果见本文件后面的“原始特征与学习曲面”。早期的四模式矩阵（固定 $s=5$、扫 $\lambda$）及其两轮短验证记录不构成同失真比较，已于 2026-11-19 从仓库删除，可在 Git 历史的初始提交中找到。
 
 ## 真实特征上的几何可识别性实测
 
@@ -44,3 +28,60 @@ python experiments/compare.py results/semasia_smoke.json results/semasia_smoke_d
 python tests/test_interaction.py
 python experiments/interaction_rank.py --output results/interaction_rank.json --dimensions 2 4 6 8 10 12 16 24 32
 ~~~
+
+## 变分曲面泛函的数值核对（2026-11-16）
+
+`experiments/surface_functional.py` 只需 NumPy、SciPy（绘图另需 Matplotlib），720 态约十分钟。评价代价固定，编码器是单一全局尺度的 Gibbs 核，码率与 Blahut 最优在相同失真处比较（对 $\ln D$ 线性插值）。脚本先确认新的快速 Blahut 迭代在 96 点圆周上与原求解器一致（1.183191 bit）。Blahut 参考的对偶间隙最大 0.0019 bit，出现在低斜率处。
+
+| 设置 | 理论量 | 计算结果 |
+|---|---|---|
+| 圆，$g=d\theta^2$，$h=(1+0.5\cos\theta)^2d\theta^2$，均匀源 | $\Lambda=0.2112$ bit | 均匀质量：$D_g=0.3,0.03,0.005$ 处 0.186、0.209、0.211；优化质量 0.198、0.210、0.211 |
+| 同上，倾斜源 $1+0.85\cos\theta$ | $\Lambda=0.1406$ bit | 优化质量 0.124、0.139、0.140 |
+| 倾斜源，匹配曲面 $h=g$，均匀质量 | $\Lambda=0$ | $D_g=1$ 处 0.195，随后 0.084、0.010、0.002：纯密度效应 |
+| 环面，后验只依赖 $\theta$，联合代价 $\eta=0.01$，原始曲面 | $\Lambda=0.869$ bit | $D=0.03,0.003,0.0005$ nat 处 0.807、0.864、0.868 |
+| 同上，仅把 $\phi$ 缩放 $\varepsilon^2=\eta/\bar\zeta=0.0909$ | $\Lambda=0.014$ bit | 0.024、0.014、0.014 |
+| 同上，完全匹配 | 0 | 0.007、0.000、0.000 |
+
+这些是有限网格上的可达点，不是连续字母表的证书。`tests/test_variational.py`（12 项）另外检查：亏量非负及取零条件、夹逼上界、一阶变分的有限差分、最优零方向缩放、companding 界及其极小元、管体积界在圆、球面、Clifford 环面和椭圆上成立、椭圆上弱噪声失真的 Monte Carlo、标量曲率对 reach 的上界。真实特征上的 $h^{-1}g$ 尚未估计。
+
+~~~sh
+python tests/test_variational.py
+python experiments/surface_functional.py --output results/surface_functional.json --figure ../figures/surface_functional.png
+~~~
+
+## 针对外部审阅意见的修补（2026-11-18）
+
+| 审阅意见 | 判断 | 处理 |
+|---|---|---|
+| “密度无效”是固定全局尺度造成的伪影 | 大部分不成立：全局尺度的 Gibbs 核是曲面弦长失真的率失真最优测试信道族，全局是因为拉格朗日乘子是全局的；密度无关对应熵约束情形 | 主稿在编码器定义处写明这个来历，并指出定长情形的密度律在定理 2 |
+| 推论 1 的“涌现维数”是夸大 | 成立：最优解就是 $h\propto g_\eta$，零空间方向的收缩来自评价度量自己的权重，任何 $\eta>0$ 下曲面都是 $m$ 维 | 删掉“涌现维数”和“收缩到任务秩”的说法（标题、摘要、贡献、推论名、结论）。推论改述为：忽略各向异性的损失约 $\tfrac{m-r}2\ln(1/\eta)$；塌缩到 $r$ 维的曲面不是嵌入，只能达到零空间零码率失真以上的失真 |
+| 定理 2 漏“无边界”和 $\mathrm{Scal}>0$ 前提 | 成立 | 流形假设补“无边界”；reach 上界限定为标量曲率在某处为正的曲面 |
+| 定理 2 没有任何实验 | 成立 | 新增模拟映射实验（下） |
+| 真实特征实验的基准曲面按定义已等距，验证不了核心主张 | 成立 | 改为从原始特征出发的实验（下），替换原来的 2 轮冒烟表和链路检查段落 |
+
+**模拟映射（定理 2）。** `experiments/analog_mapping.py`，只需 NumPy/SciPy。圆上倾斜信源 $p\propto1+0.85\cos\theta$，曲面为 $\mathbb R^2$ 中半径 $\rho$ 的圆、角速度 $s'$ 可变，因此功率、reach、长度都相同。失真由相位误差密度精确求积。$\rho^2/\sigma^2=10,20,30$ dB 时，等距曲面失真 0.1158、0.01010、0.001001，$s'\propto p^{1/3}$ 的曲面 0.1008、0.00859、0.000849，面积下界 0.0848、0.00848、0.000848，比值 0.871、0.850、0.848，预测 $\|p\|_{1/3}/(2\pi)^2=0.848$。[数值](results/analog_mapping.json)
+
+**原始特征与学习曲面。** `experiments/raw_surface.py`（PyTorch，GPU 服务器上约 3 分钟）。ResNet-18 特征，20 类粗任务，$\eta=0.1$，256 个训练锚点，4,096 张官方测试图。评价代价是提升坐标 $z=(2\sqrt q,\sqrt\eta u)$ 的平方弦长。原始曲面 $F(u)=u$；学习曲面 $F(u)=(cu,f(u))$，$f$ 为宽 256、输出 32 的两层网络，在 8,192 张训练图上对 10 个尺度的评价拉格朗日量求和后训练，只看特征；每个编码器的质量按自身曲面代价做 Blahut 优化。相同评价失真处相对 Blahut 最优的超额码率（bit，学习曲面为 3 个种子的范围）：
+
+| $D_g$ | 最优 | 原始曲面 | 学习曲面 |
+|---|---:|---:|---|
+| 3.5 | 0.91 | 1.85 | 0.28–0.38 |
+| 3.0 | 1.37 | 2.47 | 0.35–0.38 |
+| 2.5 | 1.89 | 3.52 | 0.28–0.44 |
+| 2.0 | 2.42 | 达不到 | 0.35–0.43 |
+| 1.5 | 3.01 | 达不到 | 0.49–0.52 |
+| 1.0 | 3.78 | 达不到 | 1.71–1.99 |
+| 可达最小 $D_g$ | 0.48 | 2.20 | 0.93–0.96 |
+
+学习曲面在未见过的图像上消除了原始曲面的大部分超额码率，但没有达到等距参照，小失真处差距增大。这是 256 个锚点、8 bit 以下的有限问题，不在定理 1 的高分辨率区；学习曲面训练时使用了定义评价的同一个头。[数值](results/raw_surface.json)
+
+~~~sh
+python experiments/analog_mapping.py --output results/analog_mapping.json
+python experiments/raw_surface.py --data data/semasia --device cuda --output results/raw_surface.json
+~~~
+
+## 第二轮审阅后的修补（2026-11-19）
+
+- **因子 2。** 坐标 $(2\sqrt q,\sqrt{w}\,u)$ 的平方弦长是 $G_q+w\,g_0$，即联合度量 $\tfrac12G_q+\eta g_0$ 在 $\eta=w/2$ 时的 2 倍。等距亏量对整体缩放不变，已有数值全部有效，只是此前标的 $\eta=0.1$ 实际是 $\eta=0.05$。主稿已改为 $z=(2\sqrt q,\sqrt{2\eta}u)$ 并注明“两倍”。
+- **第二个骨干。** `raw_surface.py --model mobilenet`：原始曲面在可达处超额 2.37–5.17 bit、最小失真 2.49；学习曲面（3 个种子）在 $D_g\ge2$ 处超额 0.13–0.47 bit、最小失真 0.94–0.96。[数值](results/raw_surface_mobilenet.json)
+- 已删除 `experiments/matrix.json`、`run_matrix.py` 和 `results/semasia_smoke*`、`smoke_provenance.json`。`semasia_curve.py` 作为有限锚点编码器的实现保留。
