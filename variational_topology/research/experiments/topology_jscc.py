@@ -11,13 +11,14 @@ from structure import batch_ph, connection, image_ph, mst_signature
 
 
 class Codec(nn.Module):
-    def __init__(self, size, rho, hidden, groups=1, power="uniform"):
+    def __init__(self, size, rho, hidden, groups=1, power="uniform", output="linear"):
         super().__init__()
         if size % 4 or size < 8 or not 0 < rho <= 1 or hidden < 1:
             raise ValueError("size must be >=8 and divisible by 4; 0<rho<=1; hidden>=1")
         self.k = max(1, round(size * size * rho))
         self.side = size // 4
         self.hidden = hidden
+        self.output = output
         if groups < 1 or groups > self.k or (power == "learned" and groups < 2):
             raise ValueError(
                 "power groups must be in [1,k]; learning requires at least two"
@@ -40,7 +41,11 @@ class Codec(nn.Module):
                     nn.ConvTranspose2d(
                         hidden, 1 if i == 4 else hidden, 5, s, 2, output_padding=s - 1
                     ),
-                    nn.Sigmoid() if i == 4 else nn.PReLU(),
+                    # A sigmoid output saturates at zero on sparse glyphs within a few
+                    # steps and its gradient vanishes, so the default output is linear.
+                    (nn.Sigmoid() if output == "sigmoid" else nn.Identity())
+                    if i == 4
+                    else nn.PReLU(),
                 ]
             )
         self.dec = nn.Sequential(*dec)
@@ -76,6 +81,8 @@ class Codec(nn.Module):
         y = self.dec(
             self.unpack(rx.flatten(1)).reshape(-1, self.hidden, self.side, self.side)
         )
+        if not self.training:
+            y = y.clamp(0, 1)  # Reconstructions are images; training uses the raw output.
         return y, z.flatten(1), rx.flatten(1)
 
 
@@ -104,6 +111,8 @@ def main():
     train.add_argument("--dataset", choices=("omniglot", "roads"), default="omniglot")
     train.add_argument("--groups", type=int, default=1)
     train.add_argument("--power", choices=("uniform", "learned"), default="uniform")
+    train.add_argument("--activation", choices=("linear", "sigmoid"), default="linear")
+    train.add_argument("--init", type=Path, help="start from the weights of this checkpoint")
     train.add_argument(
         "--mode",
         choices=("mse", "topojscc", "topoae", "query", "proposed"),
@@ -145,7 +154,9 @@ def main():
             < 0
         ):
             raise ValueError("invalid training settings")
-        net = Codec(a.size, a.rho, a.hidden, a.groups, a.power).to(dev)
+        net = Codec(a.size, a.rho, a.hidden, a.groups, a.power, a.activation).to(dev)
+        if a.init:
+            net.load_state_dict(torch.load(a.init, map_location=dev, weights_only=True)["state"])
         ds = Images(a.data, a.dataset, "train", a.size, a.limit, a.seed)
         dl = DataLoader(ds, batch_size=a.batch, shuffle=True, num_workers=a.workers)
         opt = torch.optim.Adam(net.parameters(), lr=a.lr)
@@ -190,7 +201,8 @@ def main():
                 )
             )
         a.checkpoint.parent.mkdir(parents=True, exist_ok=True)
-        cfg = {k: v for k, v in vars(a).items() if k not in ("data", "checkpoint")}
+        cfg = {k: v for k, v in vars(a).items() if k not in ("data", "checkpoint", "init")}
+        cfg["init"] = a.init.name if a.init else None
         torch.save(
             dict(
                 cfg=cfg, train_id_sha256=ds.sha, history=history, state=net.state_dict()
@@ -203,9 +215,10 @@ def main():
         raise ValueError("repeats must be positive")
     ck = torch.load(a.checkpoint, map_location=dev, weights_only=True)
     cfg = ck["cfg"]
-    net = Codec(cfg["size"], cfg["rho"], cfg["hidden"], cfg["groups"], cfg["power"]).to(
-        dev
-    )
+    net = Codec(
+        cfg["size"], cfg["rho"], cfg["hidden"], cfg["groups"], cfg["power"],
+        cfg.get("activation", "sigmoid"),  # Checkpoints saved before this option used a sigmoid.
+    ).to(dev)
     net.load_state_dict(ck["state"])
     net.eval()
     ds = Images(a.data, cfg["dataset"], a.split, cfg["size"], a.limit, a.seed)

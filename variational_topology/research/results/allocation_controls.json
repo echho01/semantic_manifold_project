@@ -1,0 +1,194 @@
+{
+ "converse": {
+  "orbits": 320,
+  "queries": 3,
+  "mean_answer_entropy_bits": 2.4771569130614965,
+  "share_with_three_bits": 0.05,
+  "rows": [
+   {
+    "snr_db": 0,
+    "bit_error": 0.07864960352514258,
+    "mean_bound_bits": 0.9773757851820829,
+    "information_sent_bits": 2.1643547723711327,
+    "capacity_bits": 3.0,
+    "min_uses": 0.9773757851820829,
+    "uses": 3,
+    "violations": 0
+   },
+   {
+    "snr_db": 3,
+    "bit_error": 0.022878407561085334,
+    "mean_bound_bits": 1.832348451219877,
+    "information_sent_bits": 2.737056350717812,
+    "capacity_bits": 4.748047064734669,
+    "min_uses": 1.1577487077767241,
+    "uses": 3,
+    "violations": 0
+   },
+   {
+    "snr_db": 6,
+    "bit_error": 0.0023882907809328066,
+    "mean_bound_bits": 2.3724210251224056,
+    "information_sent_bits": 2.9707914023243998,
+    "capacity_bits": 6.94936853887878,
+    "min_uses": 1.0241596823580643,
+    "uses": 3,
+    "violations": 0
+   },
+   {
+    "snr_db": 10,
+    "bit_error": 3.872108215522049e-06,
+    "mean_bound_bits": 2.4768200938315017,
+    "information_sent_bits": 2.9999499847212077,
+    "capacity_bits": 10.378294855911893,
+    "min_uses": 0.7159615702440577,
+    "uses": 3,
+    "violations": 0
+   }
+  ]
+ },
+ "analog": {
+  "fields": 40,
+  "side": 16,
+  "draws": 20,
+  "predicted_ratio": 0.7275061473717016,
+  "rows": [
+   {
+    "sigma": 1e-06,
+    "snr_db": 120.0,
+    "uniform_risk": 7.881162368274579e-07,
+    "allocated_risk": 6.000005719267126e-07,
+    "ratio": {
+     "mean": 0.7612857194641867,
+     "ci95": [
+      0.7488540128431518,
+      0.7737174260852215
+     ]
+    },
+    "measured_over_linearized": 0.9877572214637438,
+    "fields_within_half_gap": 0
+   },
+   {
+    "sigma": 0.001,
+    "snr_db": 60.0,
+    "uniform_risk": 0.0007095811428516169,
+    "allocated_risk": 0.001305287470868884,
+    "ratio": {
+     "mean": 1.8393733050898196,
+     "ci95": [
+      1.7792159364895486,
+      1.8995306736900905
+     ]
+    },
+    "measured_over_linearized": 0.8893280779084209,
+    "fields_within_half_gap": 0
+   },
+   {
+    "sigma": 0.01,
+    "snr_db": 40.0,
+    "uniform_risk": 0.005942049862577022,
+    "allocated_risk": 0.006394010535109405,
+    "ratio": {
+     "mean": 1.076896087342552,
+     "ci95": [
+      1.0663373999413637,
+      1.0874547747437402
+     ]
+    },
+    "measured_over_linearized": 0.7447255097401407,
+    "fields_within_half_gap": 0
+   },
+   {
+    "sigma": 0.03,
+    "snr_db": 30.45757490560675,
+    "uniform_risk": 0.010211005311637402,
+    "allocated_risk": 0.010824348308271402,
+    "ratio": {
+     "mean": 1.0604392573984203,
+     "ci95": [
+      1.054645987439399,
+      1.0662325273574416
+     ]
+    },
+    "measured_over_linearized": 0.42658657710929404,
+    "fields_within_half_gap": 0
+   },
+   {
+    "sigma": 0.1,
+    "snr_db": 20.0,
+    "uniform_risk": 0.017306540462358234,
+    "allocated_risk": 0.01945658232867935,
+    "ratio": {
+     "mean": 1.1166908707123941,
+     "ci95": [
+      1.104007563286144,
+      1.1293741781386444
+     ]
+    },
+    "measured_over_linearized": 0.21690531829496304,
+    "fields_within_half_gap": 0
+   },
+   {
+    "sigma": 0.3,
+    "snr_db": 10.457574905606752,
+    "uniform_risk": 0.027284502265412586,
+    "allocated_risk": 0.026075184667646877,
+    "ratio": {
+     "mean": 0.9582151852120464,
+     "ci95": [
+      0.9481305850284063,
+      0.9682997853956865
+     ]
+    },
+    "measured_over_linearized": 0.11398684139619464,
+    "fields_within_half_gap": 0
+   }
+  ]
+ },
+ "shared": {
+  "training_glyphs": 200,
+  "test_glyphs": 320,
+  "draws": 100,
+  "rows": [
+   {
+    "ebn0_db": 4,
+    "uniform_risk": 0.0009660288095474243,
+    "per_image_ratio": 0.043488220165834174,
+    "shared_ratio": 0.4606570481871289,
+    "shuffled_ratio": 2.4548236797872365,
+    "pixel_error": {
+     "uniform": 0.012496398925781249,
+     "per_image": 0.029157745361328126,
+     "shared": 0.05290771484375001,
+     "shuffled": 0.029159484863281248
+    }
+   },
+   {
+    "ebn0_db": 6,
+    "uniform_risk": 0.00019780334830284122,
+    "per_image_ratio": 0.03529466359126369,
+    "shared_ratio": 0.37726058013502417,
+    "shuffled_ratio": 2.7228512294153884,
+    "pixel_error": {
+     "uniform": 0.002392303466796875,
+     "per_image": 0.005469024658203125,
+     "shared": 0.01109478759765625,
+     "shuffled": 0.005474884033203125
+    }
+   },
+   {
+    "ebn0_db": 8,
+    "uniform_risk": 1.5870541334152223e-05,
+    "per_image_ratio": 0.03068013452839011,
+    "shared_ratio": 0.3689672072965314,
+    "shuffled_ratio": 2.8428154816563285,
+    "pixel_error": {
+     "uniform": 0.00019100952148437498,
+     "per_image": 0.00043414306640624997,
+     "shared": 0.0009078674316406251,
+     "shuffled": 0.00043621826171875
+    }
+   }
+  ]
+ }
+}
