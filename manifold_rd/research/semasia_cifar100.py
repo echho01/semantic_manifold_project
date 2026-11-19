@@ -35,6 +35,15 @@ HASHES = {
 SIZES = (1, 4, 16, 64, 256)
 
 
+def sha256_file(path):
+    """Streamed digest; hashlib.file_digest needs Python 3.11."""
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        while block := stream.read(1024 * 1024):
+            digest.update(block)
+    return digest.hexdigest()
+
+
 def shard_file(directory, model, split, download):
     relative = Path(split) / model / "part-00000.parquet"
     path = directory / relative
@@ -47,18 +56,16 @@ def shard_file(directory, model, split, download):
                 while block := response.read(1024 * 1024):
                     tmp.write(block)
                 tmp.close()
-                with temp_path.open("rb") as stream:
-                    if hashlib.file_digest(stream, "sha256").hexdigest() != HASHES[model, split]:
-                        raise ValueError(f"unexpected download for {relative}")
+                if sha256_file(temp_path) != HASHES[model, split]:
+                    raise ValueError(f"unexpected download for {relative}")
                 temp_path.replace(path)
             finally:
                 tmp.close()
                 temp_path.unlink(missing_ok=True)
     if not path.exists():
         raise FileNotFoundError(f"{path} is missing. Use --download to fetch the pinned files.")
-    with path.open("rb") as stream:
-        if hashlib.file_digest(stream, "sha256").hexdigest() != HASHES[model, split]:
-            raise ValueError(f"file differs from the pinned revision: {path}")
+    if sha256_file(path) != HASHES[model, split]:
+        raise ValueError(f"file differs from the pinned revision: {path}")
     return pq.ParquetFile(path)
 
 

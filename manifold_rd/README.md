@@ -1,6 +1,6 @@
 # 语义流形率失真
 
-固定任务与失真后，要求接收端返回可实现的对象，如何改变同一信息预算下的最优失真？
+把语义表示建模为流形上的信源、用黎曼度量定义语义失真之后，广义、知识库条件和任务导向三种保真度各需要多少信息率？
 
 IEEE Transactions 单文件稿件（拟投 IEEE Transactions on Communications）：[主稿源码](main.tex) · [PDF](build/main.pdf) · [书目](ref.bib)。在本目录运行 `python build.py` 更新 PDF。
 

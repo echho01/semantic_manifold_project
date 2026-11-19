@@ -115,6 +115,75 @@ class PriceOfAnObject(unittest.TestCase):
         self.assertGreater(information_bits(p, w), 0)
 
 
+class Framework(unittest.TestCase):
+    def test_curvature_coefficient_on_spheres(self):
+        from framework_checks import SPACES, homogeneous_point
+        for name, (m, vol, scal, _) in SPACES.items():
+            d, rate = homogeneous_point(name, 2000.0)
+            lead = np.log(vol) - 0.5 * m * np.log(2 * np.pi * np.e * d / m)
+            self.assertAlmostEqual((rate - lead) / d, scal / (6 * m), delta=2e-3)
+        d, rate = homogeneous_point("T2", 2000.0)
+        self.assertAlmostEqual(rate, np.log(4 * np.pi**2) - np.log(np.pi * np.e * d), delta=1e-9)
+
+    def test_curvature_coefficient_for_nonuniform_density(self):
+        from framework_checks import nonuniform_sphere
+        for tilt in (0.5, 0.8):
+            r = nonuniform_sphere(tilt, 100)
+            lead = r["entropy_nats"] - np.log(np.pi * np.e * r["distortion"])
+            upper = (r["rate_nats"] - lead) / r["distortion"]
+            lower = (r["dual_lower_nats"] - lead) / r["distortion"]
+            self.assertGreaterEqual(r["rate_nats"], r["dual_lower_nats"] - 1e-9)
+            self.assertAlmostEqual(lower, 1 / 6, delta=2e-4)
+            self.assertAlmostEqual(upper, 1 / 6, delta=2e-4)
+            # A surviving Fisher term would move the coefficient by J/4 > 0.04.
+            self.assertGreater(r["fisher_information"] / 4, 0.04)
+
+    def test_curvature_term_uses_density_weighted_mean(self):
+        from framework_checks import spheroid
+        r = spheroid(1.0, 0.7, 3.0, 300)
+        self.assertAlmostEqual(r["gauss_bonnet"], 1.0, places=9)
+        self.assertGreater(abs(r["predicted"] - r["area_average"]), 0.03)
+        self.assertLessEqual(r["lower_coefficient"], r["upper_coefficient"] + 1e-9)
+        for key in ("upper_coefficient", "lower_coefficient"):
+            self.assertAlmostEqual(r[key], r["predicted"], delta=1e-3)
+
+    def test_side_information_and_ordering_bounds(self):
+        from manifold_rd import conditional_ba
+        rng = np.random.default_rng(23)
+        for _ in range(15):
+            n, m, beta = 9, 6, float(rng.uniform(0.5, 6))
+            cost = rng.uniform(0, 2, (n, m))
+            weights = rng.dirichlet(np.ones(3))
+            laws = rng.dirichlet(np.ones(n), size=3)
+            mix = weights @ laws
+            info = float(sum(w * (p * np.log2(p / mix)).sum() for w, p in zip(weights, laws)))
+            plain = finite_ba(mix, cost, beta, tol=1e-11)
+            shared = conditional_ba(weights, laws, [cost] * 3, beta, tol=1e-11)
+            f0, fk = plain.rate + beta * plain.distortion, shared.rate + beta * shared.distortion
+            self.assertLessEqual(fk, f0 + 1e-8)                 # knowledge cannot hurt under a fixed cost
+            self.assertLessEqual(f0, fk + info + 1e-8)          # and saves at most I(U;K)
+            scale = float(rng.uniform(0.2, 1.0))                # a dominated cost needs no more rate
+            smaller = finite_ba(mix, scale * cost * rng.uniform(0.5, 1.0, cost.shape), beta, tol=1e-11)
+            self.assertLessEqual(smaller.rate + beta * smaller.distortion, f0 + 1e-8)
+
+    def test_metric_refinement_can_cost_rate(self):
+        from framework_checks import knowledge
+        rows = {r["case"]: r for r in knowledge(240)}
+        self.assertLess(rows["finer where likely"]["gain_at_0.03"], -0.2)
+        for row in rows.values():
+            self.assertAlmostEqual(row["gain_at_0.03"], row["predicted_gain_bits"], delta=5e-3)
+
+    def test_bias_variance_identity_on_sphere(self):
+        rng = np.random.default_rng(2)
+        z = np.array([0.0, 0.0, 1.0])
+        v = rng.normal([0.05, -0.02], [0.1, 0.2], size=(200000, 2))      # tangent errors at the pole
+        norm = np.linalg.norm(v, axis=1)
+        points = np.c_[np.sin(norm)[:, None] * v / norm[:, None], np.cos(norm)]
+        geodesic_sq = np.arccos(np.clip(points @ z, -1, 1)) ** 2
+        bias, cov = v.mean(0), np.cov(v.T, bias=True)
+        self.assertAlmostEqual(geodesic_sq.mean(), bias @ bias + np.trace(cov), places=10)
+
+
 class AnalogAllocation(unittest.TestCase):
     def test_closed_form_against_search(self):
         rng = np.random.default_rng(5)

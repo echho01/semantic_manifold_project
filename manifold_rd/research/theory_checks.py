@@ -316,7 +316,7 @@ def plot(summary, rows, curves, path):
     bx.loglog(dp, gap, "o-", color="#124971", ms=3, label="Computed gap")
     bx.loglog(dp, [r["local_law_bits"] for r in rows], ":", color=".3",
               label=r"$\frac{1}{2}\overline{\kappa_m^2}\,D^2$")
-    bx.loglog(dp, [r["curvature_lower_bits"] for r in rows], "--", color="#a32437", label="Lower bound, Theorem 2")
+    bx.loglog(dp, [r["curvature_lower_bits"] for r in rows], "--", color="#a32437", label="Rigorous lower bound")
     bx.loglog(dp, [r["projected_object_bits"] - r["D_predictive_bits"] for r in rows], "-",
               color="#6a8f3c", lw=1, label="Projected centroids")
     bx.set(xlabel=r"$D_{\rm pred}(R)$ (bits)", ylabel=r"$D_{\rm obj}(R)-D_{\rm pred}(R)$ (bits)",
